@@ -1,0 +1,48 @@
+*** Settings ***
+Suite Teardown    Close All Browsers
+Resource          ../../../all_resource.txt
+
+*** Test Cases ***
+登录
+    login in    ${SXS_WEB_URL}
+    sleep    2
+
+搜索功能验证
+    #热门搜索不为0
+    Input Text    //input[@placeholder="请输入期望的实习岗位"]    萌想科技
+    Click Element    //input[@type="submit"]
+    Comment    Click Element    //input[@value="搜索职位"]
+    sleep    6
+    #搜索结果不为0
+    ${result_list}    Get WebElements    //ul[@class="position-list"]/li
+    ${result_length}    Get Length    ${result_list}
+    Run Keyword And Continue On Failure    Should Be True    ${result_length}>1
+
+收藏职位
+    #随机点击职位收藏
+    Random click item    //ul[@class="position-list"]/li/div[1]/div[1]/a
+    Sleep    ${WAIT_TIME}
+    Select Window    new
+    Sleep    ${WAIT_TIME}
+    ${web_string}    Get Text    //div[contains(@class,"job_collect ")]/span[2]
+    Run Keyword If    '${web_string}'=='收藏'    Click Element    //div[contains(@class,"job_collect ")]
+    Sleep    ${WAIT_TIME}
+    ${web_string}    Get Text    //div[contains(@class,"job_collect ")]/span[2]
+    Run Keyword And Continue On Failure    Should Be Equal    ${web_string}    已收藏
+
+进入个人中心取消收藏
+    Reload Page
+    Click Element    //a[@data-desc="base-个人中心"]
+    sleep    ${WAIT_TIME}
+    sleep    ${WAIT_TIME}
+    Click Element    //div[@class="info3-box"]/a[contains(@href,"my/collect")]
+    sleep    ${WAIT_TIME}
+    ${web_list}    Get WebElements    //li[@class="info-list"]
+    ${length}    Get Length    ${web_list}
+    Run Keyword And Continue On Failure    Should Be True    ${length}>=1
+    Click Element    //span[@class="not-collect-btn" and text()="取消收藏"]
+    Sleep    ${WAIT_TIME}
+    ${web_list}    Get WebElements    //li[@class="info-list"]
+    ${length1}    Get Length    ${web_list}
+    Run Keyword And Continue On Failure    Should Be True    ${length}>${length1}
+    [Teardown]

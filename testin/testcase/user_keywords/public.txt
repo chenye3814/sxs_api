@@ -1,0 +1,127 @@
+*** Settings ***
+Resource          ../all_resource.txt
+
+*** Keywords ***
+login in
+    [Arguments]    ${url}    ${username}=${user_name}    ${userpassword}=${password}
+    Open Browser    ${url}    Chrome
+    Maximize Browser Window
+    sleep    1
+    Input Text    //div[@class="item"]/input[@placeholder="请输入手机号/邮箱"]    ${username}
+    Input Text    //div[@class="item item1 point-word-code"]/input[@placeholder="请输入密码"]    ${userpassword}
+    sleep    2
+    Click Element    //span[text()="登录"]
+
+Connect To Database
+    [Arguments]    ${Database}=${DB_NAME}    ${Host}=${HOST}    ${Port}=${PORT}    ${user}=${DB_USER}    ${password}=${DB_PASSWORD}
+    Connect To Database Using Custom Params    psycopg2    database='${Database}', user='${user}', password='${password}', host='${Host}', port=${Port}
+
+read excel data_row
+    [Arguments]    ${filePath}    ${sheet_index}=0    ${col_index}=${EMPTY}    ${row_index}=${EMPTY}
+    [Timeout]
+    ${exceldata}    Open Workbook    ${filePath}
+    @{result_data}    Create List
+    Log Many    ${col_index}    ${row_index}
+    Run Keyword If    '${col_index}' != '${EMPTY}' \ and '${row_index}' != '${EMPTY}'    Set Test Variable    @{result_data}    ${exceldata.sheet_by_index(${sheet_index}).cell(${row_index},${col_index})}
+    ...    ELSE IF    '${col_index}' != '${EMPTY}'    Set Test Variable    @{result_data}    ${exceldata.sheet_by_index(${sheet_index}).col_values(${col_index})}
+    ...    ELSE IF    '${row_index}' != '${EMPTY}'    Set Test Variable    @{result_data}    ${exceldata.sheet_by_index(${sheet_index}).row_values(${row_index})}
+    [Return]    @{result_data}
+
+read excel data_all
+    [Arguments]    ${filePath}    ${sheet_index}=0
+    [Timeout]
+    ${exceldata}    Open Workbook    ${filePath}
+    ${row_length}    Set Variable    ${exceldata.sheet_by_index(${sheet_index}).nrows}
+    ${col_length}    Set Variable    ${exceldata.sheet_by_index(${sheet_index}).ncols}
+    ${result_data}    Set Variable
+    ${result_data}    Create Dictionary
+    ${row_index}    Set Variable    0
+    : FOR    ${TEMP}    IN RANGE    ${col_length}
+
+user_for_returan_dic
+    [Arguments]    ${length}    @{list_1}
+    :
+
+get list_xpath text value
+    [Arguments]    ${xpath}
+    @{element}    Get WebElements    ${xpath}
+    ${return_list}    Create List
+    : FOR    ${temp}    IN    @{element}
+    \    ${temp_value}    Get Text    ${temp}
+    \    Append To List    ${return_list}    ${temp_value}
+    ${return}    Set Variable    ${return_list}
+    [Return]    ${return}
+
+get list_xpath attribute value
+    [Arguments]    ${xpath}    ${attribute}=class
+    @{element}    Get WebElements    ${xpath}
+    ${return}    Create List
+    : FOR    ${temp}    IN    @{element}
+    \    ${temp_value}    Get Element Attribute    ${temp}    ${attribute}
+    \    Append To List    ${return}    ${temp_value}
+    [Return]    ${return}
+
+Random click item
+    [Arguments]    ${xpath}
+    sleep    2
+    ${web_ele}    Get WebElements    ${xpath}
+    ${ele_number}    Get Length    ${web_ele}
+    ${ele_number}    Evaluate    ${ele_number}-1
+    ${ram_number}    Evaluate    random.randint(0,${ele_number})    modules=random, sys
+    Focus    ${web_ele[${ram_number}]}
+    Comment    Mouse Up    ${web_ele[${ram_number}]}
+    Comment    Mouse Down    ${web_ele[${ram_number}]}
+    Click Element    ${web_ele[${ram_number}]}
+
+Random click item designated area
+    [Arguments]    ${xpath}    ${start}=0    ${end}=0
+    [Documentation]    指定随机选择开始的范围和结束范围
+    ${web_ele}    Get WebElements    ${xpath}
+    ${ele_number}    Get Length    ${web_ele}
+    ${ele_number}    Evaluate    ${ele_number}-1
+    Comment    ${length}    Evaluate    ${ele_number}-${end}
+    ${length}    Evaluate    ${end}
+    ${ram_number}    Evaluate    random.randint(${start},${length})    modules=random, sys
+    Mouse Up    ${web_ele[${ram_number}]}
+    Mouse Down    ${web_ele[${ram_number}]}
+    Click Element    ${web_ele[${ram_number}]}
+
+verification url
+    [Arguments]    ${xpath}    ${v_url}    ${waittime}=5
+    [Documentation]    点击元素，验证点击后，元素跳转是否正常
+    Focus    ${xpath}
+    Click Element    ${xpath}
+    sleep    ${waittime}
+    ${url}    Get Location
+    Run Keyword And Continue On Failure    Should Be Equal    ${url}    ${v_url}
+    Run Keyword And Continue On Failure    Page Should Not Contain Element    //*[@value="404"]
+    go back
+    sleep    2
+
+verification url_new_windows
+    [Arguments]    ${xpath}    ${v_url}    ${waittime}=5
+    [Documentation]    点击元素，验证点击后，元素跳转是否正常
+    Focus    ${xpath}
+    Click Element    ${xpath}
+    sleep    ${waittime}
+    Select Window    new
+    ${url}    Get Location
+    Run Keyword And Continue On Failure    Should Be Equal    ${url}    ${v_url}
+    Run Keyword And Continue On Failure    Page Should Not Contain Element    //*[@value="404"]
+    ${handle}    Get Window Handles
+    Select Window    ${handle[0]}
+    sleep    2
+
+verification url_new_windows_contains
+    [Arguments]    ${xpath}    ${v_url}    ${waittime}=5
+    [Documentation]    点击元素，验证点击后，元素跳转是否正常
+    Focus    ${xpath}
+    Click Element    ${xpath}
+    sleep    ${waittime}
+    Select Window    new
+    ${url}    Get Location
+    Run Keyword And Continue On Failure    Should Contain    ${url}    ${v_url}
+    Run Keyword And Continue On Failure    Page Should Not Contain Element    //*[@value="404"]
+    ${handle}    Get Window Handles
+    Select Window    ${handle[0]}
+    sleep    2

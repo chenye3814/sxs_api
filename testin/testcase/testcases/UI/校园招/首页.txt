@@ -1,0 +1,76 @@
+*** Settings ***
+Suite Teardown    Close All Browsers
+Force Tags
+Resource          ../../../all_resource.txt
+
+*** Test Cases ***
+进入首页
+    Open Browser    ${XYZ_Student_PC_URL}    chrome
+    sleep    ${WAIT_TIME}
+    Maximize Browser Window
+    Wait Until Page Contains    实习僧
+    sleep    ${WAIT_TIME}
+    Reload Page
+    sleep    ${WAIT_TIME}
+
+企业注册
+    Click Element    //span[@class="company"]
+    Wait Until Page Contains    手机注册
+    sleep    ${WAIT_TIME}
+    sleep    ${WAIT_TIME}
+    #企业手机注册页面验证
+    Run Keyword And Continue On Failure    Element Attribute Value Should Be    id=userName    placeholder    请输入你的手机号
+    Run Keyword And Continue On Failure    Element Attribute Value Should Be    id=password    placeholder    请输入你的密码
+    Run Keyword And Continue On Failure    Element Attribute Value Should Be    id=verify_img    placeholder    图形验证码
+    Run Keyword And Continue On Failure    Element Attribute Value Should Be    id=rdcodeInput    placeholder    短信验证码
+    Run Keyword And Continue On Failure    Element Text Should Be    //button[@id="msg_btn"]    获取短信验证码
+    Run Keyword And Continue On Failure    Page Should Contain Element    //button[text()="企业注册"]
+    Run Keyword And Continue On Failure    Page Should Contain Element    //a[@class="login-nonum"][text()="立即登录"]
+    #企业邮箱注册页面验证
+    Click Element    //span[@class="reg-e"][text()="邮箱注册"]
+    sleep    ${WAIT_TIME}
+    Run Keyword And Continue On Failure    Element Attribute Value Should Be    id=userName    placeholder    请输入你的常用邮箱
+    Run Keyword And Continue On Failure    Element Attribute Value Should Be    id=password    placeholder    请输入你的密码
+    Run Keyword And Continue On Failure    Element Attribute Value Should Be    id=validecode    placeholder    图形验证码
+    Run Keyword And Continue On Failure    Element Attribute Value Should Be    id=rdcodeInput    placeholder    邮箱验证码
+    Run Keyword And Continue On Failure    Element Text Should Be    //button[@id="msg_btn1"]    获取邮箱验证码
+    Run Keyword And Continue On Failure    Page Should Contain Element    //button[text()="企业注册"]
+    Run Keyword And Continue On Failure    Page Should Contain Element    //a[@class="login-nonum"][text()="立即登录"]
+    [Teardown]
+
+学生注册
+    Go Back
+    sleep    ${WAIT_TIME}
+    Click Element    //span[@class="registe"]/a
+    sleep    2
+    ${web_list}    Select Window    new
+    Wait Until Page Contains    海外学生注册
+    sleep    ${WAIT_TIME}
+    #学生手机注册页面验证
+    Run Keyword And Continue On Failure    Element Attribute Value Should Be    id=user    placeholder    请输入常用手机号码
+    Run Keyword And Continue On Failure    Element Attribute Value Should Be    id=password    placeholder    请输入密码
+    Comment    Run Keyword And Continue On Failure    Element Attribute Value Should Be    id=phone_reg_test    placeholder    请输入图形验证码
+    Run Keyword And Continue On Failure    Element Attribute Value Should Be    id=reg_test    placeholder    请输入短信验证码
+    Run Keyword And Continue On Failure    Page Should Contain Element    //button[@class="verify" and text()="获取短信验证码"]
+    Run Keyword And Continue On Failure    Page Should Contain Element    //button[@class="present fs20" or text()="立即注册"]
+    Run Keyword And Continue On Failure    Page Should Contain Element    //p[contains(text(),"已有账号？点击")]
+    Run Keyword And Continue On Failure    Page Should Contain Element    //a[@class="log fs20" and text()="登录"]
+    Run Keyword And Continue On Failure    Element Text Should Be    //p[@class="down_app fs12"]/span    下载实习僧APP
+    #海外邮箱注册页面验证
+    ${web_handle}    Get Window Handles
+    Select Window    ${web_handle[0]}
+    sleep    ${WAIT_TIME}
+
+收搜框&热门关键词
+    xyz_login_in
+    Element Text Should Be    //span[@class="search-type"]    网申
+    Click Element    //span[@class="search-type"]
+    Element Text Should Be    //span[@class="other-search-type"]    宣讲会
+    Element Attribute Value Should Be    //input[@class="key-word"]    placeholder    输入期望的网申/公司名称 等
+    ${hot-search}    Get WebElements    //span[@class="key-word key_ws"]/span
+    ${hot_length}    Get Length    ${hot-search}
+    Should Be Equal As Integers    ${hot_length}    10
+
+线下宣讲（立即报名）
+    Focus    //div[@class="title"]/span[text()="线下宣讲"]
+    Comment    Random click item    //img[@class="special_wid" and @alt="线下宣讲"]/../../div[@class="content-item-row-part"]

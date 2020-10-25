@@ -1,0 +1,24 @@
+*** Settings ***
+Suite Teardown    Close Browser
+Resource          ../../../all_resource.txt
+
+*** Test Cases ***
+登录页面验证
+    #进入首页
+    Open Browser    ${QB_Student_PC_URL}    chrome
+    sleep    2
+    Maximize Browser Window
+    Wait Until Page Contains    小程序课程
+    sleep    2
+    #点击注册
+    Click Element    //div[@class='login-btns']/a[text()="注册"]
+    Wait Until Page Contains    学生注册
+    #注册页面验证
+    ${user_message_web}    get list_xpath attribute value    //ul[@class='form_inf']/li/input    placeholder
+    ${user_message}    Create List    请输入常用手机号码    请输入密码    请输入图形验证码
+    Run Keyword And Continue On Failure    Lists Should Be Equal    ${user_message_web}    ${user_message}
+    ${duanxing_message}    Get Element Attribute    //div[@class='verifyTel']/input    placeholder
+    Run Keyword And Continue On Failure    Should Be Equal As Strings    ${duanxing_message}    请输入短信验证码
+    Run Keyword And Continue On Failure    Element Text Should Be    //div[@class='verifyTel']/button    获取短信验证码
+    Run Keyword And Continue On Failure    Element Text Should Be    //button[@class='present fs20']    立即注册
+    Run Keyword And Continue On Failure    Element Text Should Be    //div[@class='other-register']    海外学生注册

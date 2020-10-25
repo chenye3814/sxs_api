@@ -1,0 +1,40 @@
+*** Settings ***
+Resource          ../all_resource.txt
+
+*** Keywords ***
+qb_login_in
+    [Arguments]    ${username}=${QB_Student_User}    ${userpassword}=${QB_Student_password}
+    Click Element    id=login-btn
+    sleep    1
+    Input Text    //input[@placeholder="请输入实习僧账号"]    ${username}
+    Input Text    //input[@placeholder="请输入密码"]    ${userpassword}
+    Click Element    //div[@class="qb-button login-submit login_submit"]
+    sleep    2
+
+home page jump
+    [Arguments]    ${item_name}
+    Focus    //h2[text()="${item_name}"]/../a
+    sleep    2
+    Comment    Execute Javascript    var q=document.documentElement.scrollTop=10
+    Click Element    //h2[text()="${item_name}"]/../a
+    sleep    8
+    #页面检测
+    Run Keyword And Continue On Failure    Element Text Should Be    //i[@class="iconfont icon-leibie"]/..    ${item_name}
+    Run Keyword And Continue On Failure    Element Text Should Be    //li[@class="menu-item active"]/a    ${item_name}
+    #课程检测
+    ${count_list}    Get WebElements    //li[@class="after-ad"]
+    ${length}    Get Length    ${count_list}
+    Run Keyword And Continue On Failure    Should Be True    ${length}>0
+    sleep    2
+    Click Element    //a[text()="首页"]/..
+    Wait Until Page Contains    更多课程>>
+    sleep    2
+
+Message verification
+    [Arguments]    ${message_type}    ${message_content}
+    Go To    https://qbtest.shixiseng.com/my/message
+    sleep    3
+    Run Keyword And Continue On Failure    Element Text Should Be    //ul[@class='msg-list']/li[1]//span[@class='m-type']    ${message_type}
+    Run Keyword And Continue On Failure    Element Should Contain    //ul[@class='msg-list']/li[1]//pre[@class='msg-content ']    ${message_content}
+    Go Back
+    sleep    3

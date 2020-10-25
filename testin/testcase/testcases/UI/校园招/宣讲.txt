@@ -1,0 +1,42 @@
+*** Settings ***
+Suite Teardown    Close All Browsers
+Resource          ../../../all_resource.txt
+
+*** Test Cases ***
+进入首页并登录
+    Open Browser    ${XYZ_Student_PC_URL}    chrome
+    sleep    2
+    Maximize Browser Window
+    Wait Until Page Contains    实习僧
+    sleep    2
+    Reload Page
+    sleep    2
+    xyz_login_in
+
+进入公司首页查看
+    #进入固定链接
+    Go To    https://wwwxyztest.shixiseng.com/company/xri_hrrkftrsojy6
+    sleep    2
+    #公司主页验证
+    ${web_list}    get list_xpath text value    //div[@class="lists"]/li
+    ${exp_list}    Create List    公司主页    招聘简章    在招职位    校园宣讲
+    Run Keyword And Continue On Failure    Lists Should Be Equal    ${web_list}    ${exp_list}
+
+切换到宣讲
+    Click Element    //div[@class="lists"]/li[text()="校园宣讲"]
+    Random click item    //div[@class="com-detial active"]//span[text()="立即报名"]
+    sleep    1
+    Page Should Contain    报名成功
+    Click Element    //div[@class="known"]
+    Random click item    //div[@class="com-detial active"]//span[text()="已报名"]
+    Click Element    //a[@class="layui-layer-btn0"]
+    sleep    1
+    sleep    0.1
+    #点击头像进入我的关注
+    Click Element    //div[@class="l_account"]
+    sleep    1
+    Click Element    //div[@class="l_account"]//li[text()="我的宣讲"]
+    sleep    1
+    Click Element    //div[@class="clear-btn fr"]
+    sleep    1
+    Click Element    //a[@class="layui-layer-btn0"]

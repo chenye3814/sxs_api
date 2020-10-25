@@ -1,0 +1,227 @@
+*** Settings ***
+Suite Teardown    Close Browser
+Test Teardown
+Resource          ../../../all_resource.txt
+
+*** Test Cases ***
+首页验证-未登录
+    [Template]
+    #进入首页
+    Open Browser    ${QB_Student_PC_URL}    chrome
+    Maximize Browser Window
+    Wait Until Page Contains    小程序课程
+    #首页验证
+    Mouse Up    //*[@class="more"]
+    ${menu-items}    get list_xpath text value    //a[@class="menu-link"]
+    ${exp_menu-items}    Create List    首页    小程序课程    求职技巧    互联网    前辈1v1
+    ...    快消    券商    PPT&Excel    HR    欢姐专用
+    Run Keyword And Continue On Failure    Should Be Equal As Strings    ${menu-items}    ${exp_menu-items}
+    Page Should Contain    登录
+    Page Should Contain    注册
+    #登录
+    qb_login_in
+
+选择课程报名
+    [Template]
+    [Timeout]
+    #随机选择课程
+    Random click item    //li[@class="after-ad"]
+    Comment    ${course_url}    Get Location
+    Comment    ${course_list}    Split String From Right    ${course_url}    /    1
+    Comment    ${course_id}    Set Variable    ${course_list[1]}
+    #课程页面检测
+    ##链接数据库
+    Public.Connect To Database
+    #sql选择未报名的课程
+    ${course_id_choose}    Query    SELECT cou_o.course_uuid from users, course_order as cou_o,courses where users.uuid=cou_o.user_uuid and courses.uuid=cou_o.course_uuid and username!='${QB_Student_User}' order by random() limit 1
+    ${course_id}    Set Variable    ${course_id_choose[0][0]}
+    Go To    https://qbtest.shixiseng.com/course/detail/${course_id}
+    sleep    5
+    ${course_info}    Query    SELECT course_name,description,price from courses where uuid='${course_id}'
+    ##获取页面课程值
+    ${web_course_name}    Get Text    //div[@class="cright fr"]/h1
+    ${web_course_description}    Get Text    //div[@class="cright fr"]/p
+    ${web_course_price}    Get Text    //div[@class="price-text"]/span
+    ${web_course_price_description}    Get Text    //div[@class="price-text"]
+    ${web_course_price}    Remove String    ${web_course_price}    ¥
+    ${data_course_name}    Evaluate    '${course_info[0][0]}'.decode('utf-8')
+    ${data_course_description}    Evaluate    '${course_info[0][1]}'.decode('utf-8')
+    ${data_course_price}    Evaluate    '${course_info[0][2]}'.decode('utf-8')
+    ${data_course_price}    Evaluate    float('%.2f' % ${data_course_price})
+    Comment    ${web_course_default_price}    Evaluate    '${course_info[0][3]}'.decode('utf-8')
+    ${data_price_text}    Set Variable
+    ${data_price_text}    Set Variable If    ${data_course_price}==0    免费    ${data_course_price}
+    Comment    ${web_course_default_price}    Get Text    //div[@class="price-text"]/del
+    Run Keyword And Continue On Failure    Element Should Contain    //div[@class="price-text"]    限时
+    Run Keyword And Continue On Failure    Should Be Equal As Strings    ${data_course_name}    ${web_course_name}
+    Run Keyword And Continue On Failure    Should Be Equal As Strings    ${data_course_description}    ${web_course_description}
+    Run Keyword And Continue On Failure    Should Be Equal As Strings    ${data_price_text}    ${web_course_price}
+    ##免费试听判断
+    ${is_try}    Row Count    SELECT * from course_chapter where course_uuid='${course_id}' and chapter_id=1 and section_id=1 and chapter_video is not NULL
+    Run Keyword If    ${is_try}>0    Run Keyword And Continue On Failure    Element Should Contain    //a[contains(@href,"course")]/div[@class="qb-button outline"]    免费试听
+    ##页面验证
+    Run Keyword And Continue On Failure    Element Text Should Be    //div[@class="qb-button join_btn"]    立即报名
+    ${menu-items}    get list_xpath text value    //ul[@class="nav nav-tabs nav-justified"]/li/a
+    ${student_comment}    Row Count    SELECT * from course_comment,users where course_comment.user_uuid=users.uuid and course_comment.course_uuid='${course_id}' and course_comment.status='normal'
+    ${exp_menu-items}    Create List    课程介绍    课程列表    听课须知    学生评价 (${student_comment})
+    Run Keyword And Continue On Failure    Should Be Equal As Strings    ${menu-items}    ${exp_menu-items}
+    Disconnect From Database
+
+选择课程-课程列表不为空
+    Public.Connect To Database
+    ${temp_course_name}    Query    SELECT course_uuid from course_chapter where chapter_id>1 LIMIT 1
+    ${data_course_id}    Set Variable    ${temp_course_name[0][0]}
+    ${temp_data_course_chapter_number}    Query    SELECT max(chapter_id) from course_chapter where course_uuid='${data_course_id}'
+    ${data_course_chapter_number}    Set Variable    ${temp_data_course_chapter_number[0][0]}
+    Disconnect From Database
+    Go To    https://qbtest.shixiseng.com/course/detail/${data_course_id}
+    sleep    5
+    Click Element    //ul[@class="nav nav-tabs nav-justified"]//a[text()="课程列表"]
+    sleep    5
+    ${web_chapter_list}    Get WebElements    //ul[@class="chapter-list"]/li
+    ${web_chapter_list_length}    Get Length    ${web_chapter_list}
+    Run Keyword And Continue On Failure    Should Be Equal As Integers    ${web_chapter_list_length}    ${data_course_chapter_number}
+
+选择课程-可免费试听
+    Public.Connect To Database
+    #获取可以免费试听的课程
+    ${temp_course_name}    Query    SELECT course_uuid from course_chapter where chapter_id=1 and section_id=1 and chapter_video is not NULL ORDER BY random() LIMIT 1
+    ${data_course_id}    Set Variable    ${temp_course_name[0][0]}
+    ${course_info}    Query    SELECT course_name,description,price from courses where uuid='${data_course_id}'
+    ${data_course_name}    Evaluate    '${course_info[0][0]}'.decode('utf-8')
+    ${data_course_description}    Evaluate    '${course_info[0][1]}'.decode('utf-8')
+    #进入课程
+    Go To    https://qbtest.shixiseng.com/course/detail/${data_course_id}
+    Wait Until Page Contains Element    //div[@class="qb-button outline" and text()="免费试听"]
+    ${web_course_name}    Get Text    //div[@class="cright fr"]/h1
+    Run Keyword And Continue On Failure    Should Be Equal As Strings    ${data_course_name}    ${web_course_name}
+    Click Element    //div[@class="qb-button outline" and text()="免费试听"]
+    ##免费试听课程中心
+    Wait Until Page Contains Element    //div[@class="course-name"]/p
+    sleep    2
+    Run Keyword And Continue On Failure    Page Should Contain Element    //a[@href="/my"]
+    Run Keyword And Continue On Failure    Element Text Should Be    //div[@class="course-name"]/p    ${data_course_name}
+    ##验证默认定位到第一章第一节
+    Run Keyword And Continue On Failure    Page Should Contain Element    //div[@class="chapter-list panel-group"]/div[1]/div[2]//li[1][@class="active"]
+    Click Element    //a[@href="#collapse1"]
+    Random click item designated area    //a[@data-toggle="collapse"]    1
+    sleep    1
+    Random click item designated area    //a[@aria-expanded="true"]/../../../div[@class="panel-collapse collapse show"]
+    sleep    1
+    Run Keyword And Continue On Failure    Element Text Should Be    //div[@class="modal-content"]//h4[@class="modal-title"]    提示：
+    Run Keyword And Continue On Failure    Element Text Should Be    //div[@class="modal-content"]//div[@class="modal-body"]    报名该课程后才可以继续学习哦～
+    Disconnect From Database
+    Click Element    //*[@class="btn btn-primary join_btn"]
+
+选择课程-免费上课
+    Public.Connect To Database
+    #获取免费的课程
+    ${temp_course_name}    Query    SELECT cou_o.course_uuid from users, course_order as cou_o,courses where users.uuid=cou_o.user_uuid and courses.uuid=cou_o.course_uuid and username!='${QB_Student_User}' and courses.price=0 order by random() limit 1
+    ${data_course_id}    Set Variable    ${temp_course_name[0][0]}
+    Comment    ${data_course_id}    Set Variable    cou_a16kbljzfyuz
+    ${course_info}    Query    SELECT course_name,description,price from courses where uuid='${data_course_id}'
+    ${data_course_name}    Evaluate    '${course_info[0][0]}'.decode('utf-8')
+    ${data_course_description}    Evaluate    '${course_info[0][1]}'.decode('utf-8')
+    #进入课程
+    Go To    https://qbtest.shixiseng.com/course/detail/${data_course_id}
+    Wait Until Page Contains Element    //div[@class="qb-button outline" and text()="免费试听"]
+    ${web_course_name}    Get Text    //div[@class="cright fr"]/h1
+    Run Keyword And Continue On Failure    Should Be Equal As Strings    ${data_course_name}    ${web_course_name}
+    Click Element    //div[@class="qb-button join_btn" and text()="立即报名"]
+    sleep    1
+    Run Keyword And Continue On Failure    Element Text Should Be    //div[@class="qb-button gray" ]    已报名
+    ##开始上课
+    Run Keyword And Continue On Failure    Element Text Should Be    //div[@class="qb-button outline"]    开始上课
+    Click Element    //div[@class="qb-button outline"]
+    ##免费试听课程中心
+    Wait Until Page Contains Element    //div[@class="course-name"]/p
+    sleep    2
+    Run Keyword And Continue On Failure    Page Should Contain Element    //a[@href="/my"]
+    Run Keyword And Continue On Failure    Element Text Should Be    //div[@class="course-name"]/p    ${data_course_name}
+    ##验证默认定位到第一章第一节
+    Run Keyword And Continue On Failure    Page Should Contain Element    //div[@class="chapter-list panel-group"]/div[1]/div[2]//li[1][@class="active"]
+    Click Element    //a[@href="#collapse1"]
+    Random click item designated area    //a[@data-toggle="collapse"]    1
+    sleep    1
+    Random click item designated area    //a[@aria-expanded="true"]/../../../div[@class="panel-collapse collapse show"]
+    sleep    1
+    Run Keyword And Continue On Failure    Element Should Not Be Visible    //div[@class="modal-content"]
+    ###获取uuid
+    ${temp_uuid}    Query    SELECT course_order.user_uuid from users,course_order,course_user where users.uuid=course_order.user_uuid and users.uuid=course_user.user_uuid and users.username='${QB_Student_User}' and course_order.course_uuid='${data_course_id}' limit 1
+    ${user_uuid}    Set Variable    ${temp_uuid[0][0]}
+    Sleep    3
+    Disconnect From Database
+    Public.Connect To Database
+    Execute Sql String    DELETE from course_user where course_uuid='${data_course_id}' and user_uuid='${user_uuid}';    True
+    Execute Sql String    DELETE from course_order where course_uuid='${data_course_id}' and user_uuid='${user_uuid}';    True
+    Execute Sql String    DELETE from course_user where course_uuid='${data_course_id}' and user_uuid='${user_uuid}';
+    Execute Sql String    DELETE from course_order where course_uuid='${data_course_id}' and user_uuid='${user_uuid}';
+    Disconnect From Database
+
+选择课程-原价上课
+    sleep    2
+    Public.Connect To Database
+    #获取免费的课程
+    ${temp_course_name}    Query    SELECT cou_o.course_uuid from users, course_order as cou_o,courses where users.uuid=cou_o.user_uuid and courses.uuid=cou_o.course_uuid and username!='${QB_Student_User}' and courses.price>0 order by random() limit 1
+    ${data_course_id}    Set Variable    ${temp_course_name[0][0]}
+    Comment    ${data_course_id}    Set Variable    cou_a16kbljzfyuz
+    ${course_info}    Query    SELECT course_name,description,price from courses where uuid='${data_course_id}'
+    ${data_course_name}    Evaluate    '${course_info[0][0]}'.decode('utf-8')
+    ${data_course_description}    Evaluate    '${course_info[0][1]}'.decode('utf-8')
+    ${data_course_price}    Evaluate    '${course_info[0][2]}'.decode('utf-8')
+    ${data_course_price}    Evaluate    float('%.2f' % ${data_course_price})
+    #进入课程
+    Go To    https://qbtest.shixiseng.com/course/detail/${data_course_id}
+    Wait Until Page Contains Element    //div[@class="qb-button outline" and text()="免费试听"]
+    ${web_course_name}    Get Text    //div[@class="cright fr"]/h1
+    Run Keyword And Continue On Failure    Should Be Equal As Strings    ${data_course_name}    ${web_course_name}
+    Click Element    //div[@class="qb-button join_btn" and text()="立即报名"]
+    sleep    1
+    ${menu-items}    get list_xpath text value    //div[@class="thead"]/span
+    ${exp_menu-items}    Create List    课程名称    课程有效期    金额
+    Run Keyword And Continue On Failure    Should Be Equal As Strings    ${menu-items}    ${exp_menu-items}
+    Run Keyword And Continue On Failure    Element Text Should Be    //div[@class='col']/p    ${data_course_name}
+    Run Keyword And Continue On Failure    Element Text Should Be    id=price    ¥${data_course_price}
+    Click Element    id=pay_type_btn
+    sleep    2
+    Run Keyword And Continue On Failure    Element Text Should Be    //div[@class="modal-body comment-box"]/p    选择支付方式
+    ${temp_max_orderID}    Query    SELECT max(id) from course_order
+    ${max_oderID}    Set Variable    ${temp_max_orderID[0][0]}
+    Disconnect From Database
+
+选择课程-优惠券上课
+    sleep    2
+    Public.Connect To Database
+    #获取免费的课程
+    ${temp_course_name}    Query    SELECT cou_o.course_uuid from users, course_order as cou_o,courses where users.uuid=cou_o.user_uuid and courses.uuid=cou_o.course_uuid and username!='${QB_Student_User}' and courses.price>0 order by random() limit 1
+    ${data_course_id}    Set Variable    ${temp_course_name[0][0]}
+    Comment    ${data_course_id}    Set Variable    cou_a16kbljzfyuz
+    ${course_info}    Query    SELECT course_name,description,price from courses where uuid='${data_course_id}'
+    ${data_course_name}    Evaluate    '${course_info[0][0]}'.decode('utf-8')
+    ${data_course_description}    Evaluate    '${course_info[0][1]}'.decode('utf-8')
+    ${data_course_price}    Evaluate    '${course_info[0][2]}'.decode('utf-8')
+    ${data_course_price}    Evaluate    float('%.2f' % ${data_course_price})
+    #进入课程
+    Go To    https://qbtest.shixiseng.com/course/detail/${data_course_id}
+    Wait Until Page Contains Element    //div[@class="qb-button outline" and text()="免费试听"]
+    ${web_course_name}    Get Text    //div[@class="cright fr"]/h1
+    Run Keyword And Continue On Failure    Should Be Equal As Strings    ${data_course_name}    ${web_course_name}
+    Click Element    //div[@class="qb-button join_btn" and text()="立即报名"]
+    sleep    1
+    ${menu-items}    get list_xpath text value    //div[@class="thead"]/span
+    ${exp_menu-items}    Create List    课程名称    课程有效期    金额
+    Run Keyword And Continue On Failure    Should Be Equal As Strings    ${menu-items}    ${exp_menu-items}
+    Run Keyword And Continue On Failure    Element Text Should Be    //div[@class='col']/p    ${data_course_name}
+    Run Keyword And Continue On Failure    Element Text Should Be    id=price    ¥${data_course_price}
+    Click Element    id=ticket_select
+    Click Element    //select[@id="ticket_select"]/option[text()="7折优惠券"]
+    sleep    2
+    ${data_price_07}    Evaluate    ${data_course_price}*0.7
+    ${data_price_07}    Evaluate    float('%.2f' % ${data_price_07})
+    Run Keyword And Continue On Failure    Element Text Should Be    id=price    ¥${data_price_07}
+    Click Element    id=pay_type_btn
+    sleep    2
+    Run Keyword And Continue On Failure    Element Text Should Be    //div[@class="modal-body comment-box"]/p    选择支付方式
+    ${temp_max_orderID}    Query    SELECT max(id) from course_order
+    ${max_oderID}    Set Variable    ${temp_max_orderID[0][0]}
+    Disconnect From Database

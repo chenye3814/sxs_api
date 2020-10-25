@@ -1,0 +1,84 @@
+*** Settings ***
+Suite Teardown    Close All Browsers
+Resource          ../../../all_resource.txt
+
+*** Test Cases ***
+进入首页并登录
+    Open Browser    ${XYZ_Student_PC_URL}    chrome
+    sleep    ${WAIT_TIME}
+    Maximize Browser Window
+    Wait Until Page Contains    实习僧
+    sleep    ${WAIT_TIME}
+    Reload Page
+    sleep    ${WAIT_TIME}
+    xyz_login_in
+
+进入网申页面
+    #进入固定链接
+    Go To    https://wwwxyztest.shixiseng.com/company/xri_2pa8dij6brqf
+    sleep    ${WAIT_TIME}
+    #公司主页验证
+    ${web_list}    get list_xpath text value    //div[@class="lists"]/li
+    ${exp_list}    Create List    公司主页    招聘简章    在招职位    校园宣讲
+    Comment    Run Keyword And Continue On Failure    Lists Should Be Equal    ${web_list}    ${exp_list}
+    Click Element    //ul[@class="nav-list"]/div/li[@data-pid="2"]
+    ${web_title}    Get Text    //div[@class="apply_box"]/div
+    ${web_list}    Get WebElements    //div[@class="right_aside f_r"]/p
+    ${web_list_length}    Get Length    ${web_list}
+    Run Keyword And Continue On Failure    Should Be True    ${web_list_length}==4
+    Click Element    //ul[@class="nav-list"]/div/li[@data-pid="3"]
+    sleep    10ms
+    #进入网申页面
+    Click Element    //div[@class="applying"]
+    Select Window    new
+    sleep    ${WAIT_TIME}
+    Comment    Run Keyword And Continue On Failure    Element Text Should Be    //div[@class="head-bar-title"]/span    ${web_title}
+    ${web_list}    get list_xpath text value    //div[contains(@class,"step")]/span[2]
+    ${exp_list}    Create List    选择志愿    填写简历    投递完成
+    Run Keyword And Continue On Failure    Lists Should Be Equal    ${web_list}    ${exp_list}
+    ${web_list}    get list_xpath text value    //div[@class="form-one-content"]/div/p
+    ${exp_list}    Create List    应聘职位:    是否接受调剂:    期望工作城市:    参加面试城市:
+    Comment    Run Keyword And Continue On Failure    Lists Should Be Equal    ${web_list}    ${exp_list}
+    #查看职位详情
+    Click Element    //a[@target="_blank" and contains(@href,"job")]
+    Select Window    new
+    sleep    ${WAIT_TIME}
+    Click Element    //div[@class="get_job_now"]
+    Select Window    new
+    Click Element    //div[@class="first-apply center"]
+
+网申申请
+    Comment    sleep    ${WAIT_TIME}
+    Comment    Click Element    //div[@class="second-apply"]
+    Comment    sleep    ${WAIT_TIME}
+    Comment    sleep    ${WAIT_TIME}
+    Comment    sleep    ${WAIT_TIME}
+    Comment    sleep    ${WAIT_TIME}
+    Comment    Comment    Page Should Contain    申请成功
+    Comment    Click Element    //a[@href="/user/deliverlist"]
+    Comment    sleep    ${WAIT_TIME}
+    Comment    Page Should Contain    我的网申
+    Comment    Page Should Contain    系统仅保留近6个月内的申请记录
+    Comment    ${web_list}    Get WebElements    //div[@class="c-list"]/div
+    Comment    ${web_list_length}    Get Length    ${web_list}
+    Comment    Run Keyword And Continue On Failure    Should Be Equal As Numbers    ${web_list_length}    1
+
+我的网申查看记录
+    Comment    Comment    sleep    ${WAIT_TIME}
+    Comment    Comment    Click Element    //div[@class="second-apply"]
+    Comment    Comment    sleep    ${WAIT_TIME}
+    Comment    Comment    sleep    ${WAIT_TIME}
+    Comment    Comment    sleep    ${WAIT_TIME}
+    Comment    Comment    Comment    Page Should Contain    申请成功
+    Comment    Comment    Click Element    //a[@href="/user/deliverlist"]
+    Comment    Comment    sleep    ${WAIT_TIME}
+    Comment    Comment    Page Should Contain    我的网申
+    Comment    Comment    Page Should Contain    系统仅保留近6个月内的申请记录
+    Comment    Comment    ${web_list}    Get WebElements    //div[@class="c-list"]/div
+    Comment    Comment    ${web_list_length}    Get Length    ${web_list}
+    Comment    Comment    Run Keyword And Continue On Failure    Should Be Equal As Numbers    ${web_list_length}    1
+    Comment    Public.Connect To Database    ${DB_NAME_XYZ}    ${HOST_XYZ}    ${PORT_XYZ}    ${DB_USER_XYZ}    ${DB_PASSWORD_XYZ}
+    Comment    ${temp_uuid}    Query    select uuid from users where users.tel='${XYZ_Student_User}';
+    Comment    ${user_uuid}    Set Variable    ${temp_uuid[0][0]}
+    Comment    Execute Sql String    update xyz_deliver set status='destory' where xyz_deliver.user_uuid='${user_uuid}';
+    Comment    Disconnect From Database

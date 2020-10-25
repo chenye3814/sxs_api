@@ -1,0 +1,101 @@
+*** Settings ***
+Suite Teardown    Close Browser
+Force Tags
+Resource          ../../../all_resource.txt
+
+*** Test Cases ***
+进入首页并登录
+    Open Browser    ${XYZ_Student_PC_URL}    chrome
+    sleep    ${WAIT_TIME}
+    Maximize Browser Window
+    Wait Until Page Contains    实习僧
+    sleep    ${WAIT_TIME}
+    Reload Page
+    sleep    ${WAIT_TIME}
+    xyz_login_in
+
+进入公司首页查看
+    #进入固定链接
+    Go To    https://xiaoyuan.shixiseng.com/company/xri_tipcrvefdg0k
+    sleep    ${WAIT_TIME}
+    #公司主页验证
+    ${web_list}    get list_xpath text value    //div[@class="lists"]/li
+    ${exp_list}    Create List    公司主页    招聘简章
+    Run Keyword And Continue On Failure    Lists Should Be Equal    ${web_list}    ${exp_list}
+
+关注公司
+    Run Keyword And Continue On Failure    Click Element    //div[@class="notice_btn"]
+    sleep    5
+    Run Keyword And Continue On Failure    Element Should Contain    //div[@class="notice_btn is_noticed"]    已关注
+    #点击头像进入我的关注
+    Click Element    //div[@class="l_account"]
+    sleep    ${WAIT_TIME}
+    Click Element    //div[@class="l_account"]//li[text()="我的关注"]
+    sleep    ${WAIT_TIME}
+    #验证公司关注列表为1
+    ${web_list}    Get WebElements    //div[@class="c-list"]/div[@class="c-item "]
+    ${web_list_length}    Get Length    ${web_list}
+    Run Keyword And Continue On Failure    Should Be Equal As Numbers    ${web_list_length}    1
+    #再次进入公司主页取消关注
+    sleep    ${WAIT_TIME}
+    sleep    ${WAIT_TIME}
+    Click Element    //div[@class="c-list"]/div/a[@class="item_top"]
+    sleep    5
+    Click Element    //div[@class="notice_btn is_noticed"]
+    sleep    ${WAIT_TIME}
+    Click Element    //a[@class="layui-layer-btn0"]
+    sleep    ${WAIT_TIME}
+    #点击头像进入我的关注
+    Click Element    //div[@class="l_account"]
+    sleep    ${WAIT_TIME}
+    Click Element    //div[@class="l_account"]//li[text()="我的关注"]
+    sleep    ${WAIT_TIME}
+    #验证公司关注列表为0
+    ${web_list}    Get WebElements    //div[@class="c-list"]/div[@class="c-item "]
+    ${web_list_length}    Get Length    ${web_list}
+    Run Keyword And Continue On Failure    Should Be Equal As Numbers    ${web_list_length}    0
+
+我的关注查看记录
+    #热门公司推荐关注
+    Comment    Focus    //div[@class="hot-title"]
+    Comment    Random click item    //div[@class="hot-list"]/div[@class="c-item"]/a[@class="item_top" and text()!="dev组织" and text()!="mongodev"]/following-sibling::div[2]
+    Comment    sleep    ${WAIT_TIME}
+    Comment    sleep    ${WAIT_TIME}
+    Comment    Focus    //div[@class="c-list"]/div[contains(@class,"c-item")]/a[@class="item_top"]
+    Comment    #再次进入公司主页取消关注
+    Comment    Click Element    //div[@class="c-list"]/div/a[@class="item_top"]
+    Comment    sleep    ${WAIT_TIME}
+    Comment    Click Element    //div[@class="notice_btn is_noticed"]
+    Comment    sleep    ${WAIT_TIME}
+    Comment    Click Element    //a[@class="layui-layer-btn0"]
+    Comment    sleep    ${WAIT_TIME}
+    #点击头像进入我的关注
+    Click Element    //div[@class="l_account"]
+    sleep    ${WAIT_TIME}
+    Click Element    //div[@class="l_account"]//li[text()="我的关注"]
+    sleep    ${WAIT_TIME}
+    #验证公司关注列表为0
+    ${web_list}    Get WebElements    //div[@class="c-list"]/div[@class="c-item "]
+    ${web_list_length}    Get Length    ${web_list}
+    Run Keyword And Continue On Failure    Should Be Equal As Numbers    ${web_list_length}    0
+    sleep    ${WAIT_TIME}
+
+关注学校
+    Click Element    //span[@data-status="school"]
+    sleep    ${WAIT_TIME}
+    #热门学校推荐关注
+    Focus    //div[@class="hot-title"]
+    sleep    ${WAIT_TIME}
+    Run Keyword And Continue On Failure    Element Text Should Be    //div[@class="hot-title"]/span    热门学校推荐
+    Comment    Random click item    //div[@class="hot-list"]/div[@class="c-item"]/div[2]
+    Comment    sleep    ${WAIT_TIME}
+    Comment    sleep    ${WAIT_TIME}
+    Comment    Focus    //div[@class="c-list"]/div[contains(@class,"c-item")]/a[@class="item_top"]
+    Comment    Mouse Over    //div[@class="c-list"]/div[contains(@class,"c-item")]/a[@class="item_top"]
+    Comment    sleep    ${WAIT_TIME}
+    Comment    Mouse Up    //div[@class="c-list"]/div[contains(@class,"c-item")]/a[@class="item_top"]
+    Comment    sleep    ${WAIT_TIME}
+    Comment    Click Element    //div[@class="item-delete"]
+    Comment    sleep    ${WAIT_TIME}
+    Comment    Click Element    //a[@class="layui-layer-btn0"]
+    Comment    sleep    ${WAIT_TIME}

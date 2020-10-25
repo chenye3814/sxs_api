@@ -1,0 +1,5 @@
+*** Settings ***
+Force Tags        校园招
+
+*** Variables ***
+${wait_time}      2

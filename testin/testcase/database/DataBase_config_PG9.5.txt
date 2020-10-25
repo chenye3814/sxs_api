@@ -1,0 +1,9 @@
+*** Settings ***
+Resource          ../all_resource.txt
+
+*** Variables ***
+${HOST_XYZ}       dbi.mshare.cn
+${PORT_XYZ}       2095
+${DB_USER_XYZ}    dbuser
+${DB_PASSWORD_XYZ}    ZUIwpuSu!U7DF4HJ8LPzTdJ$
+${DB_NAME_XYZ}    xyzdb

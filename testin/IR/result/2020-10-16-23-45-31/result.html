@@ -1,0 +1,254 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>excel-to-html</title>
+    <link href="Perconnel/static/css/style.css" rel="stylesheet" style="width: 50px">
+    <meta charset="utf-8">
+  </head>
+  <body>
+    <div id="excel_table">
+      <table>
+        <thead>
+          <td>
+            <p>模块</p>
+          </td>
+          <td>
+            <p>用例</p>
+          </td>
+          <td>
+            <p>项目</p>
+          </td>
+          <td>
+            <p>URL</p>
+          </td>
+          <td>
+            <p>uri</p>
+          </td>
+          <td>
+            <p>请求方式</p>
+          </td>
+          <td>
+            <p>请求数据</p>
+          </td>
+          <td>
+            <p>is_login</p>
+          </td>
+          <td>
+            <p>预期</p>
+          </td>
+          <td>
+            <p>schema</p>
+          </td>
+          <td>
+            <p>返回</p>
+          </td>
+          <td>
+            <p>测试结果</p>
+          </td>
+          <td>
+            <p>测试人员</p>
+          </td>
+        </thead>
+        <tr class="excel_table_row">
+          <td>
+            <p>登录</p>
+          </td>
+          <td>
+            <p>登录</p>
+          </td>
+          <td>
+            <p>APP</p>
+          </td>
+          <td>
+            <p>http://istio-test-apigateway.mshare.cn</p>
+          </td>
+          <td>
+            <p>/api/account/v2.0/login</p>
+          </td>
+          <td>
+            <p>post</p>
+          </td>
+          <td>
+            <p>password=45X35X25X15X05X94,scookie=1,sys=ios,username=18782950041</p>
+          </td>
+          <td>
+            <p>f</p>
+          </td>
+          <td>
+            <p></p>
+          </td>
+          <td>
+            <p>{&quot;type&quot;:&quot;object&quot;,&quot;properties&quot;:{&quot;code&quot;:{&quot;type&quot;:&quot;integer&quot;},&quot;msg&quot;:{&quot;type&quot;:&quot;object&quot;,&quot;properties&quot;:{&quot;atta&quot;:{&quot;type&quot;:&quot;integer&quot;},&quot;educ&quot;:{&quot;type&quot;:&quot;integer&quot;},&quot;expe&quot;:{&quot;type&quot;:&quot;integer&quot;},&quot;prac&quot;:{&quot;type&quot;:&quot;integer&quot;},&quot;prod&quot;:{&quot;type&quot;:&quot;integer&quot;},&quot;proj&quot;:{&quot;type&quot;:&quot;integer&quot;},&quot;resume&quot;:{&quot;type&quot;:&quot;integer&quot;},&quot;skil&quot;:{&quot;type&quot;:&quot;integer&quot;}},&quot;required&quot;:[&quot;atta&quot;,&quot;educ&quot;,&quot;expe&quot;,&quot;prac&quot;,&quot;prod&quot;,&quot;proj&quot;,&quot;resume&quot;,&quot;skil&quot;]}},&quot;required&quot;:[&quot;code&quot;,&quot;msg&quot;]}</p>
+          </td>
+          <td>
+            <p></p>
+          </td>
+          <td>
+            <p></p>
+          </td>
+          <td>
+            <p></p>
+          </td>
+        </tr>
+        <tr class="excel_table_row">
+          <td>
+            <p></p>
+          </td>
+          <td>
+            <p>收藏</p>
+          </td>
+          <td>
+            <p>APP</p>
+          </td>
+          <td>
+            <p>http://istio-test-apigateway.mshare.cn</p>
+          </td>
+          <td>
+            <p>/api/account/v3.0/collect/list</p>
+          </td>
+          <td>
+            <p>get</p>
+          </td>
+          <td>
+            <p>page=1,sub=sx_xz,type=intern,version=v2</p>
+          </td>
+          <td>
+            <p>t</p>
+          </td>
+          <td>
+            <p>code=100</p>
+          </td>
+          <td>
+            <p>{&quot;type&quot;:&quot;object&quot;,&quot;properties&quot;:{&quot;code&quot;:{&quot;type&quot;:&quot;integer&quot;},&quot;msg&quot;:{&quot;type&quot;:&quot;array&quot;,&quot;items&quot;:{&quot;type&quot;:&quot;object&quot;,&quot;properties&quot;:{&quot;uuid&quot;:{&quot;type&quot;:&quot;string&quot;},&quot;name&quot;:{&quot;type&quot;:&quot;string&quot;},&quot;info&quot;:{&quot;type&quot;:&quot;string&quot;},&quot;url&quot;:{&quot;type&quot;:&quot;string&quot;},&quot;effective_time&quot;:{&quot;type&quot;:&quot;number&quot;},&quot;city&quot;:{&quot;type&quot;:&quot;string&quot;},&quot;day&quot;:{&quot;type&quot;:&quot;integer&quot;},&quot;minsal&quot;:{&quot;type&quot;:&quot;integer&quot;},&quot;maxsal&quot;:{&quot;type&quot;:&quot;integer&quot;},&quot;company_name&quot;:{&quot;type&quot;:&quot;string&quot;},&quot;admin_info&quot;:{&quot;type&quot;:&quot;string&quot;},&quot;company_type&quot;:{&quot;type&quot;:&quot;string&quot;},&quot;company_status&quot;:{&quot;type&quot;:&quot;string&quot;},&quot;attraction&quot;:{&quot;type&quot;:&quot;array&quot;,&quot;items&quot;:{&quot;type&quot;:&quot;string&quot;}},&quot;is_financing&quot;:{&quot;type&quot;:&quot;string&quot;},&quot;scale&quot;:{&quot;type&quot;:&quot;string&quot;},&quot;industry&quot;:{&quot;type&quot;:&quot;string&quot;},&quot;refresh_time&quot;:{&quot;type&quot;:&quot;string&quot;},&quot;month_num&quot;:{&quot;type&quot;:&quot;integer&quot;},&quot;company_uuid&quot;:{&quot;type&quot;:&quot;string&quot;},&quot;linkedin_num&quot;:{&quot;type&quot;:&quot;integer&quot;},&quot;tag&quot;:{&quot;type&quot;:&quot;string&quot;},&quot;status&quot;:{&quot;type&quot;:&quot;string&quot;},&quot;job_label&quot;:{&quot;type&quot;:&quot;object&quot;,&quot;properties&quot;:{&quot;is_quick&quot;:{&quot;type&quot;:&quot;boolean&quot;},&quot;is_double_selection&quot;:{&quot;type&quot;:&quot;boolean&quot;},&quot;is_ji&quot;:{&quot;type&quot;:&quot;boolean&quot;},&quot;is_hr&quot;:{&quot;type&quot;:&quot;boolean&quot;},&quot;is_hirer&quot;:{&quot;type&quot;:&quot;boolean&quot;}},&quot;required&quot;:[&quot;is_quick&quot;,&quot;is_double_selection&quot;,&quot;is_ji&quot;,&quot;is_hr&quot;,&quot;is_hirer&quot;]},&quot;salary_desc&quot;:{&quot;type&quot;:&quot;string&quot;},&quot;intern_type&quot;:{&quot;type&quot;:&quot;integer&quot;},&quot;uuid_build_time&quot;:{&quot;type&quot;:&quot;string&quot;},&quot;hope_you&quot;:{&quot;type&quot;:&quot;array&quot;,&quot;items&quot;:{&quot;type&quot;:&quot;string&quot;}},&quot;degree&quot;:{&quot;type&quot;:&quot;string&quot;}},&quot;required&quot;:[&quot;uuid&quot;,&quot;name&quot;,&quot;info&quot;,&quot;url&quot;,&quot;effective_time&quot;,&quot;city&quot;,&quot;day&quot;,&quot;minsal&quot;,&quot;maxsal&quot;,&quot;company_name&quot;,&quot;admin_info&quot;,&quot;company_type&quot;,&quot;company_status&quot;,&quot;attraction&quot;,&quot;is_financing&quot;,&quot;scale&quot;,&quot;industry&quot;,&quot;refresh_time&quot;,&quot;month_num&quot;,&quot;company_uuid&quot;,&quot;linkedin_num&quot;,&quot;tag&quot;,&quot;status&quot;,&quot;job_label&quot;,&quot;salary_desc&quot;,&quot;intern_type&quot;,&quot;uuid_build_time&quot;,&quot;hope_you&quot;,&quot;degree&quot;]}}},&quot;required&quot;:[&quot;code&quot;,&quot;msg&quot;]}</p>
+          </td>
+          <td>
+            <p>{&quot;code&quot;:100,&quot;msg&quot;:[{&quot;uuid&quot;:&quot;inn_kpxjxa0b1jzo&quot;,&quot;name&quot;:&quot;ios技术&quot;,&quot;info&quot;:&quot;\u003cp\u003e\n\t1、负责公司所有财务等等等都能懂等等等等等等等\n\u003c/p\u003e\n\u003cp\u003e\n\t\u003cspan\u003e1、负责公司所有财务等等等都能懂等等等等等等等\u003c/span\u003e\u003cspan\u003e1、负责公司所有财务等等等都能懂等等等等等等等\u003c/span\u003e\u003cspan\u003e1、负责公司所有财务等等等都能懂等等等等等等等\u003c/span\u003e\u003cspan\u003e1、负责公司所有财务等等等都能懂等等等等等等等\u003c/span\u003e\u003cspan\u003e1、负责公司所有财务等等等都能懂等等等等等等等\u003c/span\u003e\u003cspan\u003e1、负责公司所有财务等等等都能懂等等等等等等等\u003c/span\u003e\u003cspan\u003e1、负责公司所有财务等等等都能懂等等等等等等等\u003c/span\u003e\u003cspan\u003e1、负责公司所有财务等等等都能懂等等等等等等等\u003c/span\u003e\u003cspan\u003e1、负责公司所有财务等等等都能懂等等等等等等等\u003c/span\u003e\u003cspan\u003e1、负责公司所有财务等等等都能懂等等等等等等等\u003c/span\u003e \n\u003c/p\u003e\n\u003cp\u003e\n\t\u003cspan\u003e第三次编辑\u003c/span\u003e \n\u003c/p\u003e&quot;,&quot;url&quot;:&quot;https://sxsimg.xiaoyuanzhao.com/7D/C9/7D7BBA882D02906CA98A776F411666C9.jpg&quot;,&quot;effective_time&quot;:1603962000,&quot;city&quot;:&quot;成都&quot;,&quot;day&quot;:&quot;5&quot;,&quot;minsal&quot;:150,&quot;maxsal&quot;:200,&quot;company_name&quot;:&quot;岳阳楼&quot;,&quot;admin_info&quot;:&quot;&quot;,&quot;company_type&quot;:&quot;normal&quot;,&quot;company_status&quot;:&quot;normal&quot;,&quot;attraction&quot;:[&quot;六险一金&quot;,&quot;下午茶&quot;,&quot;早九晚五&quot;,&quot;公司体检&quot;],&quot;is_financing&quot;:&quot;B轮&quot;,&quot;scale&quot;:&quot;少于15人&quot;,&quot;industry&quot;:&quot;互联网/游戏/软件&quot;,&quot;refresh_time&quot;:&quot;10-15&quot;,&quot;month_num&quot;:3,&quot;company_uuid&quot;:&quot;com_tb8wtvv5avga&quot;,&quot;linkedin_num&quot;:0,&quot;tag&quot;:&quot;&quot;,&quot;status&quot;:&quot;normal&quot;,&quot;job_lable&quot;:{&quot;is_double_selection&quot;:false,&quot;is_hirer&quot;:true,&quot;is_hr&quot;:false,&quot;is_ji&quot;:false,&quot;is_quick&quot;:false},&quot;salary_desc&quot;:&quot;150-200/天&quot;,&quot;intern_type&quot;:0,&quot;uuid_build_time&quot;:&quot;2020-10-16 22:34:45&quot;,&quot;hope_you&quot;:[],&quot;degree&quot;:&quot;本科&quot;}]}</p>
+          </td>
+          <td>
+            <p>对比失败，'job_label' is a required property
+
+Failed validating 'required' in schema['properties']['msg']['items']:
+    {'properties': {'admin_info': {'type': 'string'},
+                    'attraction': {'items': {'type': 'string'},
+                                   'type': 'array'},
+                    'city': {'type': 'string'},
+                    'company_name': {'type': 'string'},
+                    'company_status': {'type': 'string'},
+                    'company_type': {'type': 'string'},
+                    'company_uuid': {'type': 'string'},
+                    'day': {'type': 'integer'},
+                    'degree': {'type': 'string'},
+                    'effective_time': {'type': 'number'},
+                    'hope_you': {'items': {'type': 'string'},
+                                 'type': 'array'},
+                    'industry': {'type': 'string'},
+                    'info': {'type': 'string'},
+                    'intern_type': {'type': 'integer'},
+                    'is_financing': {'type': 'string'},
+                    'job_label': {'properties': {'is_double_selection': {'type': 'boolean'},
+                                                 'is_hirer': {'type': 'boolean'},
+                                                 'is_hr': {'type': 'boolean'},
+                                                 'is_ji': {'type': 'boolean'},
+                                                 'is_quick': {'type': 'boolean'}},
+                                  'required': ['is_quick',
+                                               'is_double_selection',
+                                               'is_ji',
+                                               'is_hr',
+                                               'is_hirer'],
+                                  'type': 'object'},
+                    'linkedin_num': {'type': 'integer'},
+                    'maxsal': {'type': 'integer'},
+                    'minsal': {'type': 'integer'},
+                    'month_num': {'type': 'integer'},
+                    'name': {'type': 'string'},
+                    'refresh_time': {'type': 'string'},
+                    'salary_desc': {'type': 'string'},
+                    'scale': {'type': 'string'},
+                    'status': {'type': 'string'},
+                    'tag': {'type': 'string'},
+                    'url': {'type': 'string'},
+                    'uuid': {'type': 'string'},
+                    'uuid_build_time': {'type': 'string'}},
+     'required': ['uuid',
+                  'name',
+                  'info',
+                  'url',
+                  'effective_time',
+                  'city',
+                  'day',
+                  'minsal',
+                  'maxsal',
+                  'company_name',
+                  'admin_info',
+                  'company_type',
+                  'company_status',
+                  'attraction',
+                  'is_financing',
+                  'scale',
+                  'industry',
+                  'refresh_time',
+                  'month_num',
+                  'company_uuid',
+                  'linkedin_num',
+                  'tag',
+                  'status',
+                  'job_label',
+                  'salary_desc',
+                  'intern_type',
+                  'uuid_build_time',
+                  'hope_you',
+                  'degree'],
+     'type': 'object'}
+
+On instance['msg'][0]:
+    {'admin_info': '',
+     'attraction': ['六险一金', '下午茶', '早九晚五', '公司体检'],
+     'city': '成都',
+     'company_name': '岳阳楼',
+     'company_status': 'normal',
+     'company_type': 'normal',
+     'company_uuid': 'com_tb8wtvv5avga',
+     'day': '5',
+     'degree': '本科',
+     'effective_time': 1603962000,
+     'hope_you': [],
+     'industry': '互联网/游戏/软件',
+     'info': '&lt;p&gt;\n'
+             '\t1、负责公司所有财务等等等都能懂等等等等等等等\n'
+             '&lt;/p&gt;\n'
+             '&lt;p&gt;\n'
+             '\t'
+             '&lt;span&gt;1、负责公司所有财务等等等都能懂等等等等等等等&lt;/span&gt;&lt;span&gt;1、负责公司所有财务等等等都能懂等等等等等等等&lt;/span&gt;&lt;span&gt;1、负责公司所有财务等等等都能懂等等等等等等等&lt;/span&gt;&lt;span&gt;1、负责公司所有财务等等等都能懂等等等等等等等&lt;/span&gt;&lt;span&gt;1、负责公司所有财务等等等都能懂等等等等等等等&lt;/span&gt;&lt;span&gt;1、负责公司所有财务等等等都能懂等等等等等等等&lt;/span&gt;&lt;span&gt;1、负责公司所有财务等等等都能懂等等等等等等等&lt;/span&gt;&lt;span&gt;1、负责公司所有财务等等等都能懂等等等等等等等&lt;/span&gt;&lt;span&gt;1、负责公司所有财务等等等都能懂等等等等等等等&lt;/span&gt;&lt;span&gt;1、负责公司所有财务等等等都能懂等等等等等等等&lt;/span&gt; \n'
+             '&lt;/p&gt;\n'
+             '&lt;p&gt;\n'
+             '\t&lt;span&gt;第三次编辑&lt;/span&gt; \n'
+             '&lt;/p&gt;',
+     'intern_type': 0,
+     'is_financing': 'B轮',
+     'job_lable': {'is_double_selection': False,
+                   'is_hirer': True,
+                   'is_hr': False,
+                   'is_ji': False,
+                   'is_quick': False},
+     'linkedin_num': 0,
+     'maxsal': 200,
+     'minsal': 150,
+     'month_num': 3,
+     'name': 'ios技术',
+     'refresh_time': '10-15',
+     'salary_desc': '150-200/天',
+     'scale': '少于15人',
+     'status': 'normal',
+     'tag': '',
+     'url': 'https://sxsimg.xiaoyuanzhao.com/7D/C9/7D7BBA882D02906CA98A776F411666C9.jpg',
+     'uuid': 'inn_kpxjxa0b1jzo',
+     'uuid_build_time': '2020-10-16 22:34:45'}</p>
+          </td>
+          <td>
+            <p></p>
+          </td>
+        </tr>
+      </table>
+    </div>
+  </body>
+</html>

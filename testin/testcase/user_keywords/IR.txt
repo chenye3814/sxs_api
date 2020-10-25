@@ -1,0 +1,34 @@
+*** Settings ***
+Resource          ../all_resource.txt
+
+*** Test Cases ***
+user post request
+    [Setup]    ${URI}    ${URL}=${SXS_WEB_URL}    ${header}=None    ${data}=None
+    ${header}    Create Dictionary    Content-Type=application/x-www-form-urlencoded
+    ${url}    Set Variable    ${URL}
+    ${data}    Create Dictionary    username=17380120003    password=45X35X25X15X05X94    remember_login=1
+    log    ${data}
+    ${uri}    Set Variable    /user/login
+    Create Session    aa    ${url}    ${header}
+    ${bbbb}    Post Request    aa    /user/login    ${data}    headers=${header}
+    ${session_1}    Set Variable    ${bbbb.headers['set-cookie']}
+    ${pop}    Remove String Using Regexp    ${session_1}    Domain\\=\\S*\\W\\S*\\W\\d*\\W\\S*\\W\\d*\\W\\d*\\W\\d*\\W\\d*\\W\\S*\\W\\S*\\W\\S*\\W*Path=\\\/,*\\W*
+    log    ${pop}
+    log    ${session_1}
+
+user get request
+
+IR_LOGIN
+    [Setup]
+    [Timeout]
+    ${header}    Create Dictionary    Content-Type=application/x-www-form-urlencoded
+    ${url}    Set Variable    ${URL}
+    ${data}    Create Dictionary    username= ${USERNAME}    password=${PASSWORD}    remember_login=1
+    log    ${data}
+    ${uri}    Set Variable    ${URI}
+    Create Session    aa    ${url}    ${header}
+    ${bbbb}    Post Request    aa    /user/login    ${data}    headers=${header}
+    ${session_1}    Set Variable    ${bbbb.headers['set-cookie']}
+    ${pop}    Remove String Using Regexp    ${session_1}    Domain\\=\\S*\\W\\S*\\W\\d*\\W\\S*\\W\\d*\\W\\d*\\W\\d*\\W\\d*\\W\\S*\\W\\S*\\W\\S*\\W*Path=\\\/,*\\W*
+    log    ${pop}
+    Set Suite Variable    ${suitcookie}    ${pop}

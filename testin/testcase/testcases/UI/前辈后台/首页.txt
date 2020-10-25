@@ -1,0 +1,58 @@
+*** Settings ***
+Suite Teardown    Close Browser
+Resource          ../../../all_resource.txt
+
+*** Test Cases ***
+首页统计
+    qb login in    https://adminqbtest.shixiseng.com    root    qianbei
+    Public.Connect To Database
+    ${db_user_number}    Row Count    SELECT * FROM users    true
+    ${db_ticker_user_number}    Row Count    SELECT * FROM user_ticket    true
+    ${db_course_order_over_number}    Row Count    SELECT * FROM course_order o, course_user u,courses s WHERE u.order_id=o.order_id and o.course_uuid = s.uuid and \ (u.study_num>=s.chapter_num \ OR u.end_time is not NULL) and ((o.pay_amount > 0 and \ o.status = 'done' ) OR ( o.status = 'done' and o.pay_amount = 0 AND o.ticket is not null));
+    ${db_course_order_number}    Row Count    SELECT * FROM course_order WHERE status = 'done' and \ \ \ \ (pay_amount > 0 OR (pay_amount = 0 AND ticket is not null));
+    Disconnect From Database
+    ${web_user_number}    Get Text    //div[text()="用户总数"]/../span
+    ${web_ticker_user_number}    Get Text    //div[text()="付费用户数"]/../span
+    ${web_course_order_over_number}    Get Text    //div[text()="付费课完课数"]/../span
+    ${web_course_order_number}    Get Text    //div[text()="付费课订单数"]/../span
+    ${web_user_number}    Remove String    ${web_user_number}    ,
+    ${web_ticker_user_number}    Remove String    ${web_ticker_user_number}    ,
+    ${web_course_order_over_number}    Remove String    ${web_course_order_over_number}    ,
+    ${web_course_order_number}    Remove String    ${web_course_order_number}    ,
+    Run Keyword And Continue On Failure    Should Be Equal As Integers    ${db_user_number}    ${web_user_number}
+    Run Keyword And Continue On Failure    Should Be Equal As Integers    ${db_ticker_user_number}    ${web_ticker_user_number}
+    Run Keyword And Continue On Failure    Should Be Equal As Integers    ${db_course_order_over_number}    ${web_course_order_over_number}
+    Run Keyword And Continue On Failure    Should Be Equal As Integers    ${db_course_order_number}    ${web_course_order_number}
+
+图表统计
+    [Template]
+    [Timeout]
+    Mouse Up    //button//span[contains(text(),"导出")]/../i
+    Element Should Be Visible    //button//span[contains(text(),"导出")]/../i
+    Comment    Click Element    //button//span[contains(text(),"导出")]/../i
+    Comment    Click Element    //button//span[contains(text(),"导出")]
+    #按周统计
+    Click Element    //button//span[contains(text(),"导出")]/..
+    sleep    10
+    File Should Exist    C:\\Users\\Administrator\\Downloads\\用户注册week.xlsx
+    ${basd}    read excel data_row    C:\\Users\\Administrator\\Downloads\\用户注册week.xlsx    0    row_index=5    col_index=2
+    Remove File    C:\\Users\\Administrator\\Downloads\\用户注册week.xlsx
+    sleep    3
+    #按月统计
+    Click Element    //input[@placeholder="请选择"]
+    sleep    1
+    Click Element    //span[text()="按月统计"]/..
+    Click Element    //button//span[contains(text(),"导出")]/..
+    sleep    5
+    File Should Exist    C:\\Users\\Administrator\\Downloads\\用户注册month.xlsx
+    ${basd}    read excel data_row    C:\\Users\\Administrator\\Downloads\\用户注册month.xlsx    0    row_index=1
+    Remove File    C:\\Users\\Administrator\\Downloads\\用户注册month.xlsx
+    sleep    3
+    ${rate}    Get Element Attribute    //span[text()="复购率"]/../div@aria-valuenow
+    ${rate}    Get Element Attribute    //span[text()="完课率"]/../div@aria-valuenow
+
+11
+    Comment    Open Excel    D:\\用户注册week.csv
+    Comment    ${a}    Get Column Count    SheetJS
+    Comment    ${1}    Get File    D:\\week.xlsx    SYSTEM
+    ${basd}    read excel data_row    C:\\Users\\Administrator\\Downloads\\用户注册week.xlsx    0    row_index=5    col_index=2

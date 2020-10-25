@@ -1,0 +1,5 @@
+*** Variables ***
+${SXS_WEB_URL}    https://www.shixiseng.com/cd    # 实习僧web端测试网站 测试环境https://wwwtest.shixiseng.com/cd 线上https://www.shixiseng.com
+${SXS_IR_URL}     https://www.shixiseng.com
+${TEST_COMPANY_UUID}    com_hnq6757sg1ov
+${SXS_IR_RESUME_URL}    https://resume.shixiseng.com    # 实习僧简历服务地址

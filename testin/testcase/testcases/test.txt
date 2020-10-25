@@ -1,0 +1,51 @@
+*** Settings ***
+Suite Teardown
+Test Timeout
+Resource          ../all_resource.txt
+
+*** Test Cases ***
+001
+    Open Browser    https://xiaoyuan.shixiseng.com/company/org_fodkzhxkw38p    chrome
+    Maximize Browser Window
+    : FOR    ${I}    IN RANGE    1000000
+    \    Page Should Contain    微策略
+    \    SLEEP    3
+    \    GO TO    https://xiaoyuan.shixiseng.com/company/org_e57iuc06kxvk
+    \    SLEEP    3
+    \    Page Should Contain    川蓝光发展股份有限公司
+    \    GO TO    https://xiaoyuan.shixiseng.com/company/org_hzzmk3l32gew
+    \    SLEEP    3
+    \    Page Should Contain    深圳拳头商务咨询有限公司
+    \    GO TO    https://xiaoyuan.shixiseng.com/company/org_fodkzhxkw38p
+    \    SLEEP    3
+
+002
+    [Timeout]
+    Open Browser    http://sit1-hr-frontend.mshare.cn/#/login    chrome
+    Maximize Browser Window
+    sleep    5
+    : FOR    ${I}    IN RANGE    1    2
+    \    ${index}    Evaluate    "%04d" %(${I})
+    \    ${email}    Set Variable    70000${index}@qq.com
+    \    log    ${email}
+    \    Input Text    id=username    ${email}
+    \    Input Text    id=password    123456
+    \    Click Element    //div[@class="submit"]
+    \    sleep    5
+    \    Comment    Click Element    //span[contains(text(),"立即完善资料")]
+    \    sleep    5
+    \    #企业信息验证
+    \    Comment    Input Text    //input[@placeholder="请填写公司法定名称"]    北京日月新晨国际贸易有限公司
+    \    Comment    Click Element    //span[contains(text(),"发送验证码")]
+    \    Comment    Input Text    //input[@placeholder="请填写收到的验证码"]    123456
+    \    Comment    Click Element    //span[text()="下一步"]
+    \    Comment    #证件信息验证
+    \    Comment    sleep    5
+    \    Comment    Click Element    //span[text()="上传营业执照"]
+    \    Comment    Comment    Choose File    //span[text()="上传营业执照"]    D:\\20190510113521d29fUkInI6E85hDgIX.jpeg
+    \    Comment    sleep    5
+    \    Comment    ${a}    Set Variable    aaaa
+    \    Comment    Convert To String    ${a}
+    \    Comment    Send Keys    "+hello{SPACE}+world+1"    with_tabs=True
+    \    Choose File    //label[text()="企业logo："]/following-sibling::div[1]//input[@type="file"]    D:\\20190510113521d29fUkInI6E85hDgIX.jpeg
+    \    Choose File    //label[text()="营业执照："]/following-sibling::div[1]//input[@type="file"]    D:\\20190510113521d29fUkInI6E85hDgIX.jpeg

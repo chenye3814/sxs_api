@@ -1,0 +1,260 @@
+*** Settings ***
+Suite Teardown
+Resource          ../../../all_resource.txt
+Resource          ../../../all_resource.txt
+
+*** Test Cases ***
+进入我的课程
+    #进入首页
+    Open Browser    ${QB_Student_PC_URL}    chrome
+    sleep    2
+    Maximize Browser Window
+    Wait Until Page Contains    小程序课程
+    sleep    2
+    #登录
+    qb_login_in
+
+选择课程-进入学习
+    Public.Connect To Database
+    ###获取uuid
+    ${temp_course_name}    Query    SELECT course_chapter.course_uuid from course_chapter_topics,course_chapter,courses where course_chapter_topics.course_chapter_id=course_chapter.uuid and courses.uuid=course_chapter.course_uuid and course_chapter.section_type='exercise' and course_chapter.status='normal' and courses.status='online' and courses.price=0 and courses.chapter_num>3 and course_chapter.exercise_type='objective' and exercise_result is not NULL order by random() LIMIT 1;
+    ${data_course_id}    Set Variable    ${temp_course_name[0][0]}
+    ${course_info}    Query    SELECT course_name,description,price from courses where uuid='${data_course_id}'
+    ${data_course_name}    Evaluate    '${course_info[0][0]}'.decode('utf-8')
+    ${data_course_description}    Evaluate    '${course_info[0][1]}'.decode('utf-8')
+    Comment    ${temp_uuid}    Query    SELECT course_order.user_uuid from users,course_order,course_user where users.uuid=course_order.user_uuid and users.uuid=course_user.user_uuid and users.username='${QB_Student_User}' and course_order.course_uuid='${data_course_id}' limit 1
+    Comment    ${user_uuid}    Set Variable    ${temp_uuid[0][0]}
+    Comment    Execute Sql String    DELETE from course_user where course_uuid='${data_course_id}' and user_uuid='${user_uuid}';
+    #进入课程
+    Go To    https://qbtest.shixiseng.com/course/detail/${data_course_id}
+    Wait Until Page Contains Element    //div[@class="qb-button outline" and text()="免费试听"]
+    ${web_course_name}    Get Text    //div[@class="cright fr"]/h1
+    Run Keyword And Continue On Failure    Should Be Equal As Strings    ${data_course_name}    ${web_course_name}
+    Click Element    //div[@class="qb-button join_btn" and text()="立即报名"]
+    sleep    2
+    Run Keyword And Continue On Failure    Element Text Should Be    //div[@class="qb-button gray" ]    已报名
+    ##开始上课
+    Run Keyword And Continue On Failure    Element Text Should Be    //div[@class="qb-button outline"]    开始上课
+    Click Element    //div[@class="qb-button outline"]
+    ##免费试听课程中心
+    Wait Until Page Contains Element    //div[@class="course-name"]/p
+    sleep    2
+    Run Keyword And Continue On Failure    Page Should Contain Element    //a[@href="/my"]
+    Run Keyword And Continue On Failure    Element Text Should Be    //div[@class="course-name"]/p    ${data_course_name}
+    ##验证默认定位到第一章第一节
+    Run Keyword And Continue On Failure    Page Should Contain Element    //div[@class="chapter-list panel-group"]/div[1]/div[2]//li[1][@class="active"]
+    Click Element    //a[@href="#collapse1"]
+    Random click item designated area    //a[@data-toggle="collapse"]    1    0
+    sleep    1
+    Random click item designated area    //a[@aria-expanded="true"]/../../../div[@class="panel-collapse collapse show"]    0    0
+    sleep    1
+    Run Keyword And Continue On Failure    Element Should Not Be Visible    //div[@class="modal-content"]
+    Sleep    3
+    Disconnect From Database
+    Focus    //span[@class="qb-button"]
+    Sleep    3
+    Run Keyword And Continue On Failure    Element Text Should Be    //div[@class="comment-box"]/h3    课程内容怎么样？评价一下完成打卡
+    Random click item    //ul[@class="rating-max rating"]/li
+    Input Text    //textarea[@placeholder='（选填）评价一下课程吧']    很好
+    sleep    2
+    Click Element    //span[@class="qb-button"]
+    sleep    1
+    Run Keyword And Continue On Failure    Element Text Should Be    //span[contains(@class,"qb-button")]    已打卡
+    Run Keyword And Continue On Failure    Element Text Should Be    //div[@class="text-num"]    2/500
+    Click Element    //a[@href="/my"]
+    sleep    1
+    Run Keyword And Continue On Failure    Element Text Should Be    //a[@class="side-nav active"]    在读课程
+    Run Keyword And Continue On Failure    Element Text Should Be    //li[@data-id="${data_course_id}"]/h3    ${data_course_name}
+    #作业验证
+    Click Element    //a[text()="作业中心"]
+    sleep    2
+    Click Element    //span[@aria-controls="collapseExercise" and text()="展开更多"]
+    sleep    1
+    Random click item designated area    //span[@class="qb-button outline small" and text()="立即完成"]    1
+    #输入答案
+    Input Text    //div[@class="note-editable"]    完成作业
+    sleep    1
+    Click Element    //span[@class="qb-button" and text()='提交答案']
+    #验证提示信息
+    Run Keyword And Continue On Failure    Element Text Should Be    //div[@class="layui-layer-title"]    信息
+    Run Keyword And Continue On Failure    Element Text Should Be    //div[@class="layui-layer-content"]    作业提交就没办法修改了哦～仔细检查再提交哈！
+    Click Element    //a[@class="layui-layer-btn0" and text()='确定提交']
+    Public.Connect To Database
+    ${temp_uuid}    Query    SELECT course_order.user_uuid from users,course_order,course_user where users.uuid=course_order.user_uuid and users.uuid=course_user.user_uuid and users.username='${QB_Student_User}' and course_order.course_uuid='${data_course_id}' limit 1
+    ${user_uuid}    Set Variable    ${temp_uuid[0][0]}
+    Execute Sql String    DELETE from course_user where course_uuid='${data_course_id}' and user_uuid='${user_uuid}';
+    Execute Sql String    DELETE from course_order where course_uuid='${data_course_id}' and user_uuid='${user_uuid}';
+    Execute Sql String    DELETE from course_user where course_uuid='${data_course_id}' and user_uuid='${user_uuid}';
+    Execute Sql String    DELETE from course_order where course_uuid='${data_course_id}' and user_uuid='${user_uuid}';
+    Execute Sql String    DELETE from course_chapter_comment where course_chapter_comment.user_uuid='${user_uuid}'
+    Execute Sql String    DELETE from course_chapter_comment where course_chapter_comment.user_uuid='${user_uuid}'
+    #删除已回答课程
+    Execute Sql String    delete from course_chapter_exercise where course_chapter_exercise.user_uuid='${user_uuid}'
+    Execute Sql String    delete from course_chapter_exercise where course_chapter_exercise.user_uuid='${user_uuid}'
+    Disconnect From Database
+
+固定课程学习
+    [Template]
+    [Timeout]
+    Public.Connect To Database
+    ${data_course_id}    Set Variable    cou_8bokg0dvckcm
+    ${course_info}    Query    select courses.course_name,courses.description from courses where courses.uuid='${data_course_id}'
+    ${data_course_name}    Evaluate    '${course_info[0][0]}'.decode('utf-8')
+    ${data_course_description}    Evaluate    '${course_info[0][1]}'.decode('utf-8')
+    #进入课程
+    Set Suite Variable    ${SUITE_COURSE_ID}    ${data_course_id}
+    Go To    https://qbtest.shixiseng.com/course/detail/${data_course_id}
+    Wait Until Page Contains Element    //div[@class="qb-button outline" and text()="免费试听"]
+    ${web_course_name}    Get Text    //div[@class="cright fr"]/h1
+    Run Keyword And Continue On Failure    Should Be Equal As Strings    ${data_course_name}    ${web_course_name}
+    Click Element    //div[@class="qb-button join_btn" and text()="立即报名"]
+    sleep    2
+    Message verification    上课通知    Hello！你已经成功拿下一门课程，要不，立刻开始上课吧
+    Run Keyword And Continue On Failure    Element Text Should Be    //div[@class="qb-button gray" ]    已报名
+    ##开始上课
+    Run Keyword And Continue On Failure    Element Text Should Be    //div[@class="qb-button outline"]    开始上课
+    Click Element    //div[@class="qb-button outline"]
+    ##免费试听课程中心
+    Wait Until Page Contains Element    //div[@class="course-name"]/p
+    sleep    2
+    Run Keyword And Continue On Failure    Page Should Contain Element    //a[@href="/my"]
+    Run Keyword And Continue On Failure    Element Text Should Be    //div[@class="course-name"]/p    ${data_course_name}
+    #默认打卡第一章第一节
+    Run Keyword And Continue On Failure    Page Should Contain Element    //div[@class="chapter-list panel-group"]/div[1]/div[2]//li[1][@class="active"]
+    sleep    1
+    ###获取uuid
+    ${temp_uuid}    Query    SELECT course_order.user_uuid from users,course_order,course_user where users.uuid=course_order.user_uuid and users.uuid=course_user.user_uuid and users.username='${QB_Student_User}' and course_order.course_uuid='${data_course_id}' limit 1
+    ${user_uuid}    Set Variable    ${temp_uuid[0][0]}
+    Set Suite Variable    ${SUITE_USER_UUID}    ${user_uuid}
+    Sleep    3
+    Disconnect From Database
+    Focus    //span[@class="qb-button"]
+    Sleep    3
+    Run Keyword And Continue On Failure    Element Text Should Be    //div[@class="comment-box"]/h3    课程内容怎么样？评价一下完成打卡
+    Random click item    //ul[@class="rating-max rating"]/li
+    Input Text    //textarea[@placeholder='（选填）评价一下课程吧']    很好
+    sleep    2
+    Click Element    //span[@class="qb-button"]
+    sleep    1
+    Run Keyword And Continue On Failure    Element Text Should Be    //span[contains(@class,"qb-button")]    已打卡
+    Run Keyword And Continue On Failure    Element Text Should Be    //div[@class="text-num"]    2/500
+    #未填写作业，选择第二章
+    Click Element    //*[@id="accordion"]/div[2]/div[1]/div/a
+    sleep    1
+    Click Element    //*[@id="collapse2"]/ul/li[2]
+    Wait Until Page Contains    请先完成上一章的作业
+    Click Element    //*[@id="accordion"]/div[2]/div[1]/div/a
+    #填写作业
+    Click Element    //*[@id="collapse1"]/ul/li[2]/i/..
+    sleep    1
+    Input Text    //div[@class="note-editable"]    我的回答
+    Click Element    //button[@class="submit-btn"]
+    sleep    1
+    Run Keyword And Continue On Failure    Element Text Should Be    //div[@class="layui-layer layui-layer-dialog"]/div[1]    信息
+    Run Keyword And Continue On Failure    Element Text Should Be    //div[@class="layui-layer layui-layer-dialog"]/div[2]    提交后不可更改，确认提交？
+    sleep    1
+    Click Element    //a[@class='layui-layer-btn0']
+    sleep    2
+    #选择第二章节作业第一节打卡
+    Click Element    //*[@id="accordion"]/div[2]/div[1]/div/a
+    sleep    1
+    Click Element    //*[@id="collapse2"]/ul/li[1]
+    Click Element    //*[@id="collapse2"]/ul/li[1]
+    sleep    1
+    Focus    //span[@class="qb-button"]
+    Sleep    3
+    Run Keyword And Continue On Failure    Element Text Should Be    //div[@class="comment-box"]/h3    课程内容怎么样？评价一下完成打卡
+    Random click item    //ul[@class="rating-max rating"]/li
+    Input Text    //textarea[@placeholder='（选填）评价一下课程吧']    很好
+    sleep    2
+    Click Element    //span[@class="qb-button"]
+    sleep    1
+    Run Keyword And Continue On Failure    Element Text Should Be    //span[contains(@class,"qb-button")]    已打卡
+    Run Keyword And Continue On Failure    Element Text Should Be    //div[@class="text-num"]    2/500
+    #第二章节作业
+    Comment    Click Element    //*[@id="collapse2"]/ul/li[2]
+    Comment    sleep    1
+    Comment    Input Text    //div[@class="note-editable"]    我的回答
+    Comment    Click Element    //button[@class="submit-btn"]
+    Comment    sleep    1
+    Comment    Run Keyword And Continue On Failure    Element Text Should Be    //div[@class="layui-layer layui-layer-dialog"]/div[1]    信息
+    Comment    Run Keyword And Continue On Failure    Element Text Should Be    //div[@class="layui-layer layui-layer-dialog"]/div[2]    提交后不可更改，确认提交？
+    Comment    sleep    1
+    Comment    Click Element    //a[@class='layui-layer-btn0']
+    #作业验证
+    Click Element    //a[@href="/my"]
+    sleep    1
+    Click Element    //a[text()="作业中心"]
+    sleep    2
+    Comment    Click Element    //span[@aria-controls="collapseExercise" and text()="展开更多"]
+    sleep    1
+    Random click item designated area    //span[@class="qb-button outline small" and text()="立即完成"]    0
+    #输入答案
+    Input Text    //div[@class="note-editable"]    完成作业
+    sleep    1
+    Click Element    //span[@class="qb-button" and text()='提交答案']
+    #验证提示信息
+    Run Keyword And Continue On Failure    Element Text Should Be    //div[@class="layui-layer-title"]    信息
+    Run Keyword And Continue On Failure    Element Text Should Be    //div[@class="layui-layer-content"]    作业提交就没办法修改了哦～仔细检查再提交哈！
+    Click Element    //a[@class="layui-layer-btn0" and text()='确定提交']
+    Comment    Public.Connect To Database
+    Comment    Execute Sql String    DELETE from course_user where course_uuid='${data_course_id}' and user_uuid='${user_uuid}';    True
+    Comment    Execute Sql String    DELETE from course_order where course_uuid='${data_course_id}' and user_uuid='${user_uuid}';    True
+    Comment    Execute Sql String    DELETE from course_user where course_uuid='${data_course_id}' and user_uuid='${user_uuid}';
+    Comment    Execute Sql String    DELETE from course_order where course_uuid='${data_course_id}' and user_uuid='${user_uuid}';
+    Comment    Execute Sql String    DELETE from course_chapter_comment where course_chapter_comment.user_uuid='${user_uuid}'    True
+    Comment    Execute Sql String    DELETE from course_chapter_comment where course_chapter_comment.user_uuid='${user_uuid}'
+    Comment    #删除已回答课程
+    Comment    Execute Sql String    delete from course_chapter_exercise where course_chapter_exercise.user_uuid='${user_uuid}'    True
+    Comment    Execute Sql String    delete from course_chapter_exercise where course_chapter_exercise.user_uuid='${user_uuid}'
+    Comment    Disconnect From Database
+    Disconnect From Database
+
+登录助教系统
+    Go To    https://qbtest.shixiseng.com/adviser/login
+    sleep    2
+    Input Text    //label[text()='用户名']/..//input    linsha@qq.com
+    Input Text    //label[text()='密码']/..//input    123kkk
+    Click Element    //button/span[text()='登录']
+    sleep    2
+    #批改作业
+    Click Element    //div[text()='17300000000']/../..//span[text()='批改作业']
+    sleep    5
+    Random click item    //div[@class='popular-comment-wrap']/button
+    sleep    2
+    Click Element    //button[@class='el-button el-button--primary']
+    sleep    3
+    Message verification    作业批改通知    大喜大喜！助教大佬已经对你的作业批改完毕啦，好像拿了很高分..好像...
+    #第二次作业批改
+    Click Element    //div[text()='17300000000']/../..//span[text()='批改作业']
+    sleep    3
+    Random click item    //div[@class='popular-comment-wrap']/button
+    sleep    2
+    Click Element    //button[@class='el-button el-button--primary']
+    sleep    3
+    Message verification    作业批改通知    大喜大喜！助教大佬已经对你的作业批改完毕啦，好像拿了很高分..好像...
+
+再次进入前辈学生端
+    Go To    https://qbtest.shixiseng.com/course/detail/${SUITE_COURSE_ID}
+    sleep    3
+    Click Element    //span[@class='qb-button outline small']/..
+    sleep    2
+    Click Element    //a[@href='/my/exercise']
+    sleep    2
+    ${chapter_name_choose}    Get Text    //div[@class='chapter-list']//tr[2]/td[2]
+    Click Element    //div[@class='chapter-list']//tr[2]//a
+    sleep    2
+    ${chapter_name_title}    Get Text    //div[@class='current-chapter']
+    Run Keyword And Continue On Failure    Should Be Equal As Strings    ${chapter_name_choose}    ${chapter_name_title}
+    Comment    Message verification    课程完成通知    厉害了我的朋友，你已经刷完一门课了！
+    Public.Connect To Database
+    Execute Sql String    DELETE from course_user where course_uuid='${SUITE_COURSE_ID}' and user_uuid='${SUITE_USER_UUID}';    True
+    Execute Sql String    DELETE from course_order where course_uuid='${SUITE_COURSE_ID}' and user_uuid='${SUITE_USER_UUID}';    True
+    Execute Sql String    DELETE from course_user where course_uuid='${SUITE_COURSE_ID}' and user_uuid='${SUITE_USER_UUID}';
+    Execute Sql String    DELETE from course_order where course_uuid='${SUITE_COURSE_ID}' and user_uuid='${SUITE_USER_UUID}';
+    Execute Sql String    DELETE from course_chapter_comment where course_chapter_comment.user_uuid='${SUITE_USER_UUID}'    True
+    Execute Sql String    DELETE from course_chapter_comment where course_chapter_comment.user_uuid='${SUITE_USER_UUID}'
+    #删除已回答课程
+    Execute Sql String    delete from course_chapter_exercise where course_chapter_exercise.user_uuid='${SUITE_USER_UUID}'    True
+    Execute Sql String    delete from course_chapter_exercise where course_chapter_exercise.user_uuid='${SUITE_USER_UUID}'
+    Disconnect From Database

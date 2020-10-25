@@ -1,0 +1,28 @@
+*** Settings ***
+Resource          ../../../all_resource.txt
+
+*** Test Cases ***
+登陆
+    Open Browser    http://sit1-hr-frontend.mshare.cn/#/login    chrome
+    Maximize Browser Window
+    sleep    5
+    Input Text    id=username    700000001@qq.com
+    Input Text    id=password    123456
+    Click Element    //div[@class="submit"]
+    sleep    5
+    Click Element    //span[contains(text(),"立即完善资料")]
+    sleep    5
+    #企业简称
+    Input Text    //label[text()="企业简称："]/following-sibling::div[1]//input[@type="text"]    简称
+    #简短介绍
+    Input Text    //label[text()="简短介绍："]/following-sibling::div[1]//input[@type="text"]    简称
+    #企业地址
+    Input Text    //label[text()="企业地址："]/following-sibling::div[1]//input[@type="text"]    简称
+    Choose File    //label[text()="企业logo："]/following-sibling::div[1]//input[@type="file"]    D:\\20190510113521d29fUkInI6E85hDgIX.jpeg
+    Choose File    //label[text()="营业执照："]/following-sibling::div[1]//input[@type="file"]    D:\\20190510113521d29fUkInI6E85hDgIX.jpeg
+    #企业网址
+    Input Text    //label[text()="企业网址"]/following-sibling::div[1]//input[@type="text"]    简称
+    #联系电话
+    Input Text    //label[text()="联系电话："]/following-sibling::div[1]//input[@type="text"]    18728468925
+    #邮箱说明：
+    Input Text    //label[text()="邮箱说明："]/following-sibling::div[1]//input[@type="text"]    简称

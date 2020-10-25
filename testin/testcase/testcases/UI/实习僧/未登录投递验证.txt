@@ -1,0 +1,92 @@
+*** Settings ***
+Suite Teardown    Close All Browsers
+Resource          ../../../all_resource.txt
+
+*** Test Cases ***
+登录
+    Open Browser    ${SXS_WEB_URL}    Chrome
+    Maximize Browser Window
+    sleep    1
+
+搜索功能验证
+    #热门搜索不为0
+    ${hot-search}    Get WebElements    //span[contains(text(),"热门搜索：")]/a
+    ${hot_length}    Get Length    ${hot-search}
+    Should Be True    ${hot_length}>=0
+    Input Text    //input[@placeholder="请输入期望的实习岗位"]    萌想科技
+    Click Element    //input[@type="submit"]
+    Comment    Click Element    //input[@value="搜索职位"]
+    sleep    6
+    #搜索结果不为0
+    ${result_list}    Get WebElements    //ul[@class="position-list"]/li
+    ${result_length}    Get Length    ${result_list}
+    Run Keyword And Continue On Failure    Should Be True    ${result_length}>1
+
+投递职位
+    #随机点击职位投递
+    Comment    Random click item    //ul[@class="position-list"]/li/div[1]/div[1]/a
+    Random click item designated area    //ul[@class="position-list"]/li/div[1]/div[1]/a    0    1
+    Sleep    ${WAIT_TIME}
+    Select Window    new
+    ${title}    Get Title
+    ${title}    Get Location
+    Sleep    ${WAIT_TIME}
+    Click Element    //div[@class="content_right"]/div[@class="resume_apply com_res" and text()="投个简历"]
+    Sleep    ${WAIT_TIME}
+    #登录
+    Run Keyword And Continue On Failure    Page Should Contain    3分钟 完成个人简历
+    Click Element    //div[@class="tip login"]
+    Input Text    //div[@class="input-item"]/input[@placeholder="请输入手机号/邮箱"]    ${user_name}
+    Input Text    //div[@class="input-item"]/input[@placeholder="请输入密码"]    ${password}
+    sleep    ${WAIT_TIME}
+    Click Element    //div[@class="login-btn"]
+    sleep    ${WAIT_TIME}
+    sleep    ${WAIT_TIME}
+    Click Element    //div[@class="content_right"]/div[@class="resume_apply com_res" and text()="投个简历"]
+    Sleep    ${WAIT_TIME}
+    #投递
+    Click Element    id=deli_pre
+    sleep    ${WAIT_TIME}
+    Page Should Contain    投递成功
+
+查看投递记录
+    Reload Page
+    Click Element    //a[@data-desc="base-个人中心"]
+    sleep    ${WAIT_TIME}
+    sleep    ${WAIT_TIME}
+    Click Element    //div[@class="info3-box"]/a[contains(@href,"my/delivered")]
+    sleep    ${WAIT_TIME}
+    ${web_list}    Get WebElements    //div[@class="back_inf"]/div/div[@class="back_inf_header"]
+    ${length}    Get Length    ${web_list}
+    Run Keyword And Continue On Failure    Should Be True    ${length}>=1
+    Click Element    //a[contains(@href,"deliver-preview")]
+    Sleep    ${WAIT_TIME}
+    Select Window    new
+    Comment    Page Should Contain    ${user_name}
+    [Teardown]
+
+删除投递记录
+    Comment    Public.Connect To Database    ${DB_NAME_SXS}    ${HOST}    ${PORT}    ${DB_USER}    ${DB_PASSWORD}
+    Comment    ${temp_uuid}    Query    select uuid from users where users.tel='${user_name}';
+    Comment    ${user_uuid}    Set Variable    ${temp_uuid[0][0]}
+    Comment    ${a}    Execute Sql String    update deliver set status='destroy' where deliver.user_uuid='${user_uuid}' and status='normal';
+    Comment    ${a}    Execute Sql String    update deliver set deliver_status='back' where deliver.user_uuid='${user_uuid}' ;
+    Comment    ${a}    Execute Sql String    update resume_deliver set status='destroy' where resume_deliver.user_uuid='${user_uuid}' and status='normal';
+    Comment    ${a}    Execute Sql String    update deliver set user_destroy='t' where deliver.user_uuid='${user_uuid}';
+    Comment    log    ${a}
+    Comment    Disconnect From Database
+
+撤回投递申请
+    ${handle}    Get Window Handles
+    Select Window    ${handle[1]}
+    Click Element    //span[contains(@class,"inf_resume") and contains(text(),"投递成功")]
+    sleep    ${WAIT_TIME}
+    Click Element    //span[@class="back_btn"]
+    sleep    ${WAIT_TIME}
+    Element Text Should Be    //div[@class="layui-layer-content"]    撤回后企业将不再看到您的简历，确定要撤回吗？
+    Click Element    //a[@class="layui-layer-btn0"]
+    sleep    ${WAIT_TIME}
+    sleep    ${WAIT_TIME}
+    ${web_list}    Get WebElements    //div[@class="back_inf"]/div/div[@class="back_inf_header"]
+    ${length}    Get Length    ${web_list}
+    Run Keyword And Continue On Failure    Should Be True    ${length}<1

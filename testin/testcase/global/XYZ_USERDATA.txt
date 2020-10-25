@@ -1,0 +1,3 @@
+*** Variables ***
+${XYZ_Student_User}    15802380900    # 434690441@qq.com
+${XYZ_Student_password}    123456

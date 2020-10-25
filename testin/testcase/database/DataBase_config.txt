@@ -1,0 +1,10 @@
+*** Settings ***
+Resource          ../all_resource.txt
+
+*** Variables ***
+${HOST}           dbi.mshare.cn
+${PORT}           2094
+${DB_USER}        dbuser
+${DB_PASSWORD}    VdgwRS1VYE7psxi1X@9ug3qa
+${DB_NAME}        qianbeidb
+${DB_NAME_SXS}    sxsdb

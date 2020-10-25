@@ -1,0 +1,582 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>excel-to-html</title>
+    <link href="Perconnel/static/css/style.css" rel="stylesheet" style="width: 50px">
+    <meta charset="utf-8">
+  </head>
+  <body>
+    <div id="excel_table">
+      <table>
+        <thead>
+          <td>
+            <p>模块</p>
+          </td>
+          <td>
+            <p>用例</p>
+          </td>
+          <td>
+            <p>项目</p>
+          </td>
+          <td>
+            <p>URL</p>
+          </td>
+          <td>
+            <p>uri</p>
+          </td>
+          <td>
+            <p>请求方式</p>
+          </td>
+          <td>
+            <p>请求数据</p>
+          </td>
+          <td>
+            <p>is_login</p>
+          </td>
+          <td>
+            <p>预期</p>
+          </td>
+          <td>
+            <p>schema</p>
+          </td>
+          <td>
+            <p>返回</p>
+          </td>
+          <td>
+            <p>测试结果</p>
+          </td>
+          <td>
+            <p>测试人员</p>
+          </td>
+        </thead>
+        <tr class="excel_table_row">
+          <td>
+            <p>登录</p>
+          </td>
+          <td>
+            <p>登录</p>
+          </td>
+          <td>
+            <p></p>
+          </td>
+          <td>
+            <p>http://istio-test-apigateway.mshare.cn</p>
+          </td>
+          <td>
+            <p>/api/account/v2.0/login</p>
+          </td>
+          <td>
+            <p>post</p>
+          </td>
+          <td>
+            <p>password=45X35X25X15X05X94,scookie=1,sys=ios,username=18782950041</p>
+          </td>
+          <td>
+            <p>f</p>
+          </td>
+          <td>
+            <p></p>
+          </td>
+          <td>
+            <p>{&quot;type&quot;:&quot;object&quot;,&quot;properties&quot;:{&quot;code&quot;:{&quot;type&quot;:&quot;integer&quot;},&quot;msg&quot;:{&quot;type&quot;:&quot;object&quot;,&quot;properties&quot;:{&quot;atta&quot;:{&quot;type&quot;:&quot;integer&quot;},&quot;educ&quot;:{&quot;type&quot;:&quot;integer&quot;},&quot;expe&quot;:{&quot;type&quot;:&quot;integer&quot;},&quot;prac&quot;:{&quot;type&quot;:&quot;integer&quot;},&quot;prod&quot;:{&quot;type&quot;:&quot;integer&quot;},&quot;proj&quot;:{&quot;type&quot;:&quot;integer&quot;},&quot;resume&quot;:{&quot;type&quot;:&quot;integer&quot;},&quot;skil&quot;:{&quot;type&quot;:&quot;integer&quot;}},&quot;required&quot;:[&quot;atta&quot;,&quot;educ&quot;,&quot;expe&quot;,&quot;prac&quot;,&quot;prod&quot;,&quot;proj&quot;,&quot;resume&quot;,&quot;skil&quot;]}},&quot;required&quot;:[&quot;code&quot;,&quot;msg&quot;]}</p>
+          </td>
+          <td>
+            <p></p>
+          </td>
+          <td>
+            <p></p>
+          </td>
+          <td>
+            <p></p>
+          </td>
+        </tr>
+        <tr class="excel_table_row">
+          <td>
+            <p></p>
+          </td>
+          <td>
+            <p>收藏</p>
+          </td>
+          <td>
+            <p></p>
+          </td>
+          <td>
+            <p>http://istio-test-apigateway.mshare.cn</p>
+          </td>
+          <td>
+            <p>/api/account/v3.0/collect/list</p>
+          </td>
+          <td>
+            <p>get</p>
+          </td>
+          <td>
+            <p>page=1,sub=sx_xz,type=intern,version=v2</p>
+          </td>
+          <td>
+            <p>t</p>
+          </td>
+          <td>
+            <p>code=100</p>
+          </td>
+          <td>
+            <p>{&quot;type&quot;:&quot;object&quot;,&quot;properties&quot;:{&quot;code&quot;:{&quot;type&quot;:&quot;integer&quot;},&quot;msg&quot;:{&quot;type&quot;:&quot;array&quot;,&quot;items&quot;:{&quot;type&quot;:&quot;object&quot;,&quot;properties&quot;:{&quot;uuid&quot;:{&quot;type&quot;:&quot;string&quot;},&quot;name&quot;:{&quot;type&quot;:&quot;string&quot;},&quot;info&quot;:{&quot;type&quot;:&quot;string&quot;},&quot;url&quot;:{&quot;type&quot;:&quot;string&quot;},&quot;effective_time&quot;:{&quot;type&quot;:&quot;number&quot;},&quot;city&quot;:{&quot;type&quot;:&quot;string&quot;},&quot;day&quot;:{&quot;type&quot;:&quot;integer&quot;},&quot;minsal&quot;:{&quot;type&quot;:&quot;integer&quot;},&quot;maxsal&quot;:{&quot;type&quot;:&quot;integer&quot;},&quot;company_name&quot;:{&quot;type&quot;:&quot;string&quot;},&quot;admin_info&quot;:{&quot;type&quot;:&quot;string&quot;},&quot;company_type&quot;:{&quot;type&quot;:&quot;string&quot;},&quot;company_status&quot;:{&quot;type&quot;:&quot;string&quot;},&quot;attraction&quot;:{&quot;type&quot;:&quot;array&quot;,&quot;items&quot;:{&quot;type&quot;:&quot;string&quot;}},&quot;is_financing&quot;:{&quot;type&quot;:&quot;string&quot;},&quot;scale&quot;:{&quot;type&quot;:&quot;string&quot;},&quot;industry&quot;:{&quot;type&quot;:&quot;string&quot;},&quot;refresh_time&quot;:{&quot;type&quot;:&quot;string&quot;},&quot;month_num&quot;:{&quot;type&quot;:&quot;integer&quot;},&quot;company_uuid&quot;:{&quot;type&quot;:&quot;string&quot;},&quot;linkedin_num&quot;:{&quot;type&quot;:&quot;integer&quot;},&quot;tag&quot;:{&quot;type&quot;:&quot;string&quot;},&quot;status&quot;:{&quot;type&quot;:&quot;string&quot;},&quot;job_label&quot;:{&quot;type&quot;:&quot;object&quot;,&quot;properties&quot;:{&quot;is_quick&quot;:{&quot;type&quot;:&quot;boolean&quot;},&quot;is_double_selection&quot;:{&quot;type&quot;:&quot;boolean&quot;},&quot;is_ji&quot;:{&quot;type&quot;:&quot;boolean&quot;},&quot;is_hr&quot;:{&quot;type&quot;:&quot;boolean&quot;},&quot;is_hirer&quot;:{&quot;type&quot;:&quot;boolean&quot;}},&quot;required&quot;:[&quot;is_quick&quot;,&quot;is_double_selection&quot;,&quot;is_ji&quot;,&quot;is_hr&quot;,&quot;is_hirer&quot;]},&quot;salary_desc&quot;:{&quot;type&quot;:&quot;string&quot;},&quot;intern_type&quot;:{&quot;type&quot;:&quot;integer&quot;},&quot;uuid_build_time&quot;:{&quot;type&quot;:&quot;string&quot;},&quot;hope_you&quot;:{&quot;type&quot;:&quot;array&quot;,&quot;items&quot;:{&quot;type&quot;:&quot;string&quot;}},&quot;degree&quot;:{&quot;type&quot;:&quot;string&quot;}},&quot;required&quot;:[&quot;uuid&quot;,&quot;name&quot;,&quot;info&quot;,&quot;url&quot;,&quot;effective_time&quot;,&quot;city&quot;,&quot;day&quot;,&quot;minsal&quot;,&quot;maxsal&quot;,&quot;company_name&quot;,&quot;admin_info&quot;,&quot;company_type&quot;,&quot;company_status&quot;,&quot;attraction&quot;,&quot;is_financing&quot;,&quot;scale&quot;,&quot;industry&quot;,&quot;refresh_time&quot;,&quot;month_num&quot;,&quot;company_uuid&quot;,&quot;linkedin_num&quot;,&quot;tag&quot;,&quot;status&quot;,&quot;job_label&quot;,&quot;salary_desc&quot;,&quot;intern_type&quot;,&quot;uuid_build_time&quot;,&quot;hope_you&quot;,&quot;degree&quot;]}}},&quot;required&quot;:[&quot;code&quot;,&quot;msg&quot;]}</p>
+          </td>
+          <td>
+            <p>{&quot;code&quot;:100,&quot;msg&quot;:[{&quot;uuid&quot;:&quot;inn_kpxjxa0b1jzo&quot;,&quot;name&quot;:&quot;ios技术&quot;,&quot;info&quot;:&quot;\u003cp\u003e\n\t1、负责公司所有财务等等等都能懂等等等等等等等\n\u003c/p\u003e\n\u003cp\u003e\n\t\u003cspan\u003e1、负责公司所有财务等等等都能懂等等等等等等等\u003c/span\u003e\u003cspan\u003e1、负责公司所有财务等等等都能懂等等等等等等等\u003c/span\u003e\u003cspan\u003e1、负责公司所有财务等等等都能懂等等等等等等等\u003c/span\u003e\u003cspan\u003e1、负责公司所有财务等等等都能懂等等等等等等等\u003c/span\u003e\u003cspan\u003e1、负责公司所有财务等等等都能懂等等等等等等等\u003c/span\u003e\u003cspan\u003e1、负责公司所有财务等等等都能懂等等等等等等等\u003c/span\u003e\u003cspan\u003e1、负责公司所有财务等等等都能懂等等等等等等等\u003c/span\u003e\u003cspan\u003e1、负责公司所有财务等等等都能懂等等等等等等等\u003c/span\u003e\u003cspan\u003e1、负责公司所有财务等等等都能懂等等等等等等等\u003c/span\u003e\u003cspan\u003e1、负责公司所有财务等等等都能懂等等等等等等等\u003c/span\u003e \n\u003c/p\u003e\n\u003cp\u003e\n\t\u003cspan\u003e第三次编辑\u003c/span\u003e \n\u003c/p\u003e&quot;,&quot;url&quot;:&quot;https://sxsimg.xiaoyuanzhao.com/7D/C9/7D7BBA882D02906CA98A776F411666C9.jpg&quot;,&quot;effective_time&quot;:1603962000,&quot;city&quot;:&quot;成都&quot;,&quot;day&quot;:&quot;5&quot;,&quot;minsal&quot;:150,&quot;maxsal&quot;:200,&quot;company_name&quot;:&quot;岳阳楼&quot;,&quot;admin_info&quot;:&quot;&quot;,&quot;company_type&quot;:&quot;normal&quot;,&quot;company_status&quot;:&quot;normal&quot;,&quot;attraction&quot;:[&quot;六险一金&quot;,&quot;下午茶&quot;,&quot;早九晚五&quot;,&quot;公司体检&quot;],&quot;is_financing&quot;:&quot;B轮&quot;,&quot;scale&quot;:&quot;少于15人&quot;,&quot;industry&quot;:&quot;互联网/游戏/软件&quot;,&quot;refresh_time&quot;:&quot;10-15&quot;,&quot;month_num&quot;:3,&quot;company_uuid&quot;:&quot;com_tb8wtvv5avga&quot;,&quot;linkedin_num&quot;:0,&quot;tag&quot;:&quot;&quot;,&quot;status&quot;:&quot;normal&quot;,&quot;job_lable&quot;:{&quot;is_double_selection&quot;:false,&quot;is_hirer&quot;:true,&quot;is_hr&quot;:false,&quot;is_ji&quot;:false,&quot;is_quick&quot;:false},&quot;salary_desc&quot;:&quot;150-200/天&quot;,&quot;intern_type&quot;:0,&quot;uuid_build_time&quot;:&quot;2020-10-16 22:34:45&quot;,&quot;hope_you&quot;:[],&quot;degree&quot;:&quot;本科&quot;}]}</p>
+          </td>
+          <td>
+            <p>对比失败，'job_label' is a required property
+
+Failed validating 'required' in schema['properties']['msg']['items']:
+    {'properties': {'admin_info': {'type': 'string'},
+                    'attraction': {'items': {'type': 'string'},
+                                   'type': 'array'},
+                    'city': {'type': 'string'},
+                    'company_name': {'type': 'string'},
+                    'company_status': {'type': 'string'},
+                    'company_type': {'type': 'string'},
+                    'company_uuid': {'type': 'string'},
+                    'day': {'type': 'integer'},
+                    'degree': {'type': 'string'},
+                    'effective_time': {'type': 'number'},
+                    'hope_you': {'items': {'type': 'string'},
+                                 'type': 'array'},
+                    'industry': {'type': 'string'},
+                    'info': {'type': 'string'},
+                    'intern_type': {'type': 'integer'},
+                    'is_financing': {'type': 'string'},
+                    'job_label': {'properties': {'is_double_selection': {'type': 'boolean'},
+                                                 'is_hirer': {'type': 'boolean'},
+                                                 'is_hr': {'type': 'boolean'},
+                                                 'is_ji': {'type': 'boolean'},
+                                                 'is_quick': {'type': 'boolean'}},
+                                  'required': ['is_quick',
+                                               'is_double_selection',
+                                               'is_ji',
+                                               'is_hr',
+                                               'is_hirer'],
+                                  'type': 'object'},
+                    'linkedin_num': {'type': 'integer'},
+                    'maxsal': {'type': 'integer'},
+                    'minsal': {'type': 'integer'},
+                    'month_num': {'type': 'integer'},
+                    'name': {'type': 'string'},
+                    'refresh_time': {'type': 'string'},
+                    'salary_desc': {'type': 'string'},
+                    'scale': {'type': 'string'},
+                    'status': {'type': 'string'},
+                    'tag': {'type': 'string'},
+                    'url': {'type': 'string'},
+                    'uuid': {'type': 'string'},
+                    'uuid_build_time': {'type': 'string'}},
+     'required': ['uuid',
+                  'name',
+                  'info',
+                  'url',
+                  'effective_time',
+                  'city',
+                  'day',
+                  'minsal',
+                  'maxsal',
+                  'company_name',
+                  'admin_info',
+                  'company_type',
+                  'company_status',
+                  'attraction',
+                  'is_financing',
+                  'scale',
+                  'industry',
+                  'refresh_time',
+                  'month_num',
+                  'company_uuid',
+                  'linkedin_num',
+                  'tag',
+                  'status',
+                  'job_label',
+                  'salary_desc',
+                  'intern_type',
+                  'uuid_build_time',
+                  'hope_you',
+                  'degree'],
+     'type': 'object'}
+
+On instance['msg'][0]:
+    {'admin_info': '',
+     'attraction': ['六险一金', '下午茶', '早九晚五', '公司体检'],
+     'city': '成都',
+     'company_name': '岳阳楼',
+     'company_status': 'normal',
+     'company_type': 'normal',
+     'company_uuid': 'com_tb8wtvv5avga',
+     'day': '5',
+     'degree': '本科',
+     'effective_time': 1603962000,
+     'hope_you': [],
+     'industry': '互联网/游戏/软件',
+     'info': '&lt;p&gt;\n'
+             '\t1、负责公司所有财务等等等都能懂等等等等等等等\n'
+             '&lt;/p&gt;\n'
+             '&lt;p&gt;\n'
+             '\t'
+             '&lt;span&gt;1、负责公司所有财务等等等都能懂等等等等等等等&lt;/span&gt;&lt;span&gt;1、负责公司所有财务等等等都能懂等等等等等等等&lt;/span&gt;&lt;span&gt;1、负责公司所有财务等等等都能懂等等等等等等等&lt;/span&gt;&lt;span&gt;1、负责公司所有财务等等等都能懂等等等等等等等&lt;/span&gt;&lt;span&gt;1、负责公司所有财务等等等都能懂等等等等等等等&lt;/span&gt;&lt;span&gt;1、负责公司所有财务等等等都能懂等等等等等等等&lt;/span&gt;&lt;span&gt;1、负责公司所有财务等等等都能懂等等等等等等等&lt;/span&gt;&lt;span&gt;1、负责公司所有财务等等等都能懂等等等等等等等&lt;/span&gt;&lt;span&gt;1、负责公司所有财务等等等都能懂等等等等等等等&lt;/span&gt;&lt;span&gt;1、负责公司所有财务等等等都能懂等等等等等等等&lt;/span&gt; \n'
+             '&lt;/p&gt;\n'
+             '&lt;p&gt;\n'
+             '\t&lt;span&gt;第三次编辑&lt;/span&gt; \n'
+             '&lt;/p&gt;',
+     'intern_type': 0,
+     'is_financing': 'B轮',
+     'job_lable': {'is_double_selection': False,
+                   'is_hirer': True,
+                   'is_hr': False,
+                   'is_ji': False,
+                   'is_quick': False},
+     'linkedin_num': 0,
+     'maxsal': 200,
+     'minsal': 150,
+     'month_num': 3,
+     'name': 'ios技术',
+     'refresh_time': '10-15',
+     'salary_desc': '150-200/天',
+     'scale': '少于15人',
+     'status': 'normal',
+     'tag': '',
+     'url': 'https://sxsimg.xiaoyuanzhao.com/7D/C9/7D7BBA882D02906CA98A776F411666C9.jpg',
+     'uuid': 'inn_kpxjxa0b1jzo',
+     'uuid_build_time': '2020-10-16 22:34:45'}</p>
+          </td>
+          <td>
+            <p></p>
+          </td>
+        </tr>
+        <tr class="excel_table_row">
+          <td>
+            <p></p>
+          </td>
+          <td>
+            <p>获取浏览记录</p>
+          </td>
+          <td>
+            <p></p>
+          </td>
+          <td>
+            <p>http://istio-test-apigateway.mshare.cn</p>
+          </td>
+          <td>
+            <p>/api/account/v3.0/browse/history</p>
+          </td>
+          <td>
+            <p>get</p>
+          </td>
+          <td>
+            <p>page=1,type=intern,version=v2</p>
+          </td>
+          <td>
+            <p>t</p>
+          </td>
+          <td>
+            <p>code=100</p>
+          </td>
+          <td>
+            <p>{&quot;type&quot;:&quot;object&quot;,&quot;properties&quot;:{&quot;code&quot;:{&quot;type&quot;:&quot;integer&quot;},&quot;msg&quot;:{&quot;type&quot;:&quot;array&quot;,&quot;items&quot;:{&quot;type&quot;:&quot;object&quot;,&quot;properties&quot;:{&quot;uuid&quot;:{&quot;type&quot;:&quot;string&quot;},&quot;name&quot;:{&quot;type&quot;:&quot;string&quot;},&quot;info&quot;:{&quot;type&quot;:&quot;string&quot;},&quot;url&quot;:{&quot;type&quot;:&quot;string&quot;},&quot;effective_time&quot;:{&quot;type&quot;:&quot;number&quot;},&quot;city&quot;:{&quot;type&quot;:&quot;string&quot;},&quot;day&quot;:{&quot;type&quot;:&quot;string&quot;},&quot;minsal&quot;:{&quot;type&quot;:&quot;integer&quot;},&quot;maxsal&quot;:{&quot;type&quot;:&quot;integer&quot;},&quot;company_name&quot;:{&quot;type&quot;:&quot;string&quot;},&quot;admin_info&quot;:{&quot;type&quot;:&quot;string&quot;},&quot;company_type&quot;:{&quot;type&quot;:&quot;string&quot;},&quot;company_status&quot;:{&quot;type&quot;:&quot;string&quot;},&quot;attraction&quot;:{&quot;type&quot;:&quot;array&quot;,&quot;items&quot;:{&quot;type&quot;:&quot;string&quot;}},&quot;is_financing&quot;:{&quot;type&quot;:&quot;string&quot;},&quot;scale&quot;:{&quot;type&quot;:&quot;string&quot;},&quot;industry&quot;:{&quot;type&quot;:&quot;string&quot;},&quot;refresh_time&quot;:{&quot;type&quot;:&quot;string&quot;},&quot;month_num&quot;:{&quot;type&quot;:&quot;integer&quot;},&quot;company_uuid&quot;:{&quot;type&quot;:&quot;string&quot;},&quot;linkedin_num&quot;:{&quot;type&quot;:&quot;integer&quot;},&quot;tag&quot;:{&quot;type&quot;:&quot;string&quot;},&quot;status&quot;:{&quot;type&quot;:&quot;string&quot;},&quot;job_lable&quot;:{&quot;type&quot;:&quot;object&quot;,&quot;properties&quot;:{&quot;is_quick&quot;:{&quot;type&quot;:&quot;boolean&quot;},&quot;is_double_selection&quot;:{&quot;type&quot;:&quot;boolean&quot;},&quot;is_ji&quot;:{&quot;type&quot;:&quot;boolean&quot;},&quot;is_hr&quot;:{&quot;type&quot;:&quot;boolean&quot;},&quot;is_hirer&quot;:{&quot;type&quot;:&quot;boolean&quot;}},&quot;required&quot;:[&quot;is_quick&quot;,&quot;is_double_selection&quot;,&quot;is_ji&quot;,&quot;is_hr&quot;,&quot;is_hirer&quot;]},&quot;salary_desc&quot;:{&quot;type&quot;:&quot;string&quot;},&quot;intern_type&quot;:{&quot;type&quot;:&quot;integer&quot;},&quot;uuid_build_time&quot;:{&quot;type&quot;:&quot;string&quot;},&quot;hope_you&quot;:{&quot;type&quot;:&quot;array&quot;,&quot;items&quot;:{&quot;type&quot;:&quot;string&quot;}},&quot;degree&quot;:{&quot;type&quot;:&quot;string&quot;}},&quot;required&quot;:[&quot;uuid&quot;,&quot;name&quot;,&quot;info&quot;,&quot;url&quot;,&quot;effective_time&quot;,&quot;city&quot;,&quot;day&quot;,&quot;minsal&quot;,&quot;maxsal&quot;,&quot;company_name&quot;,&quot;admin_info&quot;,&quot;company_type&quot;,&quot;company_status&quot;,&quot;attraction&quot;,&quot;is_financing&quot;,&quot;scale&quot;,&quot;industry&quot;,&quot;refresh_time&quot;,&quot;month_num&quot;,&quot;company_uuid&quot;,&quot;linkedin_num&quot;,&quot;tag&quot;,&quot;status&quot;,&quot;job_lable&quot;,&quot;salary_desc&quot;,&quot;intern_type&quot;,&quot;uuid_build_time&quot;,&quot;hope_you&quot;,&quot;degree&quot;]}}},&quot;required&quot;:[&quot;code&quot;,&quot;msg&quot;]}</p>
+          </td>
+          <td>
+            <p>{&quot;code&quot;:100,&quot;msg&quot;:[{&quot;uuid&quot;:&quot;inn_o8ama2ysoxp9&quot;,&quot;name&quot;:&quot;新发测试&quot;,&quot;info&quot;:&quot;\u003cspan\u003e阿哈哈哈啊哈\u003c/span\u003e\u003cspan\u003e阿哈哈哈啊哈\u003c/span\u003e\u003cspan\u003e阿哈哈哈啊哈\u003c/span\u003e\u003cspan\u003e阿哈哈哈啊哈\u003c/span\u003e\u003cspan\u003e阿哈哈哈啊哈\u003c/span\u003e\u003cspan\u003e阿哈哈哈啊哈\u003c/span\u003e\u003cspan\u003e阿哈哈哈啊哈\u003c/span\u003e\u003cspan\u003e阿哈哈哈啊哈\u003c/span\u003e\u003cspan\u003e阿哈哈哈啊哈\u003c/span\u003e\u003cspan\u003e阿哈哈哈啊哈\u003c/span\u003e\u003cspan\u003e阿哈哈哈啊哈\u003c/span\u003e\u003cspan\u003e阿哈哈哈啊哈\u003c/span\u003e\u003cspan\u003e阿哈哈哈啊哈\u003c/span\u003e\u003cspan\u003e阿哈哈哈啊哈\u003c/span\u003e\u003cspan\u003e阿哈哈哈啊哈\u003c/span\u003e\u003cspan\u003e阿哈哈哈啊哈\u003c/span\u003e\u003cspan\u003e阿哈哈哈啊哈\u003c/span\u003e&quot;,&quot;url&quot;:&quot;http://sxsimg.xiaoyuanzhao.com/CC/18/CCDAE27CBE3C154E46624B722C61F718.png&quot;,&quot;effective_time&quot;:1588582800,&quot;city&quot;:&quot;成都&quot;,&quot;day&quot;:&quot;5&quot;,&quot;minsal&quot;:0,&quot;maxsal&quot;:200,&quot;company_name&quot;:&quot;腾讯京东&quot;,&quot;admin_info&quot;:&quot;&quot;,&quot;company_type&quot;:&quot;hr&quot;,&quot;company_status&quot;:&quot;normal&quot;,&quot;attraction&quot;:[&quot;ssss&quot;],&quot;is_financing&quot;:&quot;C轮&quot;,&quot;scale&quot;:&quot;150-500人&quot;,&quot;industry&quot;:&quot;医疗/健康/制药/生物&quot;,&quot;refresh_time&quot;:&quot;04-20&quot;,&quot;month_num&quot;:4,&quot;company_uuid&quot;:&quot;com_mqcbon0a2nej&quot;,&quot;linkedin_num&quot;:0,&quot;tag&quot;:&quot;https://sxsimg.xiaoyuanzhao.com/static/img/overdue.png&quot;,&quot;status&quot;:&quot;overdue&quot;,&quot;job_lable&quot;:{&quot;is_double_selection&quot;:false,&quot;is_hirer&quot;:true,&quot;is_hr&quot;:true,&quot;is_ji&quot;:false,&quot;is_quick&quot;:false},&quot;salary_desc&quot;:&quot;0-200/天&quot;,&quot;intern_type&quot;:0,&quot;uuid_build_time&quot;:&quot;2020-10-16 22:33:49&quot;,&quot;hope_you&quot;:[],&quot;degree&quot;:&quot;不限&quot;},{&quot;uuid&quot;:&quot;inn_t2gm5hougro2&quot;,&quot;name&quot;:&quot;寒假实习风暴&quot;,&quot;info&quot;:&quot;\u003cstrong\u003e该职位接受寒假实习。\u003c/strong\u003e\u003cbr\u003e\u003cbr\u003e大师的方法&quot;,&quot;url&quot;:&quot;http://sxsimg.xiaoyuanzhao.com/CC/18/CCDAE27CBE3C154E46624B722C61F718.png&quot;,&quot;effective_time&quot;:1559174400,&quot;city&quot;:&quot;上海&quot;,&quot;day&quot;:&quot;5&quot;,&quot;minsal&quot;:22,&quot;maxsal&quot;:33,&quot;company_name&quot;:&quot;腾讯京东&quot;,&quot;admin_info&quot;:&quot;&quot;,&quot;company_type&quot;:&quot;hr&quot;,&quot;company_status&quot;:&quot;normal&quot;,&quot;attraction&quot;:[&quot;大苏打&quot;],&quot;is_financing&quot;:&quot;C轮&quot;,&quot;scale&quot;:&quot;150-500人&quot;,&quot;industry&quot;:&quot;医疗/健康/制药/生物&quot;,&quot;refresh_time&quot;:&quot;05-31&quot;,&quot;month_num&quot;:3,&quot;company_uuid&quot;:&quot;com_mqcbon0a2nej&quot;,&quot;linkedin_num&quot;:0,&quot;tag&quot;:&quot;https://sxsimg.xiaoyuanzhao.com/static/img/offline.png&quot;,&quot;status&quot;:&quot;overdue&quot;,&quot;job_lable&quot;:{&quot;is_double_selection&quot;:false,&quot;is_hirer&quot;:true,&quot;is_hr&quot;:true,&quot;is_ji&quot;:false,&quot;is_quick&quot;:true},&quot;salary_desc&quot;:&quot;22-33/天&quot;,&quot;intern_type&quot;:0,&quot;uuid_build_time&quot;:&quot;2020-10-16 22:33:47&quot;,&quot;hope_you&quot;:[],&quot;degree&quot;:&quot;不限&quot;},{&quot;uuid&quot;:&quot;inn_jl8ihkgcmdlx&quot;,&quot;name&quot;:&quot;db&quot;,&quot;info&quot;:&quot;\u003cp\u003e\n\t1312423414AaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaAaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa1\n\u003c/p\u003e&quot;,&quot;url&quot;:&quot;https://sxsimg.xiaoyuanzhao.com/7D/C9/7D7BBA882D02906CA98A776F411666C9.jpg&quot;,&quot;effective_time&quot;:1594512000,&quot;city&quot;:&quot;重庆&quot;,&quot;day&quot;:&quot;5&quot;,&quot;minsal&quot;:50,&quot;maxsal&quot;:100,&quot;company_name&quot;:&quot;岳阳楼&quot;,&quot;admin_info&quot;:&quot;&quot;,&quot;company_type&quot;:&quot;normal&quot;,&quot;company_status&quot;:&quot;normal&quot;,&quot;attraction&quot;:[&quot;45&quot;],&quot;is_financing&quot;:&quot;B轮&quot;,&quot;scale&quot;:&quot;少于15人&quot;,&quot;industry&quot;:&quot;互联网/游戏/软件&quot;,&quot;refresh_time&quot;:&quot;07-06&quot;,&quot;month_num&quot;:4,&quot;company_uuid&quot;:&quot;com_tb8wtvv5avga&quot;,&quot;linkedin_num&quot;:0,&quot;tag&quot;:&quot;https://sxsimg.xiaoyuanzhao.com/static/img/overdue.png&quot;,&quot;status&quot;:&quot;overdue&quot;,&quot;job_lable&quot;:{&quot;is_double_selection&quot;:false,&quot;is_hirer&quot;:true,&quot;is_hr&quot;:false,&quot;is_ji&quot;:false,&quot;is_quick&quot;:false},&quot;salary_desc&quot;:&quot;50-100/天&quot;,&quot;intern_type&quot;:0,&quot;uuid_build_time&quot;:&quot;2019-05-28 17:48:52&quot;,&quot;hope_you&quot;:[],&quot;degree&quot;:&quot;不限&quot;},{&quot;uuid&quot;:&quot;inn_qdwqzycfn3zb&quot;,&quot;name&quot;:&quot;暑假+长期&quot;,&quot;info&quot;:&quot;暑假+长期&quot;,&quot;url&quot;:&quot;https://sxsimg.xiaoyuanzhao.com/7D/C9/7D7BBA882D02906CA98A776F411666C9.jpg&quot;,&quot;effective_time&quot;:1594544400,&quot;city&quot;:&quot;北京&quot;,&quot;day&quot;:&quot;5&quot;,&quot;minsal&quot;:150,&quot;maxsal&quot;:200,&quot;company_name&quot;:&quot;岳阳楼&quot;,&quot;admin_info&quot;:&quot;&quot;,&quot;company_type&quot;:&quot;normal&quot;,&quot;company_status&quot;:&quot;normal&quot;,&quot;attraction&quot;:[&quot;233&quot;,&quot;对的&quot;,&quot;你好&quot;],&quot;is_financing&quot;:&quot;B轮&quot;,&quot;scale&quot;:&quot;少于15人&quot;,&quot;industry&quot;:&quot;互联网/游戏/软件&quot;,&quot;refresh_time&quot;:&quot;06-28&quot;,&quot;month_num&quot;:4,&quot;company_uuid&quot;:&quot;com_tb8wtvv5avga&quot;,&quot;linkedin_num&quot;:0,&quot;tag&quot;:&quot;https://sxsimg.xiaoyuanzhao.com/static/img/overdue.png&quot;,&quot;status&quot;:&quot;overdue&quot;,&quot;job_lable&quot;:{&quot;is_double_selection&quot;:false,&quot;is_hirer&quot;:true,&quot;is_hr&quot;:false,&quot;is_ji&quot;:false,&quot;is_quick&quot;:false},&quot;salary_desc&quot;:&quot;150-200/天&quot;,&quot;intern_type&quot;:0,&quot;uuid_build_time&quot;:&quot;2019-05-28 17:30:55&quot;,&quot;hope_you&quot;:[],&quot;degree&quot;:&quot;不限&quot;},{&quot;uuid&quot;:&quot;inn_zrillcfwoxiz&quot;,&quot;name&quot;:&quot;疑&quot;,&quot;info&quot;:&quot;\u003cspan\u003eAaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaAaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa1\u003c/span\u003e&quot;,&quot;url&quot;:&quot;https://sxsimg.xiaoyuanzhao.com/7D/C9/7D7BBA882D02906CA98A776F411666C9.jpg&quot;,&quot;effective_time&quot;:1599523200,&quot;city&quot;:&quot;重庆&quot;,&quot;day&quot;:&quot;5&quot;,&quot;minsal&quot;:150,&quot;maxsal&quot;:200,&quot;company_name&quot;:&quot;岳阳楼&quot;,&quot;admin_info&quot;:&quot;&quot;,&quot;company_type&quot;:&quot;normal&quot;,&quot;company_status&quot;:&quot;normal&quot;,&quot;attraction&quot;:[&quot;23&quot;],&quot;is_financing&quot;:&quot;B轮&quot;,&quot;scale&quot;:&quot;少于15人&quot;,&quot;industry&quot;:&quot;互联网/游戏/软件&quot;,&quot;refresh_time&quot;:&quot;08-25&quot;,&quot;month_num&quot;:4,&quot;company_uuid&quot;:&quot;com_tb8wtvv5avga&quot;,&quot;linkedin_num&quot;:0,&quot;tag&quot;:&quot;https://sxsimg.xiaoyuanzhao.com/static/img/overdue.png&quot;,&quot;status&quot;:&quot;destroy&quot;,&quot;job_lable&quot;:{&quot;is_double_selection&quot;:false,&quot;is_hirer&quot;:true,&quot;is_hr&quot;:false,&quot;is_ji&quot;:false,&quot;is_quick&quot;:false},&quot;salary_desc&quot;:&quot;150-200/天&quot;,&quot;intern_type&quot;:0,&quot;uuid_build_time&quot;:&quot;2019-05-27 15:53:22&quot;,&quot;hope_you&quot;:[],&quot;degree&quot;:&quot;不限&quot;},{&quot;uuid&quot;:&quot;inn_zj9jwpao5kue&quot;,&quot;name&quot;:&quot;ios开发工程师&quot;,&quot;info&quot;:&quot;&quot;,&quot;url&quot;:&quot;http://sxsimg.xiaoyuanzhao.com/CC/18/CCDAE27CBE3C154E46624B722C61F718.png&quot;,&quot;effective_time&quot;:1558958400,&quot;city&quot;:&quot;亳州,成都&quot;,&quot;day&quot;:&quot;5&quot;,&quot;minsal&quot;:30,&quot;maxsal&quot;:50,&quot;company_name&quot;:&quot;腾讯京东&quot;,&quot;admin_info&quot;:&quot;&quot;,&quot;company_type&quot;:&quot;hr&quot;,&quot;company_status&quot;:&quot;normal&quot;,&quot;attraction&quot;:[&quot;福利非常好&quot;,&quot;test&quot;,&quot;222222&quot;],&quot;is_financing&quot;:&quot;C轮&quot;,&quot;scale&quot;:&quot;150-500人&quot;,&quot;industry&quot;:&quot;医疗/健康/制药/生物&quot;,&quot;refresh_time&quot;:&quot;05-21&quot;,&quot;month_num&quot;:3,&quot;company_uuid&quot;:&quot;com_mqcbon0a2nej&quot;,&quot;linkedin_num&quot;:0,&quot;tag&quot;:&quot;https://sxsimg.xiaoyuanzhao.com/static/img/offline.png&quot;,&quot;status&quot;:&quot;overdue&quot;,&quot;job_lable&quot;:{&quot;is_double_selection&quot;:false,&quot;is_hirer&quot;:true,&quot;is_hr&quot;:true,&quot;is_ji&quot;:false,&quot;is_quick&quot;:false},&quot;salary_desc&quot;:&quot;30-50/天&quot;,&quot;intern_type&quot;:0,&quot;uuid_build_time&quot;:&quot;2019-05-13 18:47:16&quot;,&quot;hope_you&quot;:[],&quot;degree&quot;:&quot;本科&quot;},{&quot;uuid&quot;:&quot;inn_usnxnxjfj9tk&quot;,&quot;name&quot;:&quot;ios开发工程师&quot;,&quot;info&quot;:&quot;\u003cbr\u003e\u003cbr\u003e333333\u003cbr\u003e\u003cbr\u003e222222 性别要求：男或者女&quot;,&quot;url&quot;:&quot;http://sxsimg.xiaoyuanzhao.com/CC/18/CCDAE27CBE3C154E46624B722C61F718.png&quot;,&quot;effective_time&quot;:1558958400,&quot;city&quot;:&quot;成都++&quot;,&quot;day&quot;:&quot;5&quot;,&quot;minsal&quot;:30,&quot;maxsal&quot;:50,&quot;company_name&quot;:&quot;腾讯京东&quot;,&quot;admin_info&quot;:&quot;&quot;,&quot;company_type&quot;:&quot;hr&quot;,&quot;company_status&quot;:&quot;normal&quot;,&quot;attraction&quot;:[&quot;福利非常好&quot;,&quot;test&quot;,&quot;222222&quot;],&quot;is_financing&quot;:&quot;C轮&quot;,&quot;scale&quot;:&quot;150-500人&quot;,&quot;industry&quot;:&quot;医疗/健康/制药/生物&quot;,&quot;refresh_time&quot;:&quot;05-13&quot;,&quot;month_num&quot;:3,&quot;company_uuid&quot;:&quot;com_mqcbon0a2nej&quot;,&quot;linkedin_num&quot;:0,&quot;tag&quot;:&quot;https://sxsimg.xiaoyuanzhao.com/static/img/offline.png&quot;,&quot;status&quot;:&quot;overdue&quot;,&quot;job_lable&quot;:{&quot;is_double_selection&quot;:false,&quot;is_hirer&quot;:true,&quot;is_hr&quot;:true,&quot;is_ji&quot;:false,&quot;is_quick&quot;:false},&quot;salary_desc&quot;:&quot;30-50/天&quot;,&quot;intern_type&quot;:0,&quot;uuid_build_time&quot;:&quot;2019-05-13 18:16:32&quot;,&quot;hope_you&quot;:[],&quot;degree&quot;:&quot;本科&quot;},{&quot;uuid&quot;:&quot;inn_ljv3qjb0zgkh&quot;,&quot;name&quot;:&quot;测试环境&quot;,&quot;info&quot;:&quot;\u003cp\u003e\n\t邀约职位简介中显示对应的邀约职位简介中\n\u003c/p\u003e\n\u003cp\u003e\n\t显示对应的邀约职位简介中显示对应的邀约职位简介中显示对应的邀约职位简介中显示对应的邀约职位简介中显示对应的邀约职位简介中显示对应的邀约职位简介中显示对应的邀约职位简介中显示对应的邀约职位简介中显示对应的邀约职位简介中显示对应的邀约职位简介中显示对应的邀约职位简介中显\n\u003c/p\u003e\n\u003cp\u003e\n\t示对应的邀约职位简介中显示对应的邀约职位简介中显示对应的邀约职位简介中显示对应的邀约职位简介中显示对应的邀约职位简介中显示对应的邀约职位简介中显示对应的邀约职位简介中显示对应的邀约职位简介中显示对应的邀约职位简介中显示对应的邀约职位简介中显示对应的邀约职位简介中显示对应的邀约职位简介中显示对应的邀约职位简介中显示对应的邀约职位简介中显示对应的邀约职位简介中显示对应的邀约职位简介中显示对应的邀约职位简介中显示对应的邀约职位简介中显示对应的邀约职位简介中显示对应的邀约职位简介中显示对应的邀约职位简介中显示对应的邀约职位简介中显示对应的邀约职位简介中显示对应的邀约职位简介中显示对应的邀约职位简介中显示对应的邀约职位简介中显示对应的邀约职位简介中显示对应的邀约职位简介中显示对应的邀约职位简介中显示对应的邀约职位简介中显示对应的邀约职位简介中显示对应的邀约职位简介中显示对应的邀约职位简介中显示对应的邀约职位简介中显示对应的邀约职位简介中显示对应的邀约职位简介中显示对应的邀约职位简介中显示对应的邀约职位简介中显示对应的邀约职位简介中显示对应的邀约职位简介中显示对应的邀约职位简介中显示对应的邀约职位简介中显示对应的邀约职位简介中显示对应的邀约职位简介中显示对应的邀约职位简介中显示对应的邀约职位简介中显示对应的邀约职位简介中显示对应的邀约职位简介中显示对应的邀约职位简介中显示对应的邀约职位简介中显示对应的邀约职位简介中显示对应的邀约职位简介中显示对应的邀约职位简介中显示对应的邀约职位简介中显示对应的邀约职位简介中显示对应的邀约职位简介中显示对应的邀约职位简介中显示对应的邀约职位简介中显示对应的邀约职位简介中显示对应的邀约职位简介中显示对应的邀约职位简介中显示对应的邀约职位简介中显示对应的邀约职位简介中显示对应的邀约职位简介中显示对应的邀约职位简介中显示对应的邀约职位简介中显示对应的邀约职位简介中显示对应的邀约职位简介中显示对应的邀约职位简介中显示对应的邀约职位简介中显示对应的邀约职位简介中显示对应的邀约职位简介中显示对应的邀约职位简介中显示对应的邀约职位简介中显示对应的邀约职位简介中显示对应的邀约职位简介中显示对应的邀约职位简介中显示对应的邀约职位简介中显示对应的邀约职位简介中显示对应的邀约职位简介中显示对应的邀约职位简介中显示对应的邀约职位简介中显示对应的邀\n\u003c/p\u003e\n\u003cp\u003e\n\t约职位简介中显示对应的邀约职位简介中显示对应的邀约职位简介中显示对应的邀约职位简介中显示对应的邀约职位简介中显示对应的邀约职位简介中显示对应的邀约职位简介中显示对应的邀约职位简介中显示对应的邀约职位简介中显示对应的邀约职位简介中显示对应的邀约职位简介中显示对应的邀约职位简介中显示对应的邀约职位简介中显示对应的邀约职位简介中显示对应的邀约职位简介中显示对应的邀约职位简介中显示对应的邀约职位简介中显示对应的邀约职位简介中显示对应的邀约职位简介中显示对应的邀约职位简介中显示对应的邀约职位简介中显示对应的邀约职位简介中显示对应的邀约职位简介中显示对应的邀约职位简介中显示对应的邀约职位简介中显示对应的邀约职位简介中显示对应的邀约职位简介中显示对应的邀约职位简介中显示对应的邀约职位简介中显示对应的邀约职位简介中显示对应的邀约职位简介中显示对应的邀约职位简介中显示对应的邀约职位简介中显示对应的邀约职位简介中显示对应的邀约职位简介中显示对应的邀约职位简介中显示对应的邀约职位简介中显示对应的邀约职位简介中显示对应的邀约职位简介中显示对应的邀约职位简介中显示对应的邀约职位简介中显示对应的邀约职位简介中显示对应的邀约职位简介中显示对应的邀约职位简介中显示对应的邀约职位简介中显示对应的邀约职位简介中显示对应的邀约职位简介中显示对应的邀约职位简介中显示对应的邀约职位简介中显示对应的邀约职位简介中显示对应的邀约职位简介中显示对应的邀约职位简介中显示对应的邀约职位简介中显示对应的邀约职位简介中显示对应的邀约职位简介中显示对应的邀约职位简介中显示对应的邀约职位简介中显示对应的邀约职位简介中显示对应的邀约职位简介中显示对应的邀约职位简介中显示对应的邀约职位简介中显示对应的邀约职位简介中显示对应的邀约职位简介中显示对应的邀约职位简介中显示对应的邀约职位简介中显示对应的邀约职位简介中显示对应的邀约职位简介中显示对应的邀约职位简介中显示对应的邀约职位简介中显示对应的邀约职位简介中显示对应的邀约职位简介中显示对应的邀约职位简介中显示对应的邀约职位简介中显示对应的邀约职位简介中显示对应的邀约职位简介中显示对应的邀约职位简介中显示对应的邀约职位简介中显示对应的邀约职位简介中显示对应的邀约职位简介中显示对应的邀约职位简介中显示对应的邀约职位简介中显示对应的邀约职位简介中显示对应的邀约职位简介中显示对应的邀约职位简介中显示对应的邀约职位简介中显示对应的邀约职位简介中显示对应的邀约职位简介中显示对应的邀约职位简介中显示对应的邀约职位简介中显示对应的邀约职位简介中显示对应的邀约职位简介中显示对应的邀约职位简介中显示对应的邀约职位简介中显示对应的邀约职位简介中显示对应的邀约职位简介中显示对应的邀约职位简介中显示对应的邀约职位简介中显示对应的邀约职位简介中显示对应的邀约职位简介中显示对应的邀约职位简介中显示对应的邀约职位简介中显示对应的邀约职位简介中显示对应的邀约职位简介中显示对应的邀约职位简介中显示对应的邀约职位简介中显示对应的邀约职位简介中显示对应的邀约职位简介中显示对应的邀约职位简介中显示对应的邀约职位简介中显示对应的邀约职位简介中显示对应的邀约职位简介中显示对应的\n\u003c/p\u003e\n\u003cp\u003e\n\t邀约职位简介中显示对应的邀约职位简介中显示对应的邀约职位简介中显示对应的邀约职位简介中显示对应的邀约职位简介中显示对应的邀约职位简介中显示对应的邀约职位简介中显示对应的邀约职位简介中显示对应的邀约职位简介中显示对应的邀约职位简介中显示对应的邀约职位简介中显示对应的邀约职位简介中显示对应的邀约职位简介中显示对应的邀约职位简介中显示对应的邀约职位简介中显示对应的邀约职位简介中显示对应的邀约职位简介中显示对应的邀约职位简介中显示对应的邀约职位简介中显示对应的邀约职位简介中显示对应的邀约职位简介中显示对应的邀约职位简介中显示对应的邀约职位简介中显示对应的邀约职位简介中显示对应的邀约职位简介中显示对应的邀约职位简介中显示对应的邀约职位简介中显示对应的邀约职位简介中显示对应的邀约职位简介中显示对应的邀约职位简介中显示对应的邀约职位简介中显示对应的邀约职位简介中显示对应的邀约职位简介中显示对应的邀约职位简介中显示对应的邀约职位简介中\n\u003c/p\u003e\n\u003cp\u003e\n\t显示对应的邀约职位简介中显示对应的邀约职位简介中显示对应的邀约职位简介中显示对应的邀约职位简介中显示对应的邀约职位简介中显示对应的邀约职位简介中显示对应的邀约职位简介中显示对应的邀约职位简介中显示对应的邀约职位简介中显示对应的邀约职位简介中显示对应的邀约职位简介中显示对应的邀约职位简介中显示对应的邀约职位简介中显示对应的邀约职位简介中显示对应的邀约职位简介中显示对应的邀约职位简介中显示对应的邀约职位简介中显示对应的邀约职位简介中显示对应的邀约职位简介中显示对应的邀约职位简介中显示对应的邀约职位简介中显示对应的邀约职位简介中显示对应的邀约职位简介中显示对应的邀约职位简介中显示对应的邀约职位简介中显示对应的邀约职位简介中显示对应的邀约职位简介中显示对应的邀约职位简介中显示对应的邀约职位简介中显示对应的邀约职位简介中显示对应的邀约职位简介中显示对应的邀约职位简介中显示对应的邀约职位简介中显示对应的邀约职位简介中显示对应的邀约职位简介中显示对应的邀约职位简介中显示对应的邀约职位简介中显示对应的邀约职位简介中显示对应的邀约职位简介中显示对应的邀约职位简介中显示对应的邀约职位简介中显示对应的邀约职位简介中显示对应的邀约职位简介中显示对应的邀约职位简介中显示对应的邀约职位简介中显示对应的邀约职位简介中显示对应的邀约职位简介中显示对应的\n\u003c/p\u003e&quot;,&quot;url&quot;:&quot;http://sxsimg.xiaoyuanzhao.com/CC/18/CCDAE27CBE3C154E46624B722C61F718.png&quot;,&quot;effective_time&quot;:1558915200,&quot;city&quot;:&quot;合肥,海口,南昌,宁波,丽江,湖州,黄山,丽水,昆明,海外,南宁,济南&quot;,&quot;day&quot;:&quot;3&quot;,&quot;minsal&quot;:200,&quot;maxsal&quot;:300,&quot;company_name&quot;:&quot;腾讯京东&quot;,&quot;admin_info&quot;:&quot;&quot;,&quot;company_type&quot;:&quot;hr&quot;,&quot;company_status&quot;:&quot;normal&quot;,&quot;attraction&quot;:[&quot;123213&quot;],&quot;is_financing&quot;:&quot;C轮&quot;,&quot;scale&quot;:&quot;150-500人&quot;,&quot;industry&quot;:&quot;医疗/健康/制药/生物&quot;,&quot;refresh_time&quot;:&quot;05-16&quot;,&quot;month_num&quot;:3,&quot;company_uuid&quot;:&quot;com_mqcbon0a2nej&quot;,&quot;linkedin_num&quot;:0,&quot;tag&quot;:&quot;https://sxsimg.xiaoyuanzhao.com/static/img/overdue.png&quot;,&quot;status&quot;:&quot;destroy&quot;,&quot;job_lable&quot;:{&quot;is_double_selection&quot;:false,&quot;is_hirer&quot;:true,&quot;is_hr&quot;:true,&quot;is_ji&quot;:false,&quot;is_quick&quot;:false},&quot;salary_desc&quot;:&quot;200-300/天&quot;,&quot;intern_type&quot;:0,&quot;uuid_build_time&quot;:&quot;2019-05-13 18:16:24&quot;,&quot;hope_you&quot;:[],&quot;degree&quot;:&quot;不限&quot;},{&quot;uuid&quot;:&quot;inn_eav0yaahlhbu&quot;,&quot;name&quot;:&quot;刷新次数测试&quot;,&quot;info&quot;:&quot;\u003cspan\u003e\u003cspan\u003e大的点点滴滴\u003c/span\u003e\u003cspan\u003e大的点点滴滴\u003c/span\u003e\u003cspan\u003e大的点点滴滴\u003c/span\u003e\u003cspan\u003e大的点点滴滴\u003c/span\u003e\u003cspan\u003e大的点点滴滴\u003c/span\u003e\u003cspan\u003e大的点点滴滴\u003c/span\u003e\u003cspan\u003e大的点点滴滴\u003c/span\u003e\u003cspan\u003e大的点点滴滴\u003c/span\u003e\u003cspan\u003e大的点点滴滴\u003c/span\u003e\u003cspan\u003e大的点点滴滴\u003c/span\u003e\u003cspan\u003e大的点点滴滴\u003c/span\u003e\u003cspan\u003e大的点点滴滴\u003c/span\u003e\u003cspan\u003e大的点点滴滴\u003c/span\u003e\u003cspan\u003e大的点点滴滴\u003c/span\u003e\u003cspan\u003e大的点点滴滴\u003c/span\u003e\u003cspan\u003e大的点点滴滴\u003c/span\u003e\u003cspan\u003e大的点点滴滴\u003c/span\u003e\u003cspan\u003e大的点点滴滴\u003c/span\u003e\u003cspan\u003e大的点点滴滴\u003c/span\u003e\u003cspan\u003e大的点点滴滴\u003c/span\u003e\u003cspan\u003e大的点点滴滴\u003c/span\u003e\u003cspan\u003e大的点点滴滴\u003c/span\u003e\u003cspan\u003e大的点点滴滴\u003c/span\u003e\u003cspan\u003e大的点点滴滴\u003c/span\u003e\u003cspan\u003e大的点点滴滴\u003c/span\u003e\u003cspan\u003e大的点点滴滴\u003c/span\u003e\u003cspan\u003e大的点点滴滴\u003c/span\u003e\u003cspan\u003e大的点点滴滴\u003c/span\u003e\u003c/span\u003e\u003cspan\u003e\u003c/span\u003e&quot;,&quot;url&quot;:&quot;http://sxsimg.xiaoyuanzhao.com/CC/18/CCDAE27CBE3C154E46624B722C61F718.png&quot;,&quot;effective_time&quot;:1588582800,&quot;city&quot;:&quot;成都&quot;,&quot;day&quot;:&quot;5&quot;,&quot;minsal&quot;:50,&quot;maxsal&quot;:100,&quot;company_name&quot;:&quot;腾讯京东&quot;,&quot;admin_info&quot;:&quot;&quot;,&quot;company_type&quot;:&quot;hr&quot;,&quot;company_status&quot;:&quot;normal&quot;,&quot;attraction&quot;:[&quot;猜猜猜&quot;],&quot;is_financing&quot;:&quot;C轮&quot;,&quot;scale&quot;:&quot;150-500人&quot;,&quot;industry&quot;:&quot;医疗/健康/制药/生物&quot;,&quot;refresh_time&quot;:&quot;04-20&quot;,&quot;month_num&quot;:4,&quot;company_uuid&quot;:&quot;com_mqcbon0a2nej&quot;,&quot;linkedin_num&quot;:0,&quot;tag&quot;:&quot;https://sxsimg.xiaoyuanzhao.com/static/img/overdue.png&quot;,&quot;status&quot;:&quot;overdue&quot;,&quot;job_lable&quot;:{&quot;is_double_selection&quot;:false,&quot;is_hirer&quot;:true,&quot;is_hr&quot;:true,&quot;is_ji&quot;:false,&quot;is_quick&quot;:false},&quot;salary_desc&quot;:&quot;50-100/天&quot;,&quot;intern_type&quot;:0,&quot;uuid_build_time&quot;:&quot;2019-05-13 18:16:04&quot;,&quot;hope_you&quot;:[],&quot;degree&quot;:&quot;不限&quot;},{&quot;uuid&quot;:&quot;inn_fd3xscne03hn&quot;,&quot;name&quot;:&quot;ds&quot;,&quot;info&quot;:&quot;\u003cspan\u003e该职位接受寒假实习。\u003cbr\u003edasdasd\u003c/span\u003e&quot;,&quot;url&quot;:&quot;http://sxsimg.xiaoyuanzhao.com/CC/18/CCDAE27CBE3C154E46624B722C61F718.png&quot;,&quot;effective_time&quot;:1558720800,&quot;city&quot;:&quot;西安,北京,武汉,鞍山,阿拉善&quot;,&quot;day&quot;:&quot;3&quot;,&quot;minsal&quot;:600,&quot;maxsal&quot;:800,&quot;company_name&quot;:&quot;腾讯京东&quot;,&quot;admin_info&quot;:&quot;&quot;,&quot;company_type&quot;:&quot;hr&quot;,&quot;company_status&quot;:&quot;normal&quot;,&quot;attraction&quot;:[&quot;dasd&quot;],&quot;is_financing&quot;:&quot;C轮&quot;,&quot;scale&quot;:&quot;150-500人&quot;,&quot;industry&quot;:&quot;医疗/健康/制药/生物&quot;,&quot;refresh_time&quot;:&quot;05-13&quot;,&quot;month_num&quot;:3,&quot;company_uuid&quot;:&quot;com_mqcbon0a2nej&quot;,&quot;linkedin_num&quot;:0,&quot;tag&quot;:&quot;https://sxsimg.xiaoyuanzhao.com/static/img/overdue.png&quot;,&quot;status&quot;:&quot;destroy&quot;,&quot;job_lable&quot;:{&quot;is_double_selection&quot;:false,&quot;is_hirer&quot;:true,&quot;is_hr&quot;:true,&quot;is_ji&quot;:false,&quot;is_quick&quot;:false},&quot;salary_desc&quot;:&quot;600-800/天&quot;,&quot;intern_type&quot;:0,&quot;uuid_build_time&quot;:&quot;2019-05-13 18:15:40&quot;,&quot;hope_you&quot;:[],&quot;degree&quot;:&quot;大专&quot;}]}</p>
+          </td>
+          <td>
+            <p>通过</p>
+          </td>
+          <td>
+            <p></p>
+          </td>
+        </tr>
+        <tr class="excel_table_row">
+          <td>
+            <p></p>
+          </td>
+          <td>
+            <p>登出-get</p>
+          </td>
+          <td>
+            <p></p>
+          </td>
+          <td>
+            <p>http://istio-test-apigateway.mshare.cn</p>
+          </td>
+          <td>
+            <p>/api/account/v3.0/logout</p>
+          </td>
+          <td>
+            <p>get</p>
+          </td>
+          <td>
+            <p></p>
+          </td>
+          <td>
+            <p>t</p>
+          </td>
+          <td>
+            <p>code=100</p>
+          </td>
+          <td>
+            <p>{&quot;type&quot;:&quot;object&quot;,&quot;properties&quot;:{&quot;code&quot;:{&quot;type&quot;:&quot;integer&quot;}},&quot;required&quot;:[&quot;code&quot;]}</p>
+          </td>
+          <td>
+            <p>{&quot;code&quot;:100,&quot;msg&quot;:null}</p>
+          </td>
+          <td>
+            <p>通过</p>
+          </td>
+          <td>
+            <p></p>
+          </td>
+        </tr>
+        <tr class="excel_table_row">
+          <td>
+            <p></p>
+          </td>
+          <td>
+            <p>登出-post-有header</p>
+          </td>
+          <td>
+            <p>CT</p>
+          </td>
+          <td>
+            <p>http://istio-test-apigateway.mshare.cn</p>
+          </td>
+          <td>
+            <p>/api/account/v3.0/logout</p>
+          </td>
+          <td>
+            <p>post</p>
+          </td>
+          <td>
+            <p></p>
+          </td>
+          <td>
+            <p>t</p>
+          </td>
+          <td>
+            <p>code=100</p>
+          </td>
+          <td>
+            <p>{&quot;type&quot;:&quot;object&quot;,&quot;properties&quot;:{&quot;code&quot;:{&quot;type&quot;:&quot;integer&quot;}},&quot;required&quot;:[&quot;code&quot;]}</p>
+          </td>
+          <td>
+            <p>{&quot;code&quot;:100,&quot;msg&quot;:null}</p>
+          </td>
+          <td>
+            <p>通过</p>
+          </td>
+          <td>
+            <p></p>
+          </td>
+        </tr>
+        <tr class="excel_table_row">
+          <td>
+            <p></p>
+          </td>
+          <td>
+            <p>登出-post-无header</p>
+          </td>
+          <td>
+            <p></p>
+          </td>
+          <td>
+            <p>http://istio-test-apigateway.mshare.cn</p>
+          </td>
+          <td>
+            <p>/api/account/v3.0/logout</p>
+          </td>
+          <td>
+            <p>post</p>
+          </td>
+          <td>
+            <p></p>
+          </td>
+          <td>
+            <p>t</p>
+          </td>
+          <td>
+            <p>code=100</p>
+          </td>
+          <td>
+            <p>{&quot;type&quot;:&quot;object&quot;,&quot;properties&quot;:{&quot;code&quot;:{&quot;type&quot;:&quot;integer&quot;}},&quot;required&quot;:[&quot;code&quot;]}</p>
+          </td>
+          <td>
+            <p>{&quot;code&quot;:100,&quot;msg&quot;:null}</p>
+          </td>
+          <td>
+            <p>通过</p>
+          </td>
+          <td>
+            <p></p>
+          </td>
+        </tr>
+        <tr class="excel_table_row">
+          <td>
+            <p></p>
+          </td>
+          <td>
+            <p>获取用户基本信息</p>
+          </td>
+          <td>
+            <p></p>
+          </td>
+          <td>
+            <p>http://istio-test-apigateway.mshare.cn</p>
+          </td>
+          <td>
+            <p>/api/account/v3.0/baseinfo</p>
+          </td>
+          <td>
+            <p>get</p>
+          </td>
+          <td>
+            <p></p>
+          </td>
+          <td>
+            <p>t</p>
+          </td>
+          <td>
+            <p>code=100</p>
+          </td>
+          <td>
+            <p>{&quot;type&quot;:&quot;object&quot;,&quot;properties&quot;:{&quot;code&quot;:{&quot;type&quot;:&quot;integer&quot;},&quot;msg&quot;:{&quot;type&quot;:&quot;object&quot;,&quot;properties&quot;:{&quot;name&quot;:{&quot;type&quot;:&quot;string&quot;},&quot;sex&quot;:{&quot;type&quot;:&quot;string&quot;},&quot;age&quot;:{&quot;type&quot;:&quot;integer&quot;},&quot;byear&quot;:{&quot;type&quot;:&quot;string&quot;},&quot;bmonth&quot;:{&quot;type&quot;:&quot;string&quot;},&quot;city&quot;:{&quot;type&quot;:&quot;string&quot;},&quot;school&quot;:{&quot;type&quot;:&quot;string&quot;},&quot;major&quot;:{&quot;type&quot;:&quot;string&quot;},&quot;degree&quot;:{&quot;type&quot;:&quot;string&quot;},&quot;tel&quot;:{&quot;type&quot;:&quot;string&quot;},&quot;email&quot;:{&quot;type&quot;:&quot;string&quot;},&quot;grady&quot;:{&quot;type&quot;:&quot;string&quot;},&quot;head&quot;:{&quot;type&quot;:&quot;string&quot;},&quot;huuid&quot;:{&quot;type&quot;:&quot;string&quot;},&quot;pname&quot;:{&quot;type&quot;:&quot;string&quot;},&quot;country&quot;:{&quot;type&quot;:&quot;string&quot;},&quot;pdecp&quot;:{&quot;type&quot;:&quot;string&quot;},&quot;invite&quot;:{&quot;type&quot;:&quot;boolean&quot;},&quot;major_class&quot;:{&quot;type&quot;:&quot;string&quot;},&quot;major_subject&quot;:{&quot;type&quot;:&quot;string&quot;},&quot;introduction&quot;:{&quot;type&quot;:&quot;string&quot;},&quot;score&quot;:{&quot;type&quot;:&quot;integer&quot;},&quot;new_score&quot;:{&quot;type&quot;:&quot;integer&quot;},&quot;push&quot;:{&quot;type&quot;:&quot;boolean&quot;},&quot;baseComplete&quot;:{&quot;type&quot;:&quot;boolean&quot;},&quot;showOrder&quot;:{&quot;type&quot;:&quot;boolean&quot;},&quot;job_status&quot;:{&quot;type&quot;:&quot;string&quot;},&quot;job_intention&quot;:{&quot;type&quot;:&quot;string&quot;}},&quot;required&quot;:[&quot;name&quot;,&quot;sex&quot;,&quot;age&quot;,&quot;byear&quot;,&quot;bmonth&quot;,&quot;city&quot;,&quot;school&quot;,&quot;major&quot;,&quot;degree&quot;,&quot;tel&quot;,&quot;email&quot;,&quot;grady&quot;,&quot;head&quot;,&quot;huuid&quot;,&quot;pname&quot;,&quot;country&quot;,&quot;pdecp&quot;,&quot;invite&quot;,&quot;major_class&quot;,&quot;major_subject&quot;,&quot;introduction&quot;,&quot;score&quot;,&quot;new_score&quot;,&quot;baseComplete&quot;,&quot;showOrder&quot;,&quot;job_status&quot;,&quot;job_intention&quot;]}},&quot;required&quot;:[&quot;code&quot;,&quot;msg&quot;]}</p>
+          </td>
+          <td>
+            <p>{&quot;code&quot;:100,&quot;msg&quot;:{&quot;age&quot;:-29,&quot;baseComplete&quot;:true,&quot;bmonth&quot;:&quot;04&quot;,&quot;byear&quot;:&quot;1999&quot;,&quot;city&quot;:&quot;成都&quot;,&quot;country&quot;:&quot;中国&quot;,&quot;degree&quot;:&quot;硕士&quot;,&quot;email&quot;:&quot;jiamu_zyl@163.com&quot;,&quot;grady&quot;:&quot;2020&quot;,&quot;head&quot;:&quot;https://sxsimg.xiaoyuanzhao.com/EF/D7/EFD9F72D4229B58A8239909B20FC17D7.jpg&quot;,&quot;huuid&quot;:&quot;EFD9F72D4229B58A8239909B20FC17D7&quot;,&quot;introduction&quot;:&quot;不畏将来，不念过往&quot;,&quot;invite&quot;:true,&quot;job_intention&quot;:&quot;不限&quot;,&quot;job_status&quot;:&quot;3个月内&quot;,&quot;major&quot;:&quot;破无所谓&quot;,&quot;major_class&quot;:&quot;&quot;,&quot;major_subject&quot;:&quot;&quot;,&quot;name&quot;:&quot;rose&quot;,&quot;new_score&quot;:100,&quot;pdecp&quot;:&quot;&quot;,&quot;pname&quot;:&quot;&quot;,&quot;psuh&quot;:true,&quot;resumeDetailUrl&quot;:&quot;&quot;,&quot;resumeHrUrl&quot;:&quot;&quot;,&quot;resumeListUrl&quot;:&quot;&quot;,&quot;resumePreviewUrl&quot;:&quot;&quot;,&quot;school&quot;:&quot;哦蓉蓉&quot;,&quot;score&quot;:86,&quot;sex&quot;:&quot;女&quot;,&quot;showOrder&quot;:true,&quot;tel&quot;:&quot;18782950041&quot;}}</p>
+          </td>
+          <td>
+            <p>通过</p>
+          </td>
+          <td>
+            <p></p>
+          </td>
+        </tr>
+        <tr class="excel_table_row">
+          <td>
+            <p></p>
+          </td>
+          <td>
+            <p>用户意见反馈-有header</p>
+          </td>
+          <td>
+            <p>CT</p>
+          </td>
+          <td>
+            <p>http://istio-test-apigateway.mshare.cn</p>
+          </td>
+          <td>
+            <p>/api/account/v3.0/app/advice</p>
+          </td>
+          <td>
+            <p>post</p>
+          </td>
+          <td>
+            <p>advice=aaa333,tel=23333</p>
+          </td>
+          <td>
+            <p>t</p>
+          </td>
+          <td>
+            <p>code=100</p>
+          </td>
+          <td>
+            <p>{&quot;type&quot;:&quot;object&quot;,&quot;properties&quot;:{&quot;code&quot;:{&quot;type&quot;:&quot;integer&quot;}},&quot;required&quot;:[&quot;code&quot;]}</p>
+          </td>
+          <td>
+            <p>{&quot;code&quot;:100,&quot;msg&quot;:null}</p>
+          </td>
+          <td>
+            <p>通过</p>
+          </td>
+          <td>
+            <p></p>
+          </td>
+        </tr>
+        <tr class="excel_table_row">
+          <td>
+            <p></p>
+          </td>
+          <td>
+            <p>用户意见反馈-无header</p>
+          </td>
+          <td>
+            <p></p>
+          </td>
+          <td>
+            <p>http://istio-test-apigateway.mshare.cn</p>
+          </td>
+          <td>
+            <p>/api/account/v3.0/app/advice</p>
+          </td>
+          <td>
+            <p>post</p>
+          </td>
+          <td>
+            <p>advice=aaa333</p>
+          </td>
+          <td>
+            <p>t</p>
+          </td>
+          <td>
+            <p>code=100</p>
+          </td>
+          <td>
+            <p>{&quot;type&quot;:&quot;object&quot;,&quot;properties&quot;:{&quot;code&quot;:{&quot;type&quot;:&quot;integer&quot;}},&quot;required&quot;:[&quot;code&quot;]}</p>
+          </td>
+          <td>
+            <p>{&quot;code&quot;:100,&quot;msg&quot;:null}</p>
+          </td>
+          <td>
+            <p>通过</p>
+          </td>
+          <td>
+            <p></p>
+          </td>
+        </tr>
+        <tr class="excel_table_row">
+          <td>
+            <p></p>
+          </td>
+          <td>
+            <p>账号设置信息</p>
+          </td>
+          <td>
+            <p></p>
+          </td>
+          <td>
+            <p>http://istio-test-apigateway.mshare.cn</p>
+          </td>
+          <td>
+            <p>/api/account/v3.0/account/setting</p>
+          </td>
+          <td>
+            <p>get</p>
+          </td>
+          <td>
+            <p></p>
+          </td>
+          <td>
+            <p>t</p>
+          </td>
+          <td>
+            <p>code=100</p>
+          </td>
+          <td>
+            <p>{&quot;type&quot;:&quot;object&quot;,&quot;properties&quot;:{&quot;code&quot;:{&quot;type&quot;:&quot;integer&quot;},&quot;msg&quot;:{&quot;type&quot;:&quot;object&quot;,&quot;properties&quot;:{&quot;current&quot;:{&quot;type&quot;:&quot;string&quot;},&quot;weibo&quot;:{&quot;type&quot;:&quot;string&quot;},&quot;wechat&quot;:{&quot;type&quot;:&quot;string&quot;},&quot;qq&quot;:{&quot;type&quot;:&quot;string&quot;},&quot;alipay&quot;:{&quot;type&quot;:&quot;string&quot;},&quot;wxmina&quot;:{&quot;type&quot;:&quot;string&quot;},&quot;curtype&quot;:{&quot;type&quot;:&quot;string&quot;},&quot;areaCode&quot;:{&quot;type&quot;:&quot;string&quot;}},&quot;required&quot;:[&quot;current&quot;,&quot;weibo&quot;,&quot;wechat&quot;,&quot;qq&quot;,&quot;alipay&quot;,&quot;wxmina&quot;,&quot;curtype&quot;,&quot;areaCode&quot;]}},&quot;required&quot;:[&quot;code&quot;,&quot;msg&quot;]}</p>
+          </td>
+          <td>
+            <p>{&quot;code&quot;:100,&quot;msg&quot;:{&quot;alipay&quot;:&quot;&quot;,&quot;areaCode&quot;:&quot;+86&quot;,&quot;current&quot;:&quot;18782950041&quot;,&quot;curtype&quot;:&quot;tel&quot;,&quot;qq&quot;:&quot;&quot;,&quot;wechat&quot;:&quot;&quot;,&quot;weibo&quot;:&quot;&quot;,&quot;wxmina&quot;:&quot;&quot;}}</p>
+          </td>
+          <td>
+            <p>通过</p>
+          </td>
+          <td>
+            <p></p>
+          </td>
+        </tr>
+      </table>
+    </div>
+  </body>
+</html>

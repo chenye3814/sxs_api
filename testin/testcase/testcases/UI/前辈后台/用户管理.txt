@@ -1,0 +1,15 @@
+*** Settings ***
+Resource          ../../../all_resource.txt
+
+*** Test Cases ***
+登录
+    [Template]
+    qb login in    https://adminqb.shixiseng.com    root    qianbei
+    sleep    9
+    Click Element    //span[text()="用户管理"]
+    sleep    2
+    Run Keyword And Continue On Failure    Element Text Should Be    //span[@class="el-breadcrumb__inner"]/span    用户管理
+    Run Keyword And Continue On Failure    Element Text Should Be    //span[@class="el-breadcrumb__inner"]/a    Dashboard
+    ${get_choose_value}    get list_xpath attribute value    //div[@class="filter-item el-input el-input--medium"]/input    placeholder
+    ${exp_choose_value}    Create List    用户id    邮箱    手机    姓名    来源
+    Run Keyword And Continue On Failure    Lists Should Be Equal    ${get_choose_value}    ${exp_choose_value}

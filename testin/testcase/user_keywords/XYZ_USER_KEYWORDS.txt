@@ -1,0 +1,47 @@
+*** Settings ***
+Resource          ../all_resource.txt
+
+*** Keywords ***
+xyz_login_in
+    Click Element    //span[@class="login"]
+    sleep    1
+    Input Text    //input[@placeholder="请输入你的手机/邮箱"]    ${XYZ_Student_User}
+    Input Text    //input[@placeholder="请输入你的密码"]    ${XYZ_Student_password}
+    Click Element    id=login
+    sleep    10
+    #检测是否已登陆
+    Run Keyword And Continue On Failure    Element Should Contain    //*[@class="logged_username"]/span    自动化测试
+
+resume source
+    ${basic_xpath}    Set Variable    //div[@class="xyz-form-content"]/div[@style=""][1]
+    Comment    Focus    //div[@class="hr_form_source"]/div/div
+    Comment    Click Element    //div[@class="hr_form_source"]/div/div
+    Focus    ${basic_xpath}//div[text()="未填写"]
+    Click Element    ${basic_xpath}//div[text()="未填写"]
+    Page Should Contain Element    ${basic_xpath}//form[@class="form_editing_source"]//div[text()="*从哪里了解到招聘信息"]
+    Click Element    //select[@id="where_know"]
+    ${exp_list}    Create List    ${EMPTY}    校园招    实习僧    应届生求职网    校园BBS
+    ...    其他渠道
+    ${web_list}    get list_xpath text value    //select[@id="where_know"]/option
+    Run Keyword And Continue On Failure    Lists Should Be Equal    ${exp_list}    ${web_list}
+    Random click item designated area    //select[@id="where_know"]/option    2
+    Click Element    ${basic_xpath}//p[@class="form-edit" and text()="保存"]
+
+resume foreach
+    @{not_filed_list}    Get WebElements    //span[text()="未完成"]/..
+    : FOR    ${i}    IN    @{not_filed_list}
+    \    ${not_filed_name}    Get Text    ${i}
+    \    Run Keyword If    '${not_filed_name}'=='招聘信息来源'    resume source
+
+resume personal information
+    ${basic_xpath}    Set Variable    //div[@class="xyz-form-content"]/div[@style=""][2]
+    Focus    ${basic_xpath}/div[@class="xyz-form-content-item"]/div[text()="未填写"]
+    Click Element    ${basic_xpath}/div[@class="xyz-form-content-item"]/div[text()="未填写"]
+    Page Should Contain Element    ${basic_xpath}//form[@class="form_editing_source"]//div[text()="*从哪里了解到招聘信息"]
+    Click Element    //select[@id="where_know"]
+    ${exp_list}    Create List    ${EMPTY}    校园招    实习僧    应届生求职网    校园BBS
+    ...    其他渠道
+    ${web_list}    get list_xpath text value    //select[@id="where_know"]/option
+    Run Keyword And Continue On Failure    Lists Should Be Equal    ${exp_list}    ${web_list}
+    Random click item designated area    //select[@id="where_know"]/option    2
+    Click Element    ${basic_xpath}//p[@class="form-edit" and text()="保存"]

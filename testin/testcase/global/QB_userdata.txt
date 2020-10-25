@@ -1,0 +1,3 @@
+*** Variables ***
+${QB_Student_User}    17300000000    # 前辈学生端账号
+${QB_Student_password}    123456    # 前辈学生端账号密码

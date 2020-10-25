@@ -1,0 +1,118 @@
+*** Settings ***
+Suite Teardown    Close All Browsers
+Test Teardown     Close All Browsers
+Resource          ../../../all_resource.txt
+
+*** Test Cases ***
+首页-产品服务
+    Open Browser    ${SXS_WEB_URL}    Chrome
+    Maximize Browser Window
+    sleep    5
+    #找实习
+    verification url    //span[@class="nav_til" and text()="产品服务"]/..//a[text()="找实习"]    https://www.shixiseng.com/
+    #找工作
+    verification url_new_windows    //span[@class="nav_til" and text()="产品服务"]/..//a[text()="找工作"]    https://xiaoyuan.shixiseng.com/
+    #宣讲会
+    verification url_new_windows_contains    //span[@class="nav_til" and text()="产品服务"]/..//a[text()="宣讲会"]    https://xiaoyuan.shixiseng.com/xuanjianghui
+    #查网申
+    verification url_new_windows    //span[@class="nav_til" and text()="产品服务"]/..//a[text()="查网申"]    https://xiaoyuan.shixiseng.com/wangshen
+    #职前指导
+    verification url_new_windows    //span[@class="nav_til" and text()="产品服务"]/..//a[text()="职前指导"]    https://qianbei.shixiseng.com/
+    [Teardown]    Close All Browsers
+
+首页-旗下产品
+    Open Browser    ${SXS_WEB_URL}    Chrome
+    Maximize Browser Window
+    sleep    5
+    #实习僧
+    verification url    //span[@class="nav_til" and text()="旗下产品"]/..//a[text()="实习僧"]    https://www.shixiseng.com/
+    #校园招
+    verification url_new_windows    //span[@class="nav_til" and text()="旗下产品"]/..//a[text()="校园招"]    https://xiaoyuan.shixiseng.com/
+    #前辈学院
+    verification url_new_windows    //span[@class="nav_til" and text()="旗下产品"]/..//a[text()="前辈学院"]    https://qianbei.shixiseng.com/
+    #实习僧TV
+    verification url_new_windows    //span[@class="nav_til" and text()="旗下产品"]/..//a[text()="实习僧TV"]    https://tv.shixiseng.com/
+    [Teardown]    Close All Browsers
+
+首页-关于我们
+    Open Browser    ${SXS_WEB_URL}    Chrome
+    Maximize Browser Window
+    sleep    5
+    #解我们
+    verification url_new_windows    //span[@class="nav_til" and text()="关于我们"]/..//a[text()="了解我们"]    https://www.shixiseng.com/about
+    #加入我们
+    verification url_new_windows    //span[@class="nav_til" and text()="关于我们"]/..//a[text()="加入我们"]    https://www.shixiseng.com/mx2018
+    [Teardown]    Close All Browsers
+
+首页-联系我们
+    Open Browser    ${SXS_WEB_URL}    Chrome
+    Maximize Browser Window
+    sleep    5
+    sleep    5
+    #实习僧微博
+    verification url_new_windows_contains    //span[@class="nav_til" and text()="联系我们"]/..//a[text()="实习僧微博"]    https://weibo.com    waittime=15
+    #实习僧公众号
+    Comment    verification url_new_windows    //span[@class="nav_til" and text()="联系我们"]/..//a[text()="实习僧公众号"]    https://xiaoyuan.shixiseng.com/
+    Comment    #客户服务
+    Comment    verification url_new_windows    //span[@class="nav_til" and text()="联系我们"]/..//a[text()="客户服务"]    https://qianbei.shixiseng.com/
+    #商务合作
+    verification url    //span[@class="nav_til" and text()="联系我们"]/..//a[text()="商务合作"]    https://www.shixiseng.com/about
+    [Teardown]    Close All Browsers
+
+个人中心-产品服务
+    login in    ${SXS_WEB_URL}
+    sleep    2
+    Click Element    //a[@data-desc="base-个人中心"]
+    sleep    2
+    #找实习
+    verification url    //span[@class="nav_til" and text()="产品服务"]/..//a[text()="找实习"]    https://www.shixiseng.com/
+    #找工作
+    verification url_new_windows    //span[@class="nav_til" and text()="产品服务"]/..//a[text()="找工作"]    https://xiaoyuan.shixiseng.com/
+    #宣讲会
+    verification url_new_windows_contains    //span[@class="nav_til" and text()="产品服务"]/..//a[text()="宣讲会"]    https://xiaoyuan.shixiseng.com/xuanjianghui
+    #查网申
+    verification url_new_windows    //span[@class="nav_til" and text()="产品服务"]/..//a[text()="查网申"]    https://xiaoyuan.shixiseng.com/wangshen
+    #职前指导
+    verification url_new_windows    //span[@class="nav_til" and text()="产品服务"]/..//a[text()="职前指导"]    https://qianbei.shixiseng.com/
+    [Teardown]    Close All Browsers
+
+个人中心-旗下产品
+    login in    ${SXS_WEB_URL}
+    sleep    2
+    Click Element    //a[@data-desc="base-个人中心"]
+    sleep    2
+    #实习僧
+    verification url    //span[@class="nav_til" and text()="旗下产品"]/..//a[text()="实习僧"]    https://www.shixiseng.com/
+    #校园招
+    verification url_new_windows    //span[@class="nav_til" and text()="旗下产品"]/..//a[text()="校园招"]    https://xiaoyuan.shixiseng.com/
+    #前辈学院
+    verification url_new_windows    //span[@class="nav_til" and text()="旗下产品"]/..//a[text()="前辈学院"]    https://qianbei.shixiseng.com/
+    #实习僧TV
+    verification url_new_windows    //span[@class="nav_til" and text()="旗下产品"]/..//a[text()="实习僧TV"]    https://tv.shixiseng.com/
+    [Teardown]    Close All Browsers
+
+个人中心-关于我们
+    login in    ${SXS_WEB_URL}
+    sleep    2
+    Click Element    //a[@data-desc="base-个人中心"]
+    sleep    2
+    #解我们
+    verification url_new_windows    //span[@class="nav_til" and text()="关于我们"]/..//a[text()="了解我们"]    https://www.shixiseng.com/about
+    #加入我们
+    verification url_new_windows    //span[@class="nav_til" and text()="关于我们"]/..//a[text()="加入我们"]    https://www.shixiseng.com/mx2018
+    [Teardown]    Close All Browsers
+
+个人中心-联系我们
+    login in    ${SXS_WEB_URL}
+    sleep    2
+    Click Element    //a[@data-desc="base-个人中心"]
+    sleep    2
+    #实习僧微博
+    verification url_new_windows_contains    //span[@class="nav_til" and text()="联系我们"]/..//a[text()="实习僧微博"]    https://weibo.com    waittime=8
+    #实习僧公众号
+    Comment    verification url_new_windows    //span[@class="nav_til" and text()="联系我们"]/..//a[text()="实习僧公众号"]    https://xiaoyuan.shixiseng.com/
+    Comment    #客户服务
+    Comment    verification url_new_windows    //span[@class="nav_til" and text()="联系我们"]/..//a[text()="客户服务"]    https://qianbei.shixiseng.com/
+    #商务合作
+    Comment    verification url    //span[@class="nav_til" and text()="联系我们"]/..//a[text()="商务合作"]    https://www.shixiseng.com/about
+    [Teardown]    Close All Browsers

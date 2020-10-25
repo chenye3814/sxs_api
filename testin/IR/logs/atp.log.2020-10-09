@@ -1,0 +1,78 @@
+2020-10-09 16:26:55,351 - E:\Vmshare\12345\testin\IR\lib\common.py[line:24] - INFO: 共读取2条用例
+2020-10-09 16:30:19,067 - E:\Vmshare\12345\testin\IR\lib\common.py[line:24] - INFO: 共读取2条用例
+2020-10-09 16:30:19,094 - D:\Program Files\Python36\lib\site-packages\urllib3\connectionpool.py[line:208] - DEBUG: Starting new HTTP connection (1): istio-test-apigateway.mshare.cn
+2020-10-09 16:30:19,426 - D:\Program Files\Python36\lib\site-packages\urllib3\connectionpool.py[line:396] - DEBUG: http://istio-test-apigateway.mshare.cn:80 "POST /api/account/v2.0/login HTTP/1.1" 200 25
+2020-10-09 16:44:49,091 - E:\Vmshare\12345\testin\IR\lib\common.py[line:24] - INFO: 共读取2条用例
+2020-10-09 16:44:49,095 - D:\Program Files\Python36\lib\site-packages\urllib3\connectionpool.py[line:208] - DEBUG: Starting new HTTP connection (1): istio-test-apigateway.mshare.cn
+2020-10-09 16:44:49,449 - D:\Program Files\Python36\lib\site-packages\urllib3\connectionpool.py[line:396] - DEBUG: http://istio-test-apigateway.mshare.cn:80 "POST /api/account/v2.0/login HTTP/1.1" 200 25
+2020-10-09 16:45:23,593 - E:\Vmshare\12345\testin\IR\lib\common.py[line:24] - INFO: 共读取2条用例
+2020-10-09 16:45:23,598 - D:\Program Files\Python36\lib\site-packages\urllib3\connectionpool.py[line:208] - DEBUG: Starting new HTTP connection (1): istio-test-apigateway.mshare.cn
+2020-10-09 16:45:23,823 - D:\Program Files\Python36\lib\site-packages\urllib3\connectionpool.py[line:396] - DEBUG: http://istio-test-apigateway.mshare.cn:80 "POST /api/account/v2.0/login HTTP/1.1" 200 25
+2020-10-09 16:46:11,397 - E:\Vmshare\12345\testin\IR\lib\common.py[line:24] - INFO: 共读取2条用例
+2020-10-09 16:46:11,400 - D:\Program Files\Python36\lib\site-packages\urllib3\connectionpool.py[line:208] - DEBUG: Starting new HTTP connection (1): istio-test-apigateway.mshare.cn
+2020-10-09 16:46:11,616 - D:\Program Files\Python36\lib\site-packages\urllib3\connectionpool.py[line:396] - DEBUG: http://istio-test-apigateway.mshare.cn:80 "POST /api/account/v2.0/login HTTP/1.1" 200 25
+2020-10-09 17:22:15,186 - E:\Vmshare\12345\testin\IR\lib\common.py[line:24] - INFO: 共读取2条用例
+2020-10-09 17:22:26,942 - E:\Vmshare\12345\testin\IR\lib\common.py[line:24] - INFO: 共读取2条用例
+2020-10-09 17:24:02,114 - E:\Vmshare\12345\testin\IR\lib\common.py[line:24] - INFO: 共读取2条用例
+2020-10-09 17:24:11,844 - E:\Vmshare\12345\testin\IR\lib\common.py[line:24] - INFO: 共读取2条用例
+2020-10-09 17:29:26,855 - E:\Vmshare\12345\testin\IR\lib\common.py[line:24] - INFO: 共读取2条用例
+2020-10-09 17:29:26,859 - D:\Program Files\Python36\lib\site-packages\urllib3\connectionpool.py[line:208] - DEBUG: Starting new HTTP connection (1): istio-test-apigateway.mshare.cn
+2020-10-09 17:29:28,131 - D:\Program Files\Python36\lib\site-packages\urllib3\connectionpool.py[line:396] - DEBUG: http://istio-test-apigateway.mshare.cn:80 "POST /api/account/v2.0/login HTTP/1.1" 200 25
+2020-10-09 17:29:28,134 - D:\Program Files\Python36\lib\site-packages\urllib3\connectionpool.py[line:208] - DEBUG: Starting new HTTP connection (1): istio-test-apigateway.mshare.cn
+2020-10-09 17:29:28,365 - D:\Program Files\Python36\lib\site-packages\urllib3\connectionpool.py[line:396] - DEBUG: http://istio-test-apigateway.mshare.cn:80 "GET /api/interns/v2.0/interns/recommend/wxz/intern/v3?city=%25E5%2585%25A8%25E5%259B%25BD&page=1 HTTP/1.1" 200 54
+2020-10-09 17:29:28,415 - E:\Vmshare\12345\testin\IR\lib\common.py[line:27] - ERROR: 【E:\Vmshare\12345\testin\IR\cases\~$recom_go.xlsx】用例获取失败，错误信息：[Errno 13] Permission denied: 'E:\\Vmshare\\12345\\testin\\IR\\cases\\~$recom_go.xlsx'
+2020-10-09 17:31:49,439 - E:\Vmshare\12345\testin\IR\lib\common.py[line:24] - INFO: 共读取2条用例
+2020-10-09 17:31:49,444 - D:\Program Files\Python36\lib\site-packages\urllib3\connectionpool.py[line:208] - DEBUG: Starting new HTTP connection (1): istio-test-apigateway.mshare.cn
+2020-10-09 17:31:49,654 - D:\Program Files\Python36\lib\site-packages\urllib3\connectionpool.py[line:396] - DEBUG: http://istio-test-apigateway.mshare.cn:80 "POST /api/account/v2.0/login HTTP/1.1" 200 25
+2020-10-09 17:31:49,658 - D:\Program Files\Python36\lib\site-packages\urllib3\connectionpool.py[line:208] - DEBUG: Starting new HTTP connection (1): istio-test-apigateway.mshare.cn
+2020-10-09 17:31:49,874 - D:\Program Files\Python36\lib\site-packages\urllib3\connectionpool.py[line:396] - DEBUG: http://istio-test-apigateway.mshare.cn:80 "GET /api/interns/v2.0/interns/recommend/wxz/intern/v3?city=%25E5%2585%25A8%25E5%259B%25BD&page=1 HTTP/1.1" 200 54
+2020-10-09 17:31:49,885 - E:\Vmshare\12345\testin\IR\lib\common.py[line:27] - ERROR: 【E:\Vmshare\12345\testin\IR\cases\~$recom_go.xlsx】用例获取失败，错误信息：[Errno 13] Permission denied: 'E:\\Vmshare\\12345\\testin\\IR\\cases\\~$recom_go.xlsx'
+2020-10-09 17:48:39,832 - E:\Vmshare\12345\testin\IR\lib\common.py[line:24] - INFO: 共读取2条用例
+2020-10-09 17:48:39,836 - D:\Program Files\Python36\lib\site-packages\urllib3\connectionpool.py[line:208] - DEBUG: Starting new HTTP connection (1): istio-test-apigateway.mshare.cn
+2020-10-09 17:48:40,208 - D:\Program Files\Python36\lib\site-packages\urllib3\connectionpool.py[line:396] - DEBUG: http://istio-test-apigateway.mshare.cn:80 "POST /api/account/v2.0/login HTTP/1.1" 200 25
+2020-10-09 17:48:40,211 - D:\Program Files\Python36\lib\site-packages\urllib3\connectionpool.py[line:208] - DEBUG: Starting new HTTP connection (1): istio-test-apigateway.mshare.cn
+2020-10-09 17:48:40,461 - D:\Program Files\Python36\lib\site-packages\urllib3\connectionpool.py[line:396] - DEBUG: http://istio-test-apigateway.mshare.cn:80 "GET /api/interns/v2.0/interns/recommend/wxz/intern/v3?city=%25E5%2585%25A8%25E5%259B%25BD&page=1 HTTP/1.1" 200 54
+2020-10-09 17:48:40,472 - E:\Vmshare\12345\testin\IR\lib\common.py[line:27] - ERROR: 【E:\Vmshare\12345\testin\IR\cases\~$recom_go.xlsx】用例获取失败，错误信息：[Errno 13] Permission denied: 'E:\\Vmshare\\12345\\testin\\IR\\cases\\~$recom_go.xlsx'
+2020-10-09 17:50:04,382 - E:\Vmshare\12345\testin\IR\lib\common.py[line:24] - INFO: 共读取2条用例
+2020-10-09 17:50:04,387 - D:\Program Files\Python36\lib\site-packages\urllib3\connectionpool.py[line:208] - DEBUG: Starting new HTTP connection (1): istio-test-apigateway.mshare.cn
+2020-10-09 17:50:04,617 - D:\Program Files\Python36\lib\site-packages\urllib3\connectionpool.py[line:396] - DEBUG: http://istio-test-apigateway.mshare.cn:80 "POST /api/account/v2.0/login HTTP/1.1" 200 25
+2020-10-09 17:50:04,621 - D:\Program Files\Python36\lib\site-packages\urllib3\connectionpool.py[line:208] - DEBUG: Starting new HTTP connection (1): istio-test-apigateway.mshare.cn
+2020-10-09 17:50:04,962 - D:\Program Files\Python36\lib\site-packages\urllib3\connectionpool.py[line:396] - DEBUG: http://istio-test-apigateway.mshare.cn:80 "GET /api/interns/v2.0/interns/recommend/wxz/intern/v3?city=%25E5%2585%25A8%25E5%259B%25BD&page=1 HTTP/1.1" 200 54
+2020-10-09 17:50:04,973 - E:\Vmshare\12345\testin\IR\lib\common.py[line:27] - ERROR: 【E:\Vmshare\12345\testin\IR\cases\~$recom_go.xlsx】用例获取失败，错误信息：[Errno 13] Permission denied: 'E:\\Vmshare\\12345\\testin\\IR\\cases\\~$recom_go.xlsx'
+2020-10-09 17:50:40,833 - E:\Vmshare\12345\testin\IR\lib\common.py[line:24] - INFO: 共读取2条用例
+2020-10-09 17:50:40,837 - D:\Program Files\Python36\lib\site-packages\urllib3\connectionpool.py[line:208] - DEBUG: Starting new HTTP connection (1): istio-test-apigateway.mshare.cn
+2020-10-09 17:50:41,121 - D:\Program Files\Python36\lib\site-packages\urllib3\connectionpool.py[line:396] - DEBUG: http://istio-test-apigateway.mshare.cn:80 "POST /api/account/v2.0/login HTTP/1.1" 200 25
+2020-10-09 17:50:41,124 - D:\Program Files\Python36\lib\site-packages\urllib3\connectionpool.py[line:208] - DEBUG: Starting new HTTP connection (1): istio-test-apigateway.mshare.cn
+2020-10-09 17:50:41,272 - D:\Program Files\Python36\lib\site-packages\urllib3\connectionpool.py[line:396] - DEBUG: http://istio-test-apigateway.mshare.cn:80 "GET /api/interns/v2.0/interns/recommend/wxz/intern/v3?city=%25E5%2585%25A8%25E5%259B%25BD&page=1 HTTP/1.1" 200 54
+2020-10-09 17:50:41,283 - E:\Vmshare\12345\testin\IR\lib\common.py[line:27] - ERROR: 【E:\Vmshare\12345\testin\IR\cases\~$recom_go.xlsx】用例获取失败，错误信息：[Errno 13] Permission denied: 'E:\\Vmshare\\12345\\testin\\IR\\cases\\~$recom_go.xlsx'
+2020-10-09 17:51:06,592 - E:\Vmshare\12345\testin\IR\lib\common.py[line:24] - INFO: 共读取2条用例
+2020-10-09 17:51:06,595 - D:\Program Files\Python36\lib\site-packages\urllib3\connectionpool.py[line:208] - DEBUG: Starting new HTTP connection (1): istio-test-apigateway.mshare.cn
+2020-10-09 17:51:06,822 - D:\Program Files\Python36\lib\site-packages\urllib3\connectionpool.py[line:396] - DEBUG: http://istio-test-apigateway.mshare.cn:80 "POST /api/account/v2.0/login HTTP/1.1" 200 25
+2020-10-09 17:51:06,825 - D:\Program Files\Python36\lib\site-packages\urllib3\connectionpool.py[line:208] - DEBUG: Starting new HTTP connection (1): istio-test-apigateway.mshare.cn
+2020-10-09 17:51:07,062 - D:\Program Files\Python36\lib\site-packages\urllib3\connectionpool.py[line:396] - DEBUG: http://istio-test-apigateway.mshare.cn:80 "GET /api/interns/v2.0/interns/recommend/wxz/intern/v3?city=%25E5%2585%25A8%25E5%259B%25BD&page=1 HTTP/1.1" 200 54
+2020-10-09 17:51:07,076 - E:\Vmshare\12345\testin\IR\lib\common.py[line:27] - ERROR: 【E:\Vmshare\12345\testin\IR\cases\~$recom_go.xlsx】用例获取失败，错误信息：[Errno 13] Permission denied: 'E:\\Vmshare\\12345\\testin\\IR\\cases\\~$recom_go.xlsx'
+2020-10-09 17:58:00,633 - E:\Vmshare\12345\testin\IR\lib\common.py[line:24] - INFO: 共读取10条用例
+2020-10-09 17:58:00,638 - E:\Vmshare\12345\testin\IR\lib\ClassLogin.py[line:21] - ERROR: 【URL_1/api/account/v2.0/login】登录接口失败，Invalid URL 'URL_1/api/account/v2.0/login': No schema supplied. Perhaps you meant http://URL_1/api/account/v2.0/login?
+2020-10-09 17:58:19,887 - E:\Vmshare\12345\testin\IR\lib\common.py[line:24] - INFO: 共读取10条用例
+2020-10-09 18:00:35,274 - E:\Vmshare\12345\testin\IR\lib\common.py[line:24] - INFO: 共读取2条用例
+2020-10-09 18:02:01,450 - E:\Vmshare\12345\testin\IR\lib\common.py[line:24] - INFO: 共读取2条用例
+2020-10-09 18:02:01,454 - D:\Program Files\Python36\lib\site-packages\urllib3\connectionpool.py[line:208] - DEBUG: Starting new HTTP connection (1): istio-test-apigateway.mshare.cn
+2020-10-09 18:02:02,020 - D:\Program Files\Python36\lib\site-packages\urllib3\connectionpool.py[line:396] - DEBUG: http://istio-test-apigateway.mshare.cn:80 "POST /api/account/v2.0/login HTTP/1.1" 200 25
+2020-10-09 18:02:02,024 - D:\Program Files\Python36\lib\site-packages\urllib3\connectionpool.py[line:208] - DEBUG: Starting new HTTP connection (1): istio-test-apigateway.mshare.cn
+2020-10-09 18:02:02,273 - D:\Program Files\Python36\lib\site-packages\urllib3\connectionpool.py[line:396] - DEBUG: http://istio-test-apigateway.mshare.cn:80 "GET /api/interns/v2.0/interns/recommend/wxz/intern/v3?city=%25E5%2585%25A8%25E5%259B%25BD&page=1 HTTP/1.1" 200 54
+2020-10-09 18:02:02,285 - E:\Vmshare\12345\testin\IR\lib\common.py[line:27] - ERROR: 【E:\Vmshare\12345\testin\IR\cases\~$recom_go.xlsx】用例获取失败，错误信息：[Errno 13] Permission denied: 'E:\\Vmshare\\12345\\testin\\IR\\cases\\~$recom_go.xlsx'
+2020-10-09 18:02:29,532 - E:\Vmshare\12345\testin\IR\lib\common.py[line:24] - INFO: 共读取2条用例
+2020-10-09 18:04:15,724 - D:\Program Files\Python36\lib\site-packages\urllib3\connectionpool.py[line:208] - DEBUG: Starting new HTTP connection (1): istio-test-apigateway.mshare.cn
+2020-10-09 18:04:15,991 - D:\Program Files\Python36\lib\site-packages\urllib3\connectionpool.py[line:396] - DEBUG: http://istio-test-apigateway.mshare.cn:80 "POST /api/account/v2.0/login HTTP/1.1" 200 25
+2020-10-09 18:05:00,759 - D:\Program Files\Python36\lib\site-packages\urllib3\connectionpool.py[line:208] - DEBUG: Starting new HTTP connection (1): istio-test-apigateway.mshare.cn
+2020-10-09 18:05:01,065 - D:\Program Files\Python36\lib\site-packages\urllib3\connectionpool.py[line:396] - DEBUG: http://istio-test-apigateway.mshare.cn:80 "GET /api/interns/v2.0/interns/recommend/wxz/intern/v3?city=%25E5%2585%25A8%25E5%259B%25BD&page=1 HTTP/1.1" 200 54
+2020-10-09 18:07:12,509 - E:\Vmshare\12345\testin\IR\lib\common.py[line:24] - INFO: 共读取2条用例
+2020-10-09 18:07:12,513 - D:\Program Files\Python36\lib\site-packages\urllib3\connectionpool.py[line:208] - DEBUG: Starting new HTTP connection (1): istio-test-apigateway.mshare.cn
+2020-10-09 18:07:12,724 - D:\Program Files\Python36\lib\site-packages\urllib3\connectionpool.py[line:396] - DEBUG: http://istio-test-apigateway.mshare.cn:80 "POST /api/account/v2.0/login HTTP/1.1" 200 25
+2020-10-09 18:07:12,728 - D:\Program Files\Python36\lib\site-packages\urllib3\connectionpool.py[line:208] - DEBUG: Starting new HTTP connection (1): istio-test-apigateway.mshare.cn
+2020-10-09 18:07:13,344 - D:\Program Files\Python36\lib\site-packages\urllib3\connectionpool.py[line:396] - DEBUG: http://istio-test-apigateway.mshare.cn:80 "GET /api/interns/v2.0/interns/recommend/wxz/intern/v3?city=%25E5%2585%25A8%25E5%259B%25BD&page=1 HTTP/1.1" 200 54
+2020-10-09 18:29:15,425 - E:\Vmshare\12345\testin\IR\lib\common.py[line:24] - INFO: 共读取2条用例
+2020-10-09 18:32:11,985 - D:\Program Files\Python36\lib\site-packages\urllib3\connectionpool.py[line:208] - DEBUG: Starting new HTTP connection (1): istio-test-apigateway.mshare.cn
+2020-10-09 18:32:12,313 - D:\Program Files\Python36\lib\site-packages\urllib3\connectionpool.py[line:396] - DEBUG: http://istio-test-apigateway.mshare.cn:80 "POST /api/account/v2.0/login HTTP/1.1" 200 25
+2020-10-09 18:33:33,707 - D:\Program Files\Python36\lib\site-packages\urllib3\connectionpool.py[line:208] - DEBUG: Starting new HTTP connection (1): istio-test-apigateway.mshare.cn
+2020-10-09 18:33:33,951 - D:\Program Files\Python36\lib\site-packages\urllib3\connectionpool.py[line:396] - DEBUG: http://istio-test-apigateway.mshare.cn:80 "GET /api/interns/v2.0/interns/recommend/wxz/intern/v3?city=%25E5%2585%25A8%25E5%259B%25BD&page=1 HTTP/1.1" 200 54

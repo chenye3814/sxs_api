@@ -1,0 +1,89 @@
+*** Settings ***
+Resource          ../all_resource.txt
+
+*** Keywords ***
+IR_POST_REQUEST
+    [Arguments]    ${URI}    ${URL}=${SXS_IR_URL}    ${data}=None    ${cookie}=None
+    [Documentation]    通用post请求
+    ...
+    ...    ${URI} 网页路径
+    ...
+    ...    ${URL}地址
+    ...    ${data}=None传递数据，默认为空，参数必须为字典
+    ...    ${cookie}=None cookie登陆接口返回
+    [Timeout]
+    ${header}    Create Dictionary    Content-Type=application/x-www-form-urlencoded    Cookie=${cookie}
+    ${url}    Set Variable    ${URL}
+    log    ${data}
+    ${uri}    Set Variable    ${URI}
+    Create Session    REQUEST    ${url}    ${header}
+    ${bbbb}    Post Request    REQUEST    ${URI}    ${data}    headers=${header}
+    Should Be Equal As Strings    ${bbbb.status_code}    200
+    ${request_result}    to json    ${bbbb.content}
+    ${sxs_code}    Get From Dictionary    ${request_result}    code
+    Should Be Equal As Strings    ${sxs_code}    100
+    [Return]    ${request_result}
+
+IR_GET_REQUEST
+    [Arguments]    ${URI}    ${URL}=${SXS_IR_URL}    ${data}=None    ${cookie}=None
+    [Documentation]    通用get请求
+    ...
+    ...    ${URI} 网页路径
+    ...
+    ...    ${URL}地址
+    ...    ${data}=None传递数据，默认为空，参数必须为字典
+    ...    ${cookie}=None cookie登陆接口返回
+    ${header}    Create Dictionary    Content-Type=application/x-www-form-urlencoded    Cookie=${cookie}
+    ${url}    Set Variable    ${URL}
+    log    ${data}
+    ${uri}    Set Variable    ${URI}
+    Create Session    REQUEST    ${url}    ${header}
+    ${bbbb}    get Request    REQUEST    ${URI}    ${header}    params=${data}
+    ${status}    Set Variable    ${bbbb.status_code}
+    Should Be Equal As Strings    ${bbbb.status_code}    200
+    ${request_result}    to json    ${bbbb.content}
+    ${sxs_code}    Get From Dictionary    ${request_result}    code
+    Should Be Equal As Strings    ${sxs_code}    100
+    [Return]    ${request_result}
+
+IR_SXS_LOGIN
+    [Arguments]    ${URL}=${SXS_IR_URL}    ${USERNAME}=${IR_USERNAME}    ${PASSWORD}=${IR_PASSWORD}
+    [Documentation]    方法说明：登陆接口，获取cookie
+    ...    ${URL}:环境地址，默认环境为全局变量中${SXS_IR_URL}值
+    ...    ${USERNAME}=17380120003 |用户名，有默认值，
+    ...    ${PASSWORD}=45X35X25X15X05X94 用户密码，在web页面network中可获取
+    [Tags]
+    ${header}    Create Dictionary    Content-Type=application/x-www-form-urlencoded
+    ${url}    Set Variable    ${URL}
+    ${data}    Create Dictionary    username= ${USERNAME}    password=${PASSWORD}    remember_login=1
+    log    ${data}
+    ${uri}    Set Variable    /user/login
+    Create Session    aa    ${url}    ${header}
+    ${bbbb}    Post Request    aa    /user/login    ${data}    headers=${header}
+    ${session_1}    Set Variable    ${bbbb.headers['set-cookie']}
+    ${pop}    Remove String Using Regexp    ${session_1}    Domain\\=\\S*\\W\\S*\\W\\d*\\W\\S*\\W\\d*\\W\\d*\\W\\d*\\W\\d*\\W\\S*\\W\\S*\\W\\S*\\W*Path=\\\/,*\\W*
+    log    ${pop}
+    ${RE_COOKIE}    Set Variable    ${pop}
+    [Return]    ${RE_COOKIE}
+
+IR_PUT_REQUEST
+    [Arguments]    ${URI}    ${URL}=${SXS_IR_URL}    ${data}=None    ${cookie}=None
+    [Documentation]    通用PUT请求
+    ...
+    ...    ${URI} 网页路径
+    ...
+    ...    ${URL}地址
+    ...    ${data}=None传递数据，默认为空，参数必须为字典
+    ...    ${cookie}=None cookie登陆接口返回
+    [Timeout]
+    ${header}    Create Dictionary    Content-Type=application/x-www-form-urlencoded    Cookie=${cookie}
+    ${url}    Set Variable    ${URL}
+    log    ${data}
+    ${uri}    Set Variable    ${URI}
+    Create Session    REQUEST    ${url}    ${header}
+    ${bbbb}    PUT Request    REQUEST    ${URI}    data=${data}    headers=${header}
+    Should Be Equal As Strings    ${bbbb.status_code}    200
+    ${request_result}    to json    ${bbbb.content}
+    ${sxs_code}    Get From Dictionary    ${request_result}    code
+    Should Be Equal As Strings    ${sxs_code}    100
+    [Return]    ${request_result}

@@ -1,0 +1,9 @@
+*** Variables ***
+${user_name}      15802380900    # 用户名 测试环境17380120003 线上环境15802380900
+${password}       123456    # 用户密码
+${IR_PASSWORD}    45X35X25X15X05X94
+${IR_USERNAME}    15802380900
+${IR_COMPANY_UUID}    com_mqcbon0a2nej    # 接口测试公司companyid
+${IR_RESUME_GUUID}    grp_7hebagskh1qx    # 接口测试简历组id
+${IR_RESUME_RES_ID}    res_zxsqranmx5jh    # 接口测试简历id
+${IR_IMG}         A16FAF18F2ED8F151245DD3B22CCF9DA    # 接口测试头像id

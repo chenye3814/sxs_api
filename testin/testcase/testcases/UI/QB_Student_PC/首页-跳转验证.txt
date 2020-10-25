@@ -1,0 +1,40 @@
+*** Settings ***
+Suite Teardown    Close Browser
+Resource          ../../../all_resource.txt
+
+*** Test Cases ***
+首页登录-小程序检测
+    #进入首页
+    Open Browser    ${QB_Student_PC_URL}    chrome
+    Maximize Browser Window
+    Wait Until Page Contains    小程序课程
+    #登录
+    qb_login_in
+
+点击跳转- 小程序课程
+    home page jump    小程序课程
+
+点击跳转- 求职技巧
+    home page jump    求职技巧
+
+点击跳转- 互联网
+    home page jump    互联网
+
+点击跳转- 前辈1v1
+    home page jump    前辈1v1
+
+点击跳转- 快消
+    home page jump    快消
+
+点击跳转-券商
+    Focus    //h2[text()="券商"]/../a
+    Click Element    //h2[text()="券商"]/../a
+    Wait Until Page Contains Element    //i[@class="iconfont icon-leibie"]
+    #页面检测
+    Run Keyword And Continue On Failure    Element Text Should Be    //i[@class="iconfont icon-leibie"]/..    券商
+    #课程检测
+    ${count_list}    Get WebElements    //li[@class="after-ad"]
+    ${length}    Get Length    ${count_list}
+    Run Keyword And Continue On Failure    Should Be True    ${length}>0
+    Click Element    //a[text()="首页"]/..
+    Wait Until Page Contains    更多课程>>

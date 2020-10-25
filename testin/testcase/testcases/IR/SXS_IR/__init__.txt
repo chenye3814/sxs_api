@@ -1,0 +1,4 @@
+*** Settings ***
+Suite Teardown
+Test Teardown
+Force Tags        level1    SXS_IR

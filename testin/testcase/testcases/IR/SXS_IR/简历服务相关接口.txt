@@ -1,0 +1,195 @@
+*** Settings ***
+Resource          ../../../all_resource.txt
+
+*** Test Cases ***
+获取公司发布职位列表
+    [Tags]
+    ${cookie}    IR_SXS_LOGIN
+    ${data}    Set Variable    uuid=${IR_COMPANY_UUID}&city=&type=全部&name=&page=1
+    ${result}    IR_GET_REQUEST    /app/company/interns    ${SXS_IR_URL}    ${data}    cookie=${cookie}
+    ${msg}    Get From Dictionary    ${result}    msg
+    ${msg_string}    Convert To String    ${msg}
+    Should Contain    ${msg_string}    成都
+
+选择城市
+    ${cookie}    IR_SXS_LOGIN
+    ${data}    Create Dictionary    city=成都
+    ${result}    IR_POST_REQUEST    /setlocationcity    ${SXS_IR_URL}    ${data}    cookie=${cookie}
+
+职位类别
+    ${cookie}    IR_SXS_LOGIN
+    ${data}    Create Dictionary    k=a
+    ${result}    IR_GET_REQUEST    /api/v1/option/jobcategories    ${SXS_IR_RESUME_URL}    cookie=${cookie}
+    ${msg}    Get From Dictionary    ${result}    msg
+    ${msg_string}    Convert To String    ${msg}
+    Should Contain    ${msg_string}    IT互联网
+
+行业选项
+    #获取响应数据
+    ${cookie}    IR_SXS_LOGIN
+    ${data}    Create Dictionary    k=a
+    ${result}    IR_GET_REQUEST    /api/v1/option/industries    ${SXS_IR_RESUME_URL}    cookie=${cookie}
+    ${msg}    Get From Dictionary    ${result}    msg
+    ${msg_string}    Convert To String    ${msg}
+    Should Be String    ${msg_string}    IT互联网
+    @{str_lists}    Set Variable    ${msg}
+    : FOR    ${i}    IN    @{str_lists}
+    \    ${TEMP}    Get From Dictionary    ${i}    category
+    \    log    ${TEMP}
+    #
+    Comment    Public.Connect To Database    ${DB_NAME_SXS}    ${HOST}    ${PORT}    ${DB_USER}    ${DB_PASSWORD}
+    Comment    ${temp_uuid}    Query    select uuid from users where users.tel='${user_name}';
+    Comment    ${user_uuid}    Set Variable    ${temp_uuid[0][0]}
+    Comment    ${a}    Execute Sql String    update deliver set status='destroy' where deliver.user_uuid='${user_uuid}' and status='normal';
+    Comment    ${a}    Execute Sql String    update deliver set deliver_status='back' where deliver.user_uuid='${user_uuid}' ;
+    Comment    ${a}    Execute Sql String    update resume_deliver set status='destroy' where resume_deliver.user_uuid='${user_uuid}' and status='normal';
+    Comment    ${a}    Execute Sql String    update deliver set user_destroy='t' where deliver.user_uuid='${user_uuid}';
+    Comment    log    ${a}
+    Comment    Disconnect From Database
+
+城市选项
+    ${cookie}    IR_SXS_LOGIN
+    ${data}    Create Dictionary    k=a
+    ${result}    IR_GET_REQUEST    /api/v1/option/cities    ${SXS_IR_RESUME_URL}    cookie=${cookie}
+    ${msg}    Get From Dictionary    ${result}    msg
+    ${msg_string}    Convert To String    ${msg}
+    Should Contain    ${msg_string}    热门城市
+
+城市选择给移动端做的（带首字母的）
+    ${cookie}    IR_SXS_LOGIN
+    ${data}    Create Dictionary    k=a
+    ${result}    IR_GET_REQUEST    /api/v2/option/cities    ${SXS_IR_RESUME_URL}    cookie=${cookie}
+    ${msg}    Get From Dictionary    ${result}    msg
+    ${msg_string}    Convert To String    ${msg}
+    Should Contain    ${msg_string}    全国
+
+语言水平选项
+    ${cookie}    IR_SXS_LOGIN
+    ${result}    IR_GET_REQUEST    /api/v1/option/languages    ${SXS_IR_RESUME_URL}    cookie=${cookie}
+    ${msg}    Get From Dictionary    ${result}    msg
+    ${msg_string}    Convert To String    ${msg}
+    Should Contain    ${msg_string}    专业四级
+
+搜索专业
+    ${cookie}    IR_SXS_LOGIN
+    ${data}    Create Dictionary    kw=电子
+    ${result}    IR_GET_REQUEST    /api/v1/option/majors    ${SXS_IR_RESUME_URL}    ${data}    cookie=${cookie}
+    ${msg}    Get From Dictionary    ${result}    msg
+    ${msg_string}    Convert To String    ${msg}
+    Should Contain    ${msg_string}    电子信息工程
+
+学校搜索
+    ${cookie}    IR_SXS_LOGIN
+    ${data}    Create Dictionary    kw=电子
+    ${result}    IR_GET_REQUEST    /api/v1/option/schools    ${SXS_IR_RESUME_URL}    ${data}    cookie=${cookie}
+    ${msg}    Get From Dictionary    ${result}    msg
+    ${msg_string}    Convert To String    ${msg}
+    Should Contain    ${msg_string}    电子科技大学
+
+简历辅助填写
+    ${cookie}    IR_SXS_LOGIN
+    ${data}    Create Dictionary    module=prac
+    ${result}    IR_GET_REQUEST    /api/v1/option/supply    ${SXS_IR_RESUME_URL}    ${data}    cookie=${cookie}
+    ${msg}    Get From Dictionary    ${result}    msg
+    ${msg_string}    Convert To String    ${msg}
+    Should Contain    ${msg_string}    参与
+
+用户信息获取
+    ${cookie}    IR_SXS_LOGIN
+    ${result}    IR_GET_REQUEST    /api/v1/userinfo    ${SXS_IR_RESUME_URL}    cookie=${cookie}
+    ${msg}    Get From Dictionary    ${result}    msg
+    ${msg_string}    Convert To String    ${msg}
+    Should Contain    ${msg_string}    accoount
+
+保存头像
+    ${cookie}    IR_SXS_LOGIN
+    ${data}    Set Variable    {"huuid":"${IR_IMG}"}
+    ${result}    IR_POST_REQUEST    /api/v1/userinfo    ${SXS_IR_RESUME_URL}    ${data}    cookie=${cookie}
+
+获取求职意愿
+    ${cookie}    IR_SXS_LOGIN
+    ${result}    IR_GET_REQUEST    /api/v1/jobintentions    ${SXS_IR_RESUME_URL}    cookie=${cookie}
+    ${msg}    Get From Dictionary    ${result}    msg
+    ${msg_string}    Convert To String    ${msg}
+    Should Contain    ${msg_string}    jobs
+
+编辑求职意愿
+    ${cookie}    IR_SXS_LOGIN
+    ${data}    Set Variable    {"industries":["互联网/移动互联网/电子商务","计算机软件","IT服务/系统集成"],"jobs":["Hadoop","C#/.NET","Python"],"cities":["北京","成都"],"date":["2019-05","2019-07"],"day":5,"reportDate":"2019-05-03"}
+    ${result}    IR_POST_REQUEST    /api/v1/jobintentions    ${SXS_IR_RESUME_URL}    ${data}    cookie=${cookie}
+
+获取用户基本信息
+    ${cookie}    IR_SXS_LOGIN
+    ${result}    IR_GET_REQUEST    /api/v1/baseinfo    ${SXS_IR_RESUME_URL}    cookie=${cookie}
+    ${msg}    Get From Dictionary    ${result}    msg
+    ${msg_string}    Convert To String    ${msg}
+    Should Contain    ${msg_string}    phone
+
+编辑用户基本信息
+    ${cookie}    IR_SXS_LOGIN
+    ${data}    Set Variable    {"uuid":"res_zxsqranmx5jh","module":"base","info":[{"headUrl":"https://sxsimg.xiaoyuanzhao.com/A1/DA/A16FAF18F2ED8F151245DD3B22CCF9DA.png","headUuid":"A16FAF18F2ED8F151245DD3B22CCF9DA","nickname":"测试4422","sex":2,"birth":"1992-03","age":27,"city":"成都","phone":"15802380900","email":"132@qq.com"}]}
+    ${result}    IR_PUT_REQUEST    /api/v1/resume/detail    ${SXS_IR_RESUME_URL}    ${data}    cookie=${cookie}
+    ${msg}    Get From Dictionary    ${result}    msg
+    ${msg_string}    Convert To String    ${msg}
+    Should Contain    ${msg_string}    base
+
+投递，收藏，邀约数目汇总
+    ${cookie}    IR_SXS_LOGIN
+    ${result}    IR_GET_REQUEST    /api/v1/deliver/summary    ${SXS_IR_RESUME_URL}    cookie=${cookie}
+    ${msg}    Get From Dictionary    ${result}    msg
+    ${msg_string}    Convert To String    ${msg}
+    Should Contain    ${msg_string}    deliver
+
+获取简历列表汇总信息
+    ${cookie}    IR_SXS_LOGIN
+    ${result}    IR_GET_REQUEST    /api/v1/resume/summary    ${SXS_IR_RESUME_URL}    cookie=${cookie}
+    ${msg}    Get From Dictionary    ${result}    msg
+    ${msg_string}    Convert To String    ${msg}
+    Should Contain    ${msg_string}    chinese
+
+获取简历标签
+    ${cookie}    IR_SXS_LOGIN
+    ${data}    Create Dictionary    uuid=${IR_RESUME_RES_ID}
+    ${result}    IR_GET_REQUEST    /api/v1/resume/tags    ${SXS_IR_RESUME_URL}    ${data}    cookie=${cookie}
+    ${msg}    Get From Dictionary    ${result}    msg
+    ${msg_string}    Convert To String    ${msg}
+    Should Contain    ${msg_string}    recommend
+
+获取简历详细
+    ${cookie}    IR_SXS_LOGIN
+    ${data}    Create Dictionary    guuid=${IR_RESUME_GUUID}
+    ${result}    IR_GET_REQUEST    /api/v1/resume/detail    ${SXS_IR_RESUME_URL}    ${data}    cookie=${cookie}
+    ${msg}    Get From Dictionary    ${result}    msg
+    ${msg_string}    Convert To String    ${msg}
+    Should Contain    ${msg_string}    score
+
+创建简历
+    ${cookie}    IR_SXS_LOGIN
+    ${data}    Set Variable    { \ \ "stype": "attach" }
+    ${result}    IR_POST_REQUEST    /api/v1/resume/detail    ${SXS_IR_RESUME_URL}    ${data}    cookie=${cookie}
+    ${msg}    Get From Dictionary    ${result}    msg
+    ${msg_string}    Convert To String    ${msg}
+    Should Contain    ${msg_string}    grp
+
+简历填写引导接口
+    ${cookie}    IR_SXS_LOGIN
+    ${data}    Create Dictionary    uuid=${IR_RESUME_RES_ID}
+    ${result}    IR_GET_REQUEST    /api/v1/resume/guide    ${SXS_IR_RESUME_URL}    ${data}    cookie=${cookie}
+    ${msg}    Get From Dictionary    ${result}    msg
+    ${msg_string}    Convert To String    ${msg}
+    Should Contain    ${msg_string}    education
+
+简历等级接口
+    ${cookie}    IR_SXS_LOGIN
+    ${data}    Create Dictionary    uuid=${IR_RESUME_RES_ID}
+    ${result}    IR_GET_REQUEST    /api/v1/resume/level    ${SXS_IR_RESUME_URL}    ${data}    cookie=${cookie}
+    ${msg}    Get From Dictionary    ${result}    msg
+    ${msg_string}    Convert To String    ${msg}
+    Should Contain    ${msg_string}    rank
+
+app获取首页简历编辑引导
+    ${cookie}    IR_SXS_LOGIN
+    ${result}    IR_GET_REQUEST    /api/v1/app/resume/guide    ${SXS_IR_RESUME_URL}    cookie=${cookie}
+    ${msg}    Get From Dictionary    ${result}    msg
+    ${msg_string}    Convert To String    ${msg}
+    Should Contain    ${msg_string}    简历

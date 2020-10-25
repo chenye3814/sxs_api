@@ -1,0 +1,52 @@
+*** Settings ***
+Suite Teardown    Close All Browsers
+Force Tags
+Resource          ../../../all_resource.txt
+
+*** Test Cases ***
+进入首页并登录
+    Open Browser    ${XYZ_Student_PC_URL}    chrome
+    sleep    ${WAIT_TIME}
+    Maximize Browser Window
+    Wait Until Page Contains    实习僧
+    sleep    ${WAIT_TIME}
+    Reload Page
+    sleep    ${WAIT_TIME}
+    xyz_login_in
+
+进入公司首页查看
+    #进入固定链接
+    Go To    https://xiaoyuan.shixiseng.com/company/xri_tipcrvefdg0k
+    sleep    ${WAIT_TIME}
+    #公司主页验证
+    ${web_list}    get list_xpath text value    //div[@class="lists"]/li
+    ${exp_list}    Create List    公司主页    招聘简章    在招职位
+    Run Keyword And Continue On Failure    Lists Should Be Equal    ${web_list}    ${exp_list}
+
+收藏职位
+    Click Element    //*[@id="position_ing"]
+    sleep    ${WAIT_TIME}
+    Click Element    //*[@class="job_name"]
+    sleep    ${WAIT_TIME}
+    Click Element    //*[@class="notice_btn"]
+    sleep    ${WAIT_TIME}
+    Run Keyword And Continue On Failure    Element Should Contain    //*[@class="notice_btn collected"]    已收藏
+    #点击头像进入我的收藏
+    Click Element    //div[@class="l_account"]
+    sleep    0.1
+    Click Element    //div[@class="l_account"]//li[text()="我的收藏"]
+    #验证公司关注列表为1
+    ${web_list}    Get WebElements    //div[@class="c-list"]//div[@class="item_top"]
+    ${web_list_length}    Get Length    ${web_list}
+    Run Keyword And Continue On Failure    Should Be True    ${web_list_length}>=1
+    #再次进入公司主页取消关注
+    Mouse Up    //div[@class="c-list"]//div[@class="item_top"]
+    sleep    0.1
+    Click Element    //div[@class="item-delete"]
+    sleep    0.1
+    Click Element    //a[@class="layui-layer-btn0"]
+    sleep    0.1
+    #验证公司关注列表为0
+    ${web_list}    Get WebElements    //div[@class="c-list"]//div[@class="item_top"]
+    ${web_list_length}    Get Length    ${web_list}
+    Run Keyword And Continue On Failure    Should Be True    ${web_list_length}>=0

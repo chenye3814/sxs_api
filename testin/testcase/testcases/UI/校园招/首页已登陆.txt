@@ -1,0 +1,120 @@
+*** Settings ***
+Suite Teardown    Close Browser
+Force Tags
+Resource          ../../../all_resource.txt
+
+*** Test Cases ***
+进入首页
+    Open Browser    ${XYZ_Student_PC_URL}    chrome
+    sleep    ${WAIT_TIME}
+    Maximize Browser Window
+    Wait Until Page Contains    实习僧
+    sleep    ${WAIT_TIME}
+    Reload Page
+    sleep    ${WAIT_TIME}
+
+登录简历
+    xyz_login_in
+
+我的网申-初始状态
+    #网申初始状态
+    Click Element    //div[@class="event borbder_r"]/p[text()="网申记录"]
+    sleep    ${WAIT_TIME}
+    Run Keyword And Continue On Failure    Element Text Should Be    //div[@class="c-title"]    我的网申系统仅保留近6个月内的申请记录
+    Comment    Run Keyword And Continue On Failure    Element Text Should Be    //div[@class="c-title"]/span    系统仅保留近6个月内的申请记录
+    Run Keyword And Continue On Failure    Element Text Should Be    //div[@class="c-nav"]/span[@class="nav_active"]    全部
+    Run Keyword And Continue On Failure    Element Text Should Be    //div[@class="c-nav"]/span[@data-status="submit"]    投递成功
+    Run Keyword And Continue On Failure    Element Text Should Be    //div[@class="c-nav"]/span[@data-status="check"]    被查看
+
+我的宣讲-初始状态
+    #宣讲初始状态
+    Click Element    //div[@class="left-nav"]//a[text()="我的宣讲"]
+    sleep    ${WAIT_TIME}
+    Run Keyword And Continue On Failure    Element Should Contain    //div[@class="c-title"]    我的宣讲系统仅保留近6个月内的报名记录
+    Comment    Run Keyword And Continue On Failure    Element Text Should Be    清除过期数据'    系统仅保留近6个月内的报名记录
+    Run Keyword And Continue On Failure    Page Should Contain Element    //div[@class="day-list"]
+    Run Keyword And Continue On Failure    Element Text Should Be    //div[@class="hot-nav"]/span    热门推荐
+    Run Keyword And Continue On Failure    Element Text Should Be    //div[@class="hot-nav"]/div    换一批
+    ${preach_list}    Get Length    //div[@class="hot-list"]/div
+    Run Keyword And Continue On Failure    Should Be Unicode String    ${preach_list}>1
+
+我的关注-初始状态
+    Click Element    //div[@class="left-nav"]//a[text()="我的关注"]
+    sleep    ${WAIT_TIME}
+    Run Keyword And Continue On Failure    Element Should Contain    //div[@class="c-title"]    我的关注校花儿会在第一时间为你推送关注动态
+    Run Keyword And Continue On Failure    Element Text Should Be    //span[@class="nav_active"]    公司
+    Run Keyword And Continue On Failure    Element Text Should Be    //div[@class="c-nav"]/span[@data-status="school"]    学校
+    Run Keyword And Continue On Failure    Element Text Should Be    //div[@class="hot-title"]/span[@class="hot-til"]    热门公司推荐
+    Run Keyword And Continue On Failure    Element Text Should Be    //div[@class="hot-title"]/span[@class="hot-change fr"]    换一批
+    ${preach_list}    Get Length    //div[@class="hot-list"]/div
+    Run Keyword And Continue On Failure    Should Be Unicode String    ${preach_list}>1
+    sleep    10
+
+我的收藏-初始状态
+    #网申初始状态
+    Click Element    //div[@class="left-nav"]//a[text()="我的收藏"]
+    sleep    ${WAIT_TIME}
+    Run Keyword And Continue On Failure    Element Text Should Be    //div[@class="c-title"]    我的收藏
+    Comment    Run Keyword And Continue On Failure    Element Text Should Be    //div[@class="c-title"]/span    系统仅保留近6个月内的申请记录
+    Run Keyword And Continue On Failure    Element Text Should Be    //div[@class="c-nav"]/span[@class="nav_active"]    职位
+    Run Keyword And Continue On Failure    Element Text Should Be    //div[@class="c-nav"]/span[@data-status="welfare"]    求职锦囊
+    Run Keyword And Continue On Failure    Element Text Should Be    //div[@class="c-nav"]/div[@class="clear-btn fr"]    清除无效职位
+
+通知消息
+    #网申初始状态
+    Click Element    //div[@class="left-nav"]//a[text()="通知消息"]
+    sleep    ${WAIT_TIME}
+    Run Keyword And Continue On Failure    Element Text Should Be    //div[@class="c-title"]    通知消息我们会保存近3个月的消息记录，过期会自动清除，请尽快查看哦
+    Run Keyword And Continue On Failure    Page Should Contain    终于等到你💖，【完善简历】
+
+首页宣讲列表
+    Click Element    //div[@class="xyz-type"]/a[contains(@data-desc,"首页")]
+    sleep    ${WAIT_TIME}
+    Focus    //p[@class="select-type"]
+    Mouse Up    //p[@class="select-type"]
+    Click Element    //p[@class="select-type"]/span[contains(@data-desc,"宣讲会")]
+    Input Text    //input[@placeholder="输入期望的宣讲会/公司/高校 等"]    科技
+    Click Element    //p[@data-sevent="search_click"]
+    sleep    ${WAIT_TIME}
+    ${web_list}    get list_xpath text value    //div[@class="solt-top"]/span
+    ${exp_list}    Create List    综合排序    最新发布    热门学校
+    Run Keyword And Continue On Failure    Lists Should Be Equal    ${web_list}    ${exp_list}
+    ${search_result}    Get WebElements    //tbody/tr[@class="com-table company-campus"]
+    ${search_result_lentth}    Get Length    ${search_result}
+    ${search_result_text}    Get WebElements    //tbody/tr[@class="com-table company-campus"]/td[@class="list-two"]//a/span[contains(text(),"科技")]
+    ${search_result_text_length}    Get Length    ${search_result_text}
+    Run Keyword And Continue On Failure    Should Be True    ${search_result_lentth}>=2
+    Comment    Run Keyword And Continue On Failure    Should Be True    ${search_result_lentth}==${search_result_text_length}
+    Click Element    //div[@class="xyz-type"]/a[contains(@data-desc,"首页")]
+
+校招网申列表
+    Comment    Click Element    //div[@class="xyz-type"]/a
+    sleep    ${WAIT_TIME}
+    #定位到网申列表
+    Focus    //ul[@class="job_nav clearfix"]/li/span
+    ${web_list}    get list_xpath text value    //ul[@class="job_nav clearfix"]/li/span
+    ${exp_list}    Create List    IT互联网    快消行业    金融财务    其他热门
+    Run Keyword And Continue On Failure    Lists Should Be Equal    ${web_list}    ${exp_list}
+    ${number_wangxuan}    Get WebElements    //div[@class="intern-content-container"]/div/div
+    ${number_wangxuan_length}    Get Length    ${number_wangxuan}
+    Run Keyword And Continue On Failure    Should Be True    ${number_wangxuan_length}>5
+    Focus    //div[@class="more_company"]/a
+    Click Element    //div[@class="more_company"]/a
+    sleep    ${WAIT_TIME}
+    Focus    //div[@class="solt-top"]/span
+    ${web_list}    get list_xpath text value    //div[@class="solt-top"]/span
+    ${exp_list}    Create List    热门网申    最新发布    即将截止
+    Run Keyword And Continue On Failure    Lists Should Be Equal    ${web_list}    ${exp_list}
+    #搜索功能验证
+    Input Text    //input[@placeholder="请输入期望的公司或职位"]    科技
+    Click Element    id=search_sub
+    sleep    ${WAIT_TIME}
+    Focus    //div[@class="solt-top"]/span
+    ${search_result}    Get WebElements    //tbody/tr[@class="com-table"]
+    ${search_result_lentth}    Get Length    ${search_result}
+    ${search_result_text}    Get WebElements    //tbody/tr[@class="com-table"]/td[@class="list-two"]//a/span[contains(text(),"科技")]
+    ${search_result_text_length}    Get Length    ${search_result_text}
+    Run Keyword And Continue On Failure    Should Be True    ${search_result_lentth}>2
+    Run Keyword And Continue On Failure    Should Be True    ${search_result_lentth}==${search_result_text_length}
+    Random click item    //tbody/tr[@class="com-table"]/td[@class="list-three"]/a[text()="立即网申"]
+    Select Window    new

@@ -1,0 +1,15 @@
+*** Settings ***
+Resource          all_library.txt
+Resource          all_resource.txt
+Resource          user_keywords/public.txt
+Resource          database/DataBase_config.txt
+Resource          global/QB_URL.txt
+Resource          global/QB_userdata.txt
+Resource          global/SXS_URL.txt
+Resource          global/SYS_userdata.txt
+Resource          user_keywords/QB_USER_KEYWORDS.txt
+Resource          global/XYZ_URL.txt
+Resource          global/XYZ_USERDATA.txt
+Resource          user_keywords/XYZ_USER_KEYWORDS.txt
+Resource          database/DataBase_config_PG9.5.txt
+Resource          user_keywords/SXS_IR.txt

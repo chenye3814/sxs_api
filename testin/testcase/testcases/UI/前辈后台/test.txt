@@ -1,0 +1,8 @@
+*** Settings ***
+Library           Selenium2Library
+Resource          ../../../all_resource.txt
+
+*** Test Cases ***
+AA
+    Open Browser    https://blog.csdn.net/yjfolzxl/article/details/51680983    Chrome
+    Public.Connect To Database

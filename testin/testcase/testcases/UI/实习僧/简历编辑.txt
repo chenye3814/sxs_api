@@ -1,0 +1,73 @@
+*** Settings ***
+Suite Teardown    Close All Browsers
+Resource          ../../../all_resource.txt
+
+*** Test Cases ***
+登录
+    login in    ${SXS_WEB_URL}
+    sleep    5
+
+个人中进入简历编辑
+    Click Element    //a[@data-desc="base-个人中心"]
+    sleep    ${WAIT_TIME}
+    Click Element    //div[contains(@class,"resume--online")]
+    sleep    ${WAIT_TIME}
+
+编辑中文简历基础模块
+    #编辑基础信息
+    Focus    //div[@class="module-block base cutting-line"]
+    Mouse Up    //div[@class="base-info"]
+    Click Element    //div[@class="base-info"]/../div[2]/span[@class="btn edit-btn"]
+    sleep    2
+    ${a}    Evaluate    random.randint(0, 10000)    modules=random, sys
+    Input Text    //div[@form-item-name="nickname"]/div/input    测试${a}
+    sleep    2
+    Click Element    //button[@class="el-button el-button--primary el-button--medium"]
+    sleep    2
+    #编辑个人描述
+    Focus    //div[contains(@class,"module-block description")]
+    Mouse Up    //div[contains(@class,"module-block description")]/div/div[2]
+    Click Element    //div[@id="anchor-1"]//span[@class="btn edit-btn"]
+    Input Text    //textarea[@placeholder="请填写描述内容"]    测试${a}
+    sleep    2
+    Click Element    //*[@id="anchor-1"]//button[contains(@class,"el-button el-button--primary")]
+    sleep    2
+    #编辑教育背景
+    Focus    //div[contains(@class,"module-block education")]
+    Mouse Up    //div[contains(@class,"module-block education")]/div/div[2]
+    Click Element    //div[@id="anchor-2"]//span[@class="btn edit-btn"]
+    Input Text    //textarea[@placeholder="请填写主修课程"]    测试${a}
+    sleep    2
+    Focus    //*[@id="anchor-2"]//button[contains(@class,"el-button el-button--primary")]
+    Click Element    //*[@id="anchor-2"]//button[contains(@class,"el-button el-button--primary")]
+    sleep    2
+
+编辑中文简历其他模块
+    ${a}    Evaluate    random.randint(0, 10000)    modules=random, sys
+    #编辑实习经历
+    Focus    //div[contains(@class,"module-block experience")]
+    Mouse Up    //div[contains(@class,"module-block experience")]/div/div[2]
+    Click Element    //div[@id="anchor-3"]//span[@class="btn edit-btn"]
+    Input Text    //textarea[@placeholder="请填写经历描述(内容超过50字提升简历分数)"]    测试${a}
+    sleep    2
+    Focus    //*[@id="anchor-3"]//button[contains(@class,"el-button el-button--primary")]
+    Click Element    //*[@id="anchor-3"]//button[contains(@class,"el-button el-button--primary")]
+    sleep    2
+    #编辑学术经历
+    Focus    //div[contains(@class,"module-block academic")]
+    Mouse Up    //div[contains(@class,"module-block academic")]/div/div[2]
+    Click Element    //div[@id="anchor-4"]//span[@class="btn edit-btn"]
+    Input Text    //textarea[@placeholder="请填写经历描述(内容超过50字提升简历分数)"]    测试${a}
+    sleep    2
+    Focus    //*[@id="anchor-4"]//button[contains(@class,"el-button el-button--primary")]
+    Click Element    //*[@id="anchor-4"]//button[contains(@class,"el-button el-button--primary")]
+    sleep    2
+    #编辑学术经历
+    Focus    //div[contains(@class,"module-block prac")]
+    Mouse Up    //div[contains(@class,"module-block prac")]/div/div[2]
+    Click Element    //div[@id="anchor-5"]//span[@class="btn edit-btn"]
+    Input Text    //textarea[@placeholder="请填写经历描述"]    测试${a}
+    sleep    2
+    Focus    //*[@id="anchor-5"]//button[contains(@class,"el-button el-button--primary")]
+    Click Element    //*[@id="anchor-5"]//button[contains(@class,"el-button el-button--primary")]
+    sleep    2

@@ -1,0 +1,14 @@
+*** Settings ***
+Library           Selenium2Library
+Library           RequestsLibrary
+Library           DatabaseLibrary
+Library           psycopg2
+Library           String
+Library           ExcelLibrary
+Library           OperatingSystem
+Library           xlrd
+Library           Collections
+Library           Screenshot
+Library           urllib
+Library           SendKeys
+Library           HeJinRongLibrary

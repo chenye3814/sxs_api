@@ -1,0 +1,45 @@
+*** Settings ***
+Resource          ../../all_resource.txt
+
+*** Test Cases ***
+登录
+    ${header}    Create Dictionary    Content-Type=application/x-www-form-urlencoded
+    ${url}    Set Variable    https://wwwtest.shixiseng.com
+    ${data}    Create Dictionary    username=17380120003    password=45X35X25X15X05X94    remember_login=1
+    log    ${data}
+    ${uri}    Set Variable    /user/login
+    Create Session    aa    ${url}    ${header}
+    ${bbbb}    Post Request    aa    /user/login    ${data}    headers=${header}
+    ${session_1}    Set Variable    ${bbbb.headers['set-cookie']}
+    ${pop}    Remove String Using Regexp    ${session_1}    Domain\\=\\S*\\W\\S*\\W\\d*\\W\\S*\\W\\d*\\W\\d*\\W\\d*\\W\\d*\\W\\S*\\W\\S*\\W\\S*\\W*Path=\\\/,*\\W*
+    log    ${pop}
+    log    ${session_1}
+    Set Suite Variable    ${suitcookie}    ${pop}
+
+get请求
+    ${AA}    IR_SXS_LOGIN
+    ${header}    Create Dictionary    Content-Type=application/json    Cookie=${AA}
+    ${url}    Set Variable    https://test-resume.shixiseng.com
+    Create Session    bb    ${url}    ${header}
+    ${bbbb}    Get Request    bb    /api/v1/resume/summary
+    ${ccc}    To Json    ${bbbb.content}
+    ${cc}    IR_POST_REQUEST    /api/v1/userinfo    https://test-resume.shixiseng.com    {"huuid":"58BAA54F4F961B41B1B273F39B3AFC96"}    ${AA}
+    ${YYU}    Create Dictionary    uuid=res_iufoezmtyjlf
+    ${bbb}    IR_GET_REQUEST    /api/v1/resume/tags    https://test-resume.shixiseng.com    ${YYU}    ${AA}
+    ${a}    Set Variable    {"uuid":"res_iufoezmtyjlf","module":"base","info":[{"headUrl":"https://sxsimg.xiaoyuanzhao.com/58/96/58BAA54F4F961B41B1B273F39B3AFC96.png","headUuid":"58BAA54F4F961B41B1B273F39B3AFC96","nickname":"12","sex":1,"birth":"2000-02","age":19,"city":"北京","phone":"17380120003","email":"123@qq.COM"}]}
+    ${bbb}    IR_PUT_REQUEST    /api/v1/resume/detail    https://test-resume.shixiseng.com    ${a}    ${AA}
+
+11
+    Open Browser    https://cloud.changhong.com/    chrome
+    Maximize Browser Window
+    Click Element    //button
+    sleep    5
+    Input Text    //input[@id="login"]    linfeng3.li
+    Input Text    //input[@id="password"]    654321
+    Click Element    //button[@id="submit-login"]
+    sleep    3
+    Click Element    //button[@id="btnSubmit"]
+    sleep    5
+    Click Element    //*[@class="ant-tabs ant-tabs-top ant-tabs-line"]//div[contains(text(),"DevOps开发服务") and contains(@class,"ant-card-meta-description")]
+    sleep    5
+    Click Element    //div[contains(@class,"main-module")]//span[@class="ant-select-arrow"]

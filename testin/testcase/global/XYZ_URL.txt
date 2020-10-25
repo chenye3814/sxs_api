@@ -1,0 +1,3 @@
+*** Variables ***
+${XYZ_Student_PC_URL}    https://xiaoyuan.shixiseng.com
+${WAIT_TIME}      2

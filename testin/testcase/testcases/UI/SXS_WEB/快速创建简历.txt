@@ -1,0 +1,13 @@
+*** Settings ***
+Suite Teardown    Close All Browsers
+Resource          ../../../all_resource.txt
+
+*** Test Cases ***
+登录系统
+    login in    ${SXS_WEB_URL}
+    sleep    2
+
+简历检测
+    Click Element    //li/a[text()="个人中心"]
+    sleep    1
+    Run Keyword And Continue On Failure    Element Text Should Be    //span[@title="默认简历"]    默认简历

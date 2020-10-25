@@ -1,0 +1,2 @@
+*** Variables ***
+${QB_Student_PC_URL}    https://qbtest.shixiseng.com/    # 前辈学生端pc网址

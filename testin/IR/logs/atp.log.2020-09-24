@@ -1,0 +1,55 @@
+2020-06-15 14:38:38,116 - D:\API\testdata\lib\common.py[line:24] - INFO: 共读取5条用例
+2020-06-15 14:38:38,128 - D:\ST\airtest\ATP\lib\site-packages\urllib3\connectionpool.py[line:941] - DEBUG: Starting new HTTPS connection (1): apigateway.shixiseng.com:443
+2020-06-15 14:38:41,874 - D:\ST\airtest\ATP\lib\site-packages\urllib3\connectionpool.py[line:442] - DEBUG: https://apigateway.shixiseng.com:443 "POST /api/account/v2.0/login HTTP/1.1" 200 28
+2020-06-15 14:38:41,889 - D:\ST\airtest\ATP\lib\site-packages\urllib3\connectionpool.py[line:941] - DEBUG: Starting new HTTPS connection (1): apigateway.shixiseng.com:443
+2020-06-15 14:38:42,486 - D:\ST\airtest\ATP\lib\site-packages\urllib3\connectionpool.py[line:442] - DEBUG: https://apigateway.shixiseng.com:443 "POST /api/account/v2.0/collect/add HTTP/1.1" 200 26
+2020-06-15 14:38:42,489 - D:\API\testdata\lib\common.py[line:64] - INFO: 结果校验失败，预期结果：【msg=1234】，实际结果不包含预期结果【{"code=100, "msg=null}】
+2020-06-15 14:38:42,492 - D:\ST\airtest\ATP\lib\site-packages\urllib3\connectionpool.py[line:941] - DEBUG: Starting new HTTPS connection (1): apigateway.shixiseng.com:443
+2020-06-15 14:38:43,202 - D:\ST\airtest\ATP\lib\site-packages\urllib3\connectionpool.py[line:442] - DEBUG: https://apigateway.shixiseng.com:443 "GET /api/interns/v2.0/company/info/wxz?uuid=com_mqcbon0a2nej HTTP/1.1" 200 None
+2020-06-15 14:38:43,213 - D:\ST\airtest\ATP\lib\site-packages\urllib3\connectionpool.py[line:941] - DEBUG: Starting new HTTPS connection (1): apigateway.shixiseng.com:443
+2020-06-15 14:38:44,649 - D:\ST\airtest\ATP\lib\site-packages\urllib3\connectionpool.py[line:442] - DEBUG: https://apigateway.shixiseng.com:443 "GET /api/account/v2.0/baseinfo HTTP/1.1" 200 None
+2020-06-15 14:38:44,659 - D:\ST\airtest\ATP\lib\site-packages\urllib3\connectionpool.py[line:941] - DEBUG: Starting new HTTPS connection (1): apigateway.shixiseng.com:443
+2020-06-15 14:38:45,624 - D:\ST\airtest\ATP\lib\site-packages\urllib3\connectionpool.py[line:442] - DEBUG: https://apigateway.shixiseng.com:443 "POST /api/account/v2.0/collect/%20cancel HTTP/1.1" 200 26
+2020-06-15 14:38:45,646 - D:\API\testdata\lib\common.py[line:24] - INFO: 共读取17条用例
+2020-06-15 14:38:45,649 - D:\ST\airtest\ATP\lib\site-packages\urllib3\connectionpool.py[line:941] - DEBUG: Starting new HTTPS connection (1): apigateway.shixiseng.com:443
+2020-06-15 14:38:47,907 - D:\ST\airtest\ATP\lib\site-packages\urllib3\connectionpool.py[line:442] - DEBUG: https://apigateway.shixiseng.com:443 "POST /api/account/v2.0/login HTTP/1.1" 200 28
+2020-06-15 14:38:47,914 - D:\ST\airtest\ATP\lib\site-packages\urllib3\connectionpool.py[line:941] - DEBUG: Starting new HTTPS connection (1): apigateway.shixiseng.com:443
+2020-06-15 14:38:48,529 - D:\ST\airtest\ATP\lib\site-packages\urllib3\connectionpool.py[line:442] - DEBUG: https://apigateway.shixiseng.com:443 "GET /api/deliver/v2.0/deliver/list?intern_type=all&page=1&stype=written HTTP/1.1" 200 None
+2020-06-15 14:38:48,534 - D:\ST\airtest\ATP\lib\site-packages\urllib3\connectionpool.py[line:941] - DEBUG: Starting new HTTPS connection (1): apigateway.shixiseng.com:443
+2020-06-15 14:38:49,109 - D:\ST\airtest\ATP\lib\site-packages\urllib3\connectionpool.py[line:442] - DEBUG: https://apigateway.shixiseng.com:443 "GET /api/deliver/v2.0/deliver/list?intern_type=all&page=1&stype=undeter HTTP/1.1" 200 24
+2020-06-15 14:38:49,114 - D:\ST\airtest\ATP\lib\site-packages\urllib3\connectionpool.py[line:941] - DEBUG: Starting new HTTPS connection (1): apigateway.shixiseng.com:443
+2020-06-15 14:38:49,628 - D:\ST\airtest\ATP\lib\site-packages\urllib3\connectionpool.py[line:442] - DEBUG: https://apigateway.shixiseng.com:443 "GET /api/deliver/v2.0/deliver/list?intern_type=all&page=1&stype=employed HTTP/1.1" 200 None
+2020-06-15 14:38:49,633 - D:\ST\airtest\ATP\lib\site-packages\urllib3\connectionpool.py[line:941] - DEBUG: Starting new HTTPS connection (1): apigateway.shixiseng.com:443
+2020-06-15 14:38:50,311 - D:\ST\airtest\ATP\lib\site-packages\urllib3\connectionpool.py[line:442] - DEBUG: https://apigateway.shixiseng.com:443 "GET /api/deliver/v2.0/deliver/list?intern_type=all&page=1&stype=notify HTTP/1.1" 200 None
+2020-06-15 14:38:50,315 - D:\ST\airtest\ATP\lib\site-packages\urllib3\connectionpool.py[line:941] - DEBUG: Starting new HTTPS connection (1): apigateway.shixiseng.com:443
+2020-06-15 14:38:50,589 - D:\ST\airtest\ATP\lib\site-packages\urllib3\connectionpool.py[line:442] - DEBUG: https://apigateway.shixiseng.com:443 "GET /api/deliver/v2.0/deliver/list?intern_type=all&page=1&stype=delivered HTTP/1.1" 200 24
+2020-06-15 14:38:50,594 - D:\ST\airtest\ATP\lib\site-packages\urllib3\connectionpool.py[line:941] - DEBUG: Starting new HTTPS connection (1): apigateway.shixiseng.com:443
+2020-06-15 14:38:51,706 - D:\ST\airtest\ATP\lib\site-packages\urllib3\connectionpool.py[line:442] - DEBUG: https://apigateway.shixiseng.com:443 "GET /api/deliver/v2.0/deliver/list?intern_type=all&page=1&stype=reject HTTP/1.1" 200 None
+2020-06-15 14:38:51,711 - D:\ST\airtest\ATP\lib\site-packages\urllib3\connectionpool.py[line:941] - DEBUG: Starting new HTTPS connection (1): apigateway.shixiseng.com:443
+2020-06-15 14:38:52,255 - D:\ST\airtest\ATP\lib\site-packages\urllib3\connectionpool.py[line:442] - DEBUG: https://apigateway.shixiseng.com:443 "GET /api/deliver/v2.0/deliver/list?intern_type=all&page=1&stype=checked HTTP/1.1" 200 None
+2020-06-15 14:38:52,260 - D:\ST\airtest\ATP\lib\site-packages\urllib3\connectionpool.py[line:941] - DEBUG: Starting new HTTPS connection (1): apigateway.shixiseng.com:443
+2020-06-15 14:38:53,445 - D:\ST\airtest\ATP\lib\site-packages\urllib3\connectionpool.py[line:442] - DEBUG: https://apigateway.shixiseng.com:443 "GET /api/deliver/v2.0/deliver/list?intern_type=intern&page=1&stype=checked HTTP/1.1" 200 None
+2020-06-15 14:38:53,450 - D:\ST\airtest\ATP\lib\site-packages\urllib3\connectionpool.py[line:941] - DEBUG: Starting new HTTPS connection (1): apigateway.shixiseng.com:443
+2020-06-15 14:38:53,964 - D:\ST\airtest\ATP\lib\site-packages\urllib3\connectionpool.py[line:442] - DEBUG: https://apigateway.shixiseng.com:443 "GET /api/deliver/v2.0/deliver/list?intern_type=intern&page=1&stype=notify HTTP/1.1" 200 None
+2020-06-15 14:38:53,969 - D:\ST\airtest\ATP\lib\site-packages\urllib3\connectionpool.py[line:941] - DEBUG: Starting new HTTPS connection (1): apigateway.shixiseng.com:443
+2020-06-15 14:38:54,580 - D:\ST\airtest\ATP\lib\site-packages\urllib3\connectionpool.py[line:442] - DEBUG: https://apigateway.shixiseng.com:443 "GET /api/deliver/v2.0/deliver/list?intern_type=intern&page=1&stype=delivered HTTP/1.1" 200 24
+2020-06-15 14:38:54,585 - D:\ST\airtest\ATP\lib\site-packages\urllib3\connectionpool.py[line:941] - DEBUG: Starting new HTTPS connection (1): apigateway.shixiseng.com:443
+2020-06-15 14:38:55,268 - D:\ST\airtest\ATP\lib\site-packages\urllib3\connectionpool.py[line:442] - DEBUG: https://apigateway.shixiseng.com:443 "GET /api/deliver/v2.0/deliver/list?intern_type=intern&page=1&stype=undeter HTTP/1.1" 200 24
+2020-06-15 14:38:55,273 - D:\ST\airtest\ATP\lib\site-packages\urllib3\connectionpool.py[line:941] - DEBUG: Starting new HTTPS connection (1): apigateway.shixiseng.com:443
+2020-06-15 14:38:56,106 - D:\ST\airtest\ATP\lib\site-packages\urllib3\connectionpool.py[line:442] - DEBUG: https://apigateway.shixiseng.com:443 "GET /api/deliver/v2.0/deliver/list?intern_type=intern&page=1&stype=written HTTP/1.1" 200 24
+2020-06-15 14:38:56,112 - D:\ST\airtest\ATP\lib\site-packages\urllib3\connectionpool.py[line:941] - DEBUG: Starting new HTTPS connection (1): apigateway.shixiseng.com:443
+2020-06-15 14:38:56,385 - D:\ST\airtest\ATP\lib\site-packages\urllib3\connectionpool.py[line:442] - DEBUG: https://apigateway.shixiseng.com:443 "GET /api/deliver/v2.0/deliver/list?intern_type=xiaozhao&page=1&stype=undeter HTTP/1.1" 200 24
+2020-06-15 14:38:56,390 - D:\ST\airtest\ATP\lib\site-packages\urllib3\connectionpool.py[line:941] - DEBUG: Starting new HTTPS connection (1): apigateway.shixiseng.com:443
+2020-06-15 14:38:56,651 - D:\ST\airtest\ATP\lib\site-packages\urllib3\connectionpool.py[line:442] - DEBUG: https://apigateway.shixiseng.com:443 "GET /api/deliver/v2.0/deliver/list?intern_type=xiaozhao&page=1&stype=checked HTTP/1.1" 200 24
+2020-06-15 14:38:56,656 - D:\ST\airtest\ATP\lib\site-packages\urllib3\connectionpool.py[line:941] - DEBUG: Starting new HTTPS connection (1): apigateway.shixiseng.com:443
+2020-06-15 14:38:57,001 - D:\ST\airtest\ATP\lib\site-packages\urllib3\connectionpool.py[line:442] - DEBUG: https://apigateway.shixiseng.com:443 "GET /api/deliver/v2.0/deliver/list?intern_type=xiaozhao&page=1&stype=written HTTP/1.1" 200 None
+2020-06-15 14:38:57,006 - D:\ST\airtest\ATP\lib\site-packages\urllib3\connectionpool.py[line:941] - DEBUG: Starting new HTTPS connection (1): apigateway.shixiseng.com:443
+2020-06-15 14:38:57,339 - D:\ST\airtest\ATP\lib\site-packages\urllib3\connectionpool.py[line:442] - DEBUG: https://apigateway.shixiseng.com:443 "GET /api/deliver/v2.0/deliver/list?intern_type=xiaozhao&page=1&stype=notify HTTP/1.1" 200 None
+2020-06-15 14:38:57,407 - D:\API\testdata\lib\common.py[line:24] - INFO: 共读取9条用例
+2020-06-15 14:38:57,411 - D:\ST\airtest\ATP\lib\site-packages\urllib3\connectionpool.py[line:941] - DEBUG: Starting new HTTPS connection (1): apigateway.shixiseng.com:443
+2020-06-15 14:38:59,566 - D:\ST\airtest\ATP\lib\site-packages\urllib3\connectionpool.py[line:442] - DEBUG: https://apigateway.shixiseng.com:443 "POST /api/account/v2.0/login HTTP/1.1" 200 28
+2020-06-15 14:38:59,576 - D:\ST\airtest\ATP\lib\site-packages\urllib3\connectionpool.py[line:941] - DEBUG: Starting new HTTPS connection (1): apigateway.shixiseng.com:443
+2020-06-15 14:38:59,970 - D:\ST\airtest\ATP\lib\site-packages\urllib3\connectionpool.py[line:442] - DEBUG: https://apigateway.shixiseng.com:443 "GET /api/interns/v2.0/interns/recommend/wxz/intern?city=%E5%85%A8%E5%9B%BD&page=1 HTTP/1.1" 200 None
+2020-06-15 14:38:59,979 - D:\ST\airtest\ATP\lib\site-packages\urllib3\connectionpool.py[line:941] - DEBUG: Starting new HTTPS connection (1): apigateway.shixiseng.com:443
+2020-06-15 14:39:01,279 - D:\ST\airtest\ATP\lib\site-packages\urllib3\connectionpool.py[line:442] - DEBUG: https://apigateway.shixiseng.com:443 "POST /api/account/v2.0/into/app HTTP/1.1" 200 26
+2020-06-15 14:39:01,284 - D:\ST\airtest\ATP\lib\site-packages\urllib3\connectionpool.py[line:941] - DEBUG: Starting new HTTPS connection (1): apigateway.shixiseng.com:443

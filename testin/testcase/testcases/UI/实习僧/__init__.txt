@@ -1,0 +1,2 @@
+*** Settings ***
+Force Tags        Level1    实习僧
